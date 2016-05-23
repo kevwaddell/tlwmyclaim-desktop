@@ -19,3 +19,34 @@
 <div id="page" class="site">
 	
 	<div id="content" class="site-content">
+		
+		<header id="masthead">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-4">
+						
+					</div>
+					<div class="col-xs-4">
+						<div class="logo">
+							<a href="<?php echo get_option('home'); ?>/" class="text-hide">
+								<?php bloginfo('name'); ?>
+							</a>
+							<span><?php bloginfo('description'); ?></span>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<?php get_template_part( 'parts/global/col', 'strip' ); ?>
+			<div class="pg-tool-bar">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-6">
+							<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('User actions') ) : ?><?php endif; ?>	
+						</div>
+						<div class="col-xs-6">
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>

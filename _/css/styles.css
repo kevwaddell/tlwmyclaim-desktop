@@ -1,12 +1,10 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+/* --------------------------- */
+/* Bootstrap */
+/* --------------------------- */
 /* --------------------------- */
 /* Mixins and vars */
 /* --------------------------- */
-/*!
- * Bootstrap-select v1.7.3 (http://silviomoreto.github.io/bootstrap-select)
- *
- * Copyright 2013-2015 bootstrap-select
- * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
- */
 .bootstrap-select {
   width: 220px \0;
   /*IE9 and below*/
@@ -262,7 +260,6 @@ select.mobile-device {
   height: 100% !important;
   opacity: 0;
 }
-/*# sourceMappingURL=bootstrap-select.css.map */
 /*---------------------------------------------------
     LESS Elements 0.9
   ---------------------------------------------------
@@ -3252,15 +3249,6 @@ Copyright (c) 2014 Daniel Eden
 .bg-col-blue-lt {
   background-color: #66afd6;
 }
-.bg-col-facebook {
-  background-color: #3b5998;
-}
-.bg-col-twitter {
-  background-color: #00aced;
-}
-.bg-col-google-plus {
-  background-color: #dd4b39;
-}
 /* SIZE */
 /* DISPLAY */
 .block {
@@ -3370,23 +3358,6 @@ Copyright (c) 2014 Daniel Eden
   background-image: -moz-linear-gradient(left, #918f8f, transparent);
   background-image: -o-linear-gradient(left, #918f8f, transparent);
 }
-.striped-overlay {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  height: 100%;
-  background-image: url(/wp-content/themes/tlwsolicitors-v4/_/css/img/striped-img-overlay.png);
-  background-blend-mode: color-burn;
-}
-.col-overlay {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  background-blend-mode: multiply;
-}
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -3394,4 +3365,137 @@ Copyright (c) 2014 Daniel Eden
 }
 .clearfix:after {
   clear: both;
+}
+/* --------------------------- */
+/* Global styles */
+/* --------------------------- */
+html {
+  min-height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+}
+body.loading {
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+body.loaded {
+  overflow: auto;
+}
+body.nav-open {
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+/*
+COLOUR STRIP
+*/
+.col-strip {
+  height: 24px;
+  border-bottom: 4px solid #ffffff;
+  z-index: 2;
+  position: relative;
+}
+.col-strip .col-block {
+  height: 20px;
+  width: 20%;
+  float: left;
+  border-right: 4px solid #ffffff;
+}
+.col-strip .col-block:last-child {
+  border-right: none;
+}
+.col-strip .col-purple {
+  background-color: #a677b4;
+}
+.col-strip .col-green {
+  background-color: #acd15c;
+}
+.col-strip .col-pink {
+  background-color: #ea5677;
+}
+.col-strip .col-orange {
+  background-color: #fbad4f;
+}
+.col-strip .col-blue {
+  background-color: #2d7ea9;
+  border: none;
+}
+/** --------------------------- /
+/* Header area */
+/* --------------------------- */
+#masthead {
+  background-color: #ffffff;
+}
+#masthead .pg-tool-bar {
+  min-height: 40px;
+  background-color: #4b4b4b;
+  color: #ffffff;
+}
+#masthead .pg-tool-bar ul.tml-user-links {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+#masthead .pg-tool-bar ul.tml-user-links li {
+  display: inline-block;
+  margin-bottom: 0px;
+  padding-right: 20px;
+}
+#masthead .pg-tool-bar ul.tml-user-links a {
+  line-height: 40px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+}
+#masthead .logo {
+  margin: 0px;
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+#masthead .logo a {
+  display: block;
+  height: 80px;
+  background-image: url(img/tlw-logo-wide.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#masthead .logo a:hover,
+#masthead .logo a:active,
+#masthead .logo a:focus {
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+#masthead .logo span {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  text-transform: uppercase;
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+}
+html.svg #masthead .logo a {
+  background-image: url(img/tlw-logo-wide.svg);
 }

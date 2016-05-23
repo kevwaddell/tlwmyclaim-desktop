@@ -1,0 +1,61 @@
+#masthead {
+.bg-col(@wht);
+
+	.pg-tool-bar {
+	.min-h(4);
+	.bg-col-grayDk;
+	.txt-col-wht;	
+		ul.tml-user-links {
+		.list-style-gone;
+		.mag-bot(0);
+			li {
+			.in-block;	
+			.mag-bot(0);
+			.pad-right(2);
+			}
+				a {
+				.line-h(4);	
+				.txt-col-wht;
+				.caps;
+				.font-size(1.4);
+				.font-slab-serif;
+				}
+		}
+	}
+
+	.logo {
+	.mag-all(0);
+	.rel;
+	.mag-top(0.8);
+	.mag-bot(1);
+	
+		a {
+		.block;
+		.h(8);
+		.bg-img("tlw-logo-wide.png");
+		.bg-repeat(no-repeat);
+		background-position: left center;
+		.bg-size;
+					
+			&:hover, &:active, &:focus{
+			.opacity(0.5);	
+			}
+			
+		}
+		
+		span {
+		.abs;
+		.bottom(0);
+		.right(0);
+		.caps;
+		.font-slab-serif;
+		.font-size(1.4);
+		letter-spacing: 0.8px;
+		}
+			
+	}
+}
+
+html.svg #masthead .logo a {
+.bg-img("tlw-logo-wide.svg");	
+}

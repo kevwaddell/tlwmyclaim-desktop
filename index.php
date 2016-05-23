@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 	<main id="main" class="site-main" role="main">
-		
+		<div class="container">
 		<?php if ( have_posts() ) : ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -23,8 +23,7 @@
 			<?php endwhile; ?>
 
 		<?php endif; ?>
-		
-
+		</div>
 	</main><!-- .site-main -->
 
 <?php get_footer(); ?>
