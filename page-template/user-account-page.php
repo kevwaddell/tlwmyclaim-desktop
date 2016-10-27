@@ -13,7 +13,9 @@ Template Name: User Account Page
 			<?php while ( have_posts() ) : the_post(); ?>
 
 			<article id="user-account-info" <?php post_class(); ?>>
-				<?php the_content(); ?>			
+				<?php the_content(); ?>	
+				<div class="rule"></div>
+				<?php echo do_shortcode( "[theme-my-login]" ) ?>			
 			</article><!-- #post-## -->
 
 			<?php endwhile; ?>

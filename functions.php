@@ -8,8 +8,9 @@ function tlwmyclaim_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	register_nav_menus( array(
-		'primary' => __( 'Main Menu',      'tlwmyclaim' ),
-		'footer'  => __( 'Footer Menu', 'tlwmyclaim' ),
+		'user-menu' => __( 'User Menu',      'tlwmyclaim' ),
+		'footer-menu'  => __( 'Footer Menu', 'tlwmyclaim' ),
+		'admin-menu'  => __( 'Admin Menu', 'tlwmyclaim' )
 	) );
 	
 if ( function_exists( 'register_sidebar' ) ) {
@@ -33,7 +34,8 @@ add_action( 'after_setup_theme', 'tlwmyclaim_setup' );
 	
 function tlwmyclaim_scripts() {
 	// Load stylesheets.
-	wp_enqueue_style( 'tlwmyclaim-style', get_stylesheet_directory_uri().'/_/css/styles.css', array(), filemtime( get_stylesheet_directory().'/_/css/styles.css' ), 'screen' );
+	wp_enqueue_style( 'bootstrap-style', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', array(), '3.3.6', 'screen' );
+	wp_enqueue_style( 'tlwmyclaim-style', get_stylesheet_directory_uri().'/_/css/styles.css', array('bootstrap-style'), filemtime( get_stylesheet_directory().'/_/css/styles.css' ), 'screen' );
 	
 	// Load JS
 	wp_enqueue_script( 'jQuery');

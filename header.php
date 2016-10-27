@@ -37,16 +37,21 @@
 				</div>
 			</div>
 			<?php get_template_part( 'parts/global/col', 'strip' ); ?>
+			<?php if ( is_user_logged_in() ) { 
+			$user_id = get_current_user_id();	
+			$user_firstname = get_user_meta( $user_id, 'first_name', true ); 
+			?>
 			<div class="pg-tool-bar">
 				<div class="container">
 					<div class="row">
-						<div class="col-xs-6">
-							<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('User actions') ) : ?><?php endif; ?>	
+						<div class="col-xs-8">
+							<?php wp_nav_menu(array( 'container_class' => 'user-links', 'theme_location' => 'user-menu', 'fallback_cb' => false ) ); ?>	
 						</div>
-						<div class="col-xs-6">
-								
+						<div class="col-xs-4">
+							<div class="user-name text-right"><i class="fa fa-thumbs-up"></i> Welcome <strong><?php echo $user_firstname; ?></strong></div>	
 						</div>
 					</div>
 				</div>
 			</div>
+			<?php } ?>
 		</header>
