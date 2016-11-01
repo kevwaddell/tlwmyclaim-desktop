@@ -218,12 +218,10 @@ if (!$user_id) {
 	}
 }
 
-} /*
-else {
+} else {
 $index_id = get_option( 'page_on_front' );
 $url = get_permalink( $index_id  );
 wp_redirect( $url );
 exit;	
 }
-*/
 ?>
