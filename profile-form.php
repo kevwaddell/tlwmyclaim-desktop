@@ -22,34 +22,15 @@ echo '<pre class="debug">';print_r($client_contact);echo '</pre>';
 		<div class="row">
 		<div class="col-xs-8">
 			<div class="panel panel-default">
-				  <div class="panel-heading text-center">Personal details</div>
-					  <table class="table table-bordered">
-						  <tbody>
-							  <tr>
-								  <th>Name:</th>
-								  <td><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
-							  </tr>
-							  <?php if (!empty($client_address)) { ?>
-							  	 <tr>
-								  <th>Address:</th>
-								  <td>
-									  <?php foreach ($client_address as $part) { ?>
-									  <?php echo $part; ?><br/>
-									  <?php } ?>
-								  </td>
-							  </tr>		
-							  <?php } ?>
-						  </tbody>
-					  </table>
-
-			</div>
-			<?php if (!empty($client_contact)) { ?>
-			<div class="panel panel-default">
 			  <div class="panel-heading text-center">Contact details</div>
 				  <table class="table table-bordered">
 					  <tbody>
 						  <tr>
-							  <th>Email:</th>
+							  <th width="30%">Primary Contact:</th>
+							  <td><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
+						  </tr>
+						  <tr>
+							  <th>Contact email:</th>
 							  <td><?php echo $client_contact['email']; ?></td>
 						  </tr>
 						  <?php if (!empty($client_contact['tel'])) { ?>
@@ -66,12 +47,34 @@ echo '<pre class="debug">';print_r($client_contact);echo '</pre>';
 						   <?php } ?>
 					  </tbody>
 				  </table>
-			</div>		
-			<?php } ?>
-			
+			</div>
 		</div>
 		
-		<div class="col-xs-4">	
+		<div class="col-xs-4">
+
+			<div class="panel panel-default">
+				  <div class="panel-heading text-center">Address details</div>
+					  <table class="table table-bordered" style="min-height: 179px;">
+						  <tbody>
+							  <?php if (!empty($client_address)) { ?>
+							  	 <tr>
+								  <td>
+									  <?php foreach ($client_address as $part) { ?>
+									  <?php echo $part; ?><br/>
+									  <?php } ?>
+								  </td>
+							  </tr>		
+							  <?php } ?>
+						  </tbody>
+					  </table>
+
+			</div>	
+		</div>
+		</div>
+		
+		<div class="row">
+			
+		<div class="col-xs-12">	
 			<form id="your-profile" action="<?php $template->the_action_url( 'profile', 'login_post' ); ?>" method="post">
 			<?php wp_nonce_field( 'update-user_' . $current_user->ID ); ?>
 			

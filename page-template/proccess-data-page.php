@@ -14,64 +14,55 @@ $caseDetailsXML = simplexml_load_string($xmlBody);
 $caseDetails = json_decode(json_encode((array)$caseDetailsXML), TRUE);
 
 //Check if user email exsists
-$user_email = $caseDetails['email'];
-$user_id = email_exists( $user_email );
+$first_name =  $caseDetails['forename'];
+$last_name = $caseDetails['surname'];
+$user_name = $first_name."_".$last_name;
+$user_id = username_exists( $user_name );
+
+//Fee Earsner Details
+$fee_earner = array();
+$fee_earner['name'] = $caseDetails['fee-earner'];
+$fee_earner['email'] = $caseDetails['fee-earner-email'];
+
+//Insurer Details
+$insurer_data = array();
+$insurer_data['company'] = $caseDetails['insurer-company'];
+if(!empty($caseDetails['insurer-reference'])) {
+$insurer_data['ref'] = $caseDetails['insurer-reference'];	
+}
+$insurer_data['policy-number'] = $caseDetails['insurer-policy'];
+
+//Case status
+$case_status = array();
+$case_status[] = array('date'=> date('d/m/Y'), 'status'	=> 'Case created' );	 
+
+// Client Personal Details
+$client_personal = array();
+$client_personal['title'] = $caseDetails['title'];
+$client_personal['forename'] = $first_name;
+$client_personal['surname'] = $last_name;
+$client_personal['date-of-birth'] = $caseDetails['date-of-birth'];
+
+// Client Address
+$client_address = array();
+$client_address['address1'] = $caseDetails['address1'];
+$client_address['address2'] = $caseDetails['address2'];
+$client_address['address3'] = $caseDetails['address3'];
+$client_address['address4'] = $caseDetails['address4'];
+$client_address['postcode'] = $caseDetails['postcode'];
+
+//Client contact details
+$client_contact = array();
+$client_contact['email'] = $caseDetails['email'];
+$client_contact['tel'] = $caseDetails['telephone'];
+$client_contact['mobile'] = $caseDetails['mobile'];			
 
 if (!$user_id) {
 	
 	// User data for user account creation
 	$random_password = wp_generate_password( 12, true, true );
-	$first_name =  $caseDetails['forename'];
-	$last_name = $caseDetails['surname'];
-	$user_name = $first_name."_".$last_name;	
+	$user_email = $caseDetails['email'];
 	
-	//Case Reference number
-	$client_cases = array();
-	$client_cases[] = $caseDetails['solicitor-reference'];
-	
-	// Client Personal Details
-	$client_personal = array();
-	$client_personal['title'] = $caseDetails['title'];
-	$client_personal['forename'] = $first_name;
-	$client_personal['surname'] = $last_name;
-	$client_personal['date-of-birth'] = $caseDetails['date-of-birth'];
-	
-	// Client Address
-	$client_address = array();
-	$client_address['address1'] = $caseDetails['address1'];
-	$client_address['address2'] = $caseDetails['address2'];
-	$client_address['address3'] = $caseDetails['address3'];
-	$client_address['address4'] = $caseDetails['address4'];
-	$client_address['postcode'] = $caseDetails['postcode'];
-	
-	//Client contact details
-	$client_contact = array();
-	$client_contact['email'] = $caseDetails['email'];
-	$client_contact['tel'] = $caseDetails['telephone'];
-	$client_contact['mobile'] = $caseDetails['mobile'];
-		
-	//Case status
- 	$case_status = array();
- 	$case_status[] = array('date'=> date('d/m/Y'), 'status'	=> 'Case created' );
- 	
- 	//Fee Earsner Details
- 	$fee_earner = array();
- 	$fee_earner['name'] = $caseDetails['fee-earner'];
- 	$fee_earner['email'] = $caseDetails['fee-earner-email'];
- 	
- 	//Insurer Details
- 	$insurer_data = array();
- 	$insurer_data['company'] = $caseDetails['insurer-company'];
- 	if(!empty($caseDetails['insurer-reference'])) {
-	$insurer_data['ref'] = $caseDetails['insurer-reference'];	
- 	}
- 	$insurer_data['policy-number'] = $caseDetails['insurer-policy'];			 	
-
- 	$case_args['post_type']= 'post';
- 	$case_args['post_status']= 'publish';
- 	$case_args['post_name']	= sanitize_title($caseDetails['solicitor-reference']);
- 	$case_args['post_title'] = wp_strip_all_tags($caseDetails['solicitor-reference']);
-
 	$userdata = array(
 	 'user_login'  =>  $user_name,
 	 'user_pass'	=> $random_password,
@@ -128,7 +119,103 @@ if (!$user_id) {
 	 }
 	 
 } else {
-	echo "User already exists";
+	echo "User already exists\n";
+	$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
+	$client_address_raw = get_user_meta($user_id, 'client_address', true);	
+	$client_contact_raw = get_user_meta($user_id, 'client_contact', true);
+	
+			if (serialize($client_personal) != $client_personal_raw) {
+			update_user_meta( $user_id, 'client_personal', serialize($client_personal), $client_personal_raw );
+			echo "Client Personal details updated\n";	
+			}
+			
+			if (serialize($client_address) != $client_address_raw) {
+			update_user_meta( $user_id, 'client_address', serialize($client_address), $client_address_raw );
+			echo "Client Address details updated\n";	
+			}
+			
+			if (serialize($client_contact) != $client_contact_raw) {
+			$client_contact_old = unserialize($client_contact_raw);
+				if ($client_contact['email'] != $client_contact_old['email']) {
+				$email_updated = wp_update_user( array( 'ID' => $user_id, 'user_email' => $client_contact['email'] ) );
+					if ( is_wp_error( $email_updated ) ) {
+						echo "Client email was not updated\n";
+					} else {
+						echo "Client email updated\n";
+					}		
+				}
+			update_user_meta( $user_id, 'client_contact', serialize($client_contact), $client_contact_raw );
+			echo "Client Contact details updated\n";	
+			}
+	
+	$case_ref = $caseDetails['solicitor-reference'];
+	$new_case = true;
+				
+	$claims_args = array(
+		'posts_per_page' => -1,
+		'post_type'		=> 'post',
+		'author'	=> $user_id
+	);
+	$claims = get_posts( $claims_args );
+	
+	foreach ($claims as $claim) {
+		
+		if ($claim->post_title === $case_ref) {
+			$new_case = false;		
+			$case_status_raw = get_post_meta( $claim->ID, 'case_status', true );
+			$case_status = unserialize($case_status_raw);
+			$case_status[] = array('date'=> date('d/m/Y'), 'status'	=> 'New case status - '.count($case_status) );
+			update_post_meta( $claim->ID, 'case_status', serialize($case_status), $case_status_raw );	
+			echo "Updated claim status\n";
+			
+			$fee_earner_raw = get_post_meta( $claim->ID, 'fee_earner', true );
+			
+			if (serialize($fee_earner) != $fee_earner_raw) {
+			update_post_meta( $claim->ID, 'fee_earner', serialize($fee_earner),$fee_earner_raw );
+			echo "Updated Fee Earner\n";	
+			}
+			
+			$insurer_raw = get_post_meta( $claim->ID, 'insurer', true );
+			
+			if (serialize($insurer_data) != $insurer_raw) {
+			update_post_meta( $claim->ID, 'insurer', serialize($insurer_data), $insurer_raw );
+			echo "Updated Insurer\n";	
+			}
+		
+		}
+	}
+	
+	if ($new_case) {
+		$new_case_args['post_author']= $user_id;
+	 	$new_case_args['post_type']= 'post';
+	 	$new_case_args['post_status']= 'publish';
+	 	$new_case_args['post_name']	= sanitize_title($caseDetails['solicitor-reference']);
+	 	$new_case_args['post_title'] = wp_strip_all_tags($caseDetails['solicitor-reference']);
+	 	
+	 	if (!empty($caseDetails['additional-info'])) {
+		 $content = $caseDetails['additional-info'];
+		 $new_case_args['post_content'] = $content;	
+	 	}
+	 	
+	 	$new_case_id = wp_insert_post($new_case_args);
+		 	
+		 	if ($new_case_id) {
+				echo "New case created\n";
+				add_post_meta( $new_case_id, 'case_status', serialize($case_status), true );
+				echo "Case status added\n";	
+				add_post_meta( $new_case_id, 'fee_earner', serialize($fee_earner), true );
+				echo "Fee Earner data added\n";	
+				add_post_meta( $new_case_id, 'insurer', serialize($insurer_data), true );
+				echo "Insurer data added\n";	
+			
+				if ( !empty($caseDetails['source-company']) ) {
+					$src_company = $caseDetails['source-company'];
+					add_post_meta( $new_case_id, 'src_company', $src_company, true );
+					echo "Source company added\n";	
+				}
+
+		 	} // If case was created
+	}
 }
 
 } else {
