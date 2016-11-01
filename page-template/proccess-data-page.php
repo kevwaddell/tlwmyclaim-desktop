@@ -6,7 +6,7 @@ Template Name: Process data page
 
 <?php
 $headers = getallheaders();
-//echo '<pre class="debug">';print_r($headers);echo '</pre>';
+echo '<pre class="debug">';print_r($headers);echo '</pre>';
 
 if (isset($headers['Content-Type']) && $headers['Content-Type'] == "text/xml") {
 $xmlBody = file_get_contents('php://input');
@@ -218,10 +218,12 @@ if (!$user_id) {
 	}
 }
 
-} else {
+} /*
+else {
 $index_id = get_option( 'page_on_front' );
 $url = get_permalink( $index_id  );
 wp_redirect( $url );
 exit;	
 }
+*/
 ?>
