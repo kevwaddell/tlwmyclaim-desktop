@@ -3385,6 +3385,11 @@ body {
   margin-bottom: 0px;
   color: white;
 }
+.jumbotron h1 {
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+}
 .site {
   background-color: white;
 }
@@ -3432,18 +3437,16 @@ COLOUR STRIP
   min-height: 40px;
   background-color: #4b4b4b;
   color: white;
+  border-bottom: 4px solid white;
 }
-#masthead .pg-tool-bar ul#menu-user-menu {
+#masthead .pg-tool-bar ul#menu-user-menu,
+#masthead .pg-tool-bar ul#menu-admin-menu {
   list-style: none;
   padding-left: 0px;
   margin-bottom: 0px;
 }
-#masthead .pg-tool-bar ul#menu-user-menu li {
-  display: inline-block;
-  margin-bottom: 0px;
-  padding-right: 20px;
-}
-#masthead .pg-tool-bar ul#menu-user-menu a {
+#masthead .pg-tool-bar ul#menu-user-menu a,
+#masthead .pg-tool-bar ul#menu-admin-menu a {
   line-height: 40px;
   color: white;
   text-transform: uppercase;
@@ -3452,9 +3455,43 @@ COLOUR STRIP
   font-weight: normal;
   font-stretch: normal;
   text-decoration: none;
+  display: block;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-#masthead .pg-tool-bar ul#menu-user-menu i {
+#masthead .pg-tool-bar ul#menu-user-menu a:hover,
+#masthead .pg-tool-bar ul#menu-admin-menu a:hover,
+#masthead .pg-tool-bar ul#menu-user-menu a:active,
+#masthead .pg-tool-bar ul#menu-admin-menu a:active,
+#masthead .pg-tool-bar ul#menu-user-menu a:focus,
+#masthead .pg-tool-bar ul#menu-admin-menu a:focus {
+  color: #918F8F;
+}
+#masthead .pg-tool-bar ul#menu-user-menu a:hover i,
+#masthead .pg-tool-bar ul#menu-admin-menu a:hover i,
+#masthead .pg-tool-bar ul#menu-user-menu a:active i,
+#masthead .pg-tool-bar ul#menu-admin-menu a:active i,
+#masthead .pg-tool-bar ul#menu-user-menu a:focus i,
+#masthead .pg-tool-bar ul#menu-admin-menu a:focus i {
+  color: #C60751;
+}
+#masthead .pg-tool-bar ul#menu-user-menu i,
+#masthead .pg-tool-bar ul#menu-admin-menu i {
   padding-right: 5px;
+}
+#masthead .pg-tool-bar ul#menu-user-menu li,
+#masthead .pg-tool-bar ul#menu-admin-menu li {
+  display: inline-block;
+  margin-bottom: 0px;
+}
+#masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a {
+  background-color: white;
+  color: #4b4b4b;
+}
+#masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i {
+  color: #C60751;
 }
 #masthead .pg-tool-bar .user-name {
   line-height: 40px;
@@ -3514,6 +3551,56 @@ html.svg #masthead .logo a {
   font-weight: normal;
   font-stretch: normal;
   text-transform: uppercase;
+}
+.hp-banner {
+  padding-top: 400px;
+  height: 750px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+.hp-banner .container {
+  position: relative;
+  z-index: 2;
+}
+.hp-banner .btn {
+  width: 50%;
+  border: none;
+  margin: auto;
+  padding: 0px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  background-color: #C60751;
+  color: white;
+  margin-top: 30px;
+}
+.hp-banner .btn:hover,
+.hp-banner .btn:active,
+.hp-banner .btn:focus {
+  background-color: #7A1039;
+}
+.hp-banner:after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 75%;
+  background: transparent;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #4b4b4b), color-stop(1, transparent));
+  background: -ms-linear-gradient(bottom, #4b4b4b, transparent);
+  background: -moz-linear-gradient(center bottom, #4b4b4b 0%, transparent 100%);
+  background: -o-linear-gradient(transparent, #4b4b4b);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='transparent', endColorstr='#4b4b4b', GradientType=0);
 }
 .welcome-banner {
   background: #C60751;
@@ -3638,7 +3725,16 @@ html.svg #masthead .logo a {
 .tml-lostpassword .tml-action-links a:focus {
   background-color: #C60751;
 }
+.tml-profile {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
 .tml-profile .tml-submit-wrap {
   margin-top: 20px;
   margin-bottom: 0px;
+}
+.claims-list {
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 30px;
 }

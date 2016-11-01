@@ -20,11 +20,11 @@ Template Name: User Login Forms
 						</div>
 					</div>
 					
-					<div class="user-login-forms">
+					<section class="user-login-forms">
 						<div class="container">
 							<?php echo do_shortcode( "[theme-my-login]" ) ?>		
 						</div>
-					</div>
+					</section>
 					
 			</article><!-- #post-## -->
 

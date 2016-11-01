@@ -1,4 +1,18 @@
-<?php //echo '<pre class="debug">';print_r($template);echo '</pre>'; ?>
+<?php 
+$user_id = $current_user->ID;
+$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
+$client_personal = unserialize($client_personal_raw);
+$client_address_raw = get_user_meta($user_id, 'client_address', true);	
+$client_address = unserialize($client_address_raw);
+$client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
+$client_contact = unserialize($client_contact_raw);
+
+/*
+echo '<pre class="debug">';print_r($client_personal);echo '</pre>'; 
+echo '<pre class="debug">';print_r($client_address);echo '</pre>'; 
+echo '<pre class="debug">';print_r($client_contact);echo '</pre>'; 
+*/
+?>
 
 <div class="tml tml-profile" id="theme-my-login<?php $template->the_instance(); ?>">
 		<?php $template->the_action_template_message( 'profile' ); ?>
@@ -8,31 +22,53 @@
 		<div class="row">
 		<div class="col-xs-8">
 			<div class="panel panel-default">
-				  <div class="panel-heading text-center">Contact details</div>
+				  <div class="panel-heading text-center">Personal details</div>
 					  <table class="table table-bordered">
 						  <tbody>
 							  <tr>
-								  <th>Full name:</th>
-								  <td><?php echo esc_attr( $profileuser->first_name ); ?> <?php echo esc_attr( $profileuser->last_name ); ?></td>
+								  <th>Name:</th>
+								  <td><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
 							  </tr>
-							  <tr>
-								  <th>Email:</th>
-								  <td><?php echo esc_attr( $profileuser->user_email ); ?></td>
-							  </tr>
-							  <tr>
+							  <?php if (!empty($client_address)) { ?>
+							  	 <tr>
 								  <th>Address:</th>
-								  <td>Address line 1<br/>
-									  Address line 2<br/>
-									  Address line 3<br/>
-									  City<br/>
-									  County<br/>
-									 POST COD
+								  <td>
+									  <?php foreach ($client_address as $part) { ?>
+									  <?php echo $part; ?><br/>
+									  <?php } ?>
 								  </td>
-							  </tr>
+							  </tr>		
+							  <?php } ?>
 						  </tbody>
 					  </table>
 
 			</div>
+			<?php if (!empty($client_contact)) { ?>
+			<div class="panel panel-default">
+			  <div class="panel-heading text-center">Contact details</div>
+				  <table class="table table-bordered">
+					  <tbody>
+						  <tr>
+							  <th>Email:</th>
+							  <td><?php echo $client_contact['email']; ?></td>
+						  </tr>
+						  <?php if (!empty($client_contact['tel'])) { ?>
+						  <tr>
+							  <th>Telephone:</th>
+							  <td><?php echo $client_contact['tel']; ?></td>
+						  </tr>
+						   <?php } ?>
+						   <?php if (!empty($client_contact['mobile'])) { ?>
+						  <tr>
+							  <th>Mobile:</th>
+							  <td><?php echo $client_contact['mobile']; ?></td>
+						  </tr>
+						   <?php } ?>
+					  </tbody>
+				  </table>
+			</div>		
+			<?php } ?>
+			
 		</div>
 		
 		<div class="col-xs-4">	

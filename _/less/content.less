@@ -3,6 +3,48 @@
 .caps;	
 }
 
+.hp-banner {
+.pad-top(40);
+.h(75);	
+.bg-repeat;
+.bg-size;
+background-position: center center;
+.rel;
+
+	.container {
+	.rel;
+	z-index: 2;	
+	}
+
+	.btn {
+	width: 50%;
+	.no-border;
+	margin: auto;
+	.pad-all(0);
+	.h(5);
+	.line-h(5);
+	.font-size(2.5);
+	.caps;
+	.font-slab-serif;	
+	.bg-col-red;
+	.txt-col-wht;
+	.mag-top(3);
+		&:hover, &:active, &:focus {
+		.bg-col-red-dk;
+		}
+	}
+	
+	&:after {
+	content: "";
+	.abs;
+	.left(0);
+	.bottom(0);
+	width: 100%;
+	height: 75%;	
+	.gradient(@trans, @grayDk, @trans);
+	}
+}
+
 .welcome-banner {
 .gradient(@red, @red, @redMid);
 }

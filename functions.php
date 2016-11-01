@@ -1,35 +1,35 @@
 <?php
 if ( ! function_exists( 'tlwmyclaim_setup' ) ) :
 
-function tlwmyclaim_setup() {
-
-	add_theme_support( 'title-tag' );
-
-	add_theme_support( 'post-thumbnails' );
-
-	register_nav_menus( array(
-		'user-menu' => __( 'User Menu',      'tlwmyclaim' ),
-		'footer-menu'  => __( 'Footer Menu', 'tlwmyclaim' ),
-		'admin-menu'  => __( 'Admin Menu', 'tlwmyclaim' )
-	) );
+	function tlwmyclaim_setup() {
 	
-if ( function_exists( 'register_sidebar' ) ) {
+		add_theme_support( 'title-tag' );
 	
-	$login_sb_args = array(
-	'name'          => "User actions",
-	'id'            => "user-actions",
-	'description'   => 'Actions for logged in Users',
-	'class'         => 'user-links',
-	'before_widget' => '',
-	'after_widget'  => '',
-	'before_title'  => '',
-	'after_title'   => '' 
-	);
-	register_sidebar( $login_sb_args );
-}
+		add_theme_support( 'post-thumbnails' );
+	
+		register_nav_menus( array(
+			'user-menu' => __( 'User Menu',      'tlwmyclaim' ),
+			'footer-menu'  => __( 'Footer Menu', 'tlwmyclaim' ),
+			'admin-menu'  => __( 'Admin Menu', 'tlwmyclaim' )
+		) );
+		
+	if ( function_exists( 'register_sidebar' ) ) {
+		
+		$login_sb_args = array(
+		'name'          => "User actions",
+		'id'            => "user-actions",
+		'description'   => 'Actions for logged in Users',
+		'class'         => 'user-links',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '' 
+		);
+		register_sidebar( $login_sb_args );
+	}
 
 }
-endif; // twentyfifteen_setup
+endif; // tlwmyclaim_setup
 add_action( 'after_setup_theme', 'tlwmyclaim_setup' );	
 	
 function tlwmyclaim_scripts() {
@@ -43,5 +43,8 @@ function tlwmyclaim_scripts() {
 	wp_enqueue_script( 'tlwmyclaim-script', get_template_directory_uri() . '/_/js/functions.js', array( 'jquery', 'bootstrap-js' ), filemtime( get_stylesheet_directory().'/_/js/functions.js' ), true );
 }
 add_action( 'wp_enqueue_scripts', 'tlwmyclaim_scripts' );
+
+/* AFC OPTIONS FUNCTIONS */
+include (STYLESHEETPATH . '/_/functions/afc_options_functions.php');
 
 ?>
