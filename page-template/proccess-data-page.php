@@ -182,13 +182,13 @@ if (!$user_id) {
 	
 	foreach ($claims as $claim) {
 		
-		if ($claim->post_title === $case_ref) {
+		if ($claim->post_title == $case_ref) {
 			$new_case = false;		
 			$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
 			$case_progress = unserialize($case_progress_raw);
 			$case_progress[] = array('date'=> date('d/m/Y'), 'status'	=> 'New case status - '.count($case_progress) );
 			update_post_meta( $claim->ID, 'case_progress', serialize($case_progress), $case_progress_raw );	
-			echo "Updated claim status\n";
+			echo "Updated claim progress\n";
 			
 			$fee_earner_raw = get_post_meta( $claim->ID, 'fee_earner', true );
 			
@@ -210,7 +210,7 @@ if (!$user_id) {
 	if ($new_case) {
 		$new_case_args['post_author']= $user_id;
 	 	$new_case_args['post_type']= 'post';
-	 	$new_case_args['post_status']= 'publish';
+	 	$new_case_args['post_status']= 'private';
 	 	$new_case_args['post_name']	= sanitize_title($caseDetails['solicitor-reference']);
 	 	$new_case_args['post_title'] = wp_strip_all_tags($caseDetails['solicitor-reference']);
 	 	
