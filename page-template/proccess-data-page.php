@@ -174,6 +174,7 @@ if (!$user_id) {
 	$claims_args = array(
 		'posts_per_page' => -1,
 		'post_type'		=> 'post',
+		'post_status'	=> 'private',
 		'author'	=> $user_id,
 		'meta_key'	=> 'case_status',
 		'meta_value' => 'open'
