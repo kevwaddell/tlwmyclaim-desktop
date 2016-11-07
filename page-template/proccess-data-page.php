@@ -182,7 +182,7 @@ if (!$user_id) {
 	
 	foreach ($claims as $claim) {
 		
-		if ($claim->post_title == $case_ref) {
+		if ( $claim->post_name == sanitize_title($case_ref) ) {
 			$new_case = false;		
 			$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
 			$case_progress = unserialize($case_progress_raw);
