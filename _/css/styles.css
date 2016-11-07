@@ -3755,6 +3755,9 @@ html.svg #masthead .logo a {
   margin-top: 20px;
   margin-bottom: 0px;
 }
+.tml-profile .acf-field {
+  display: none;
+}
 .claims-list {
   background-color: white;
   padding-top: 40px;
