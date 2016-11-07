@@ -47,4 +47,62 @@ add_action( 'wp_enqueue_scripts', 'tlwmyclaim_scripts' );
 /* AFC OPTIONS FUNCTIONS */
 include (STYLESHEETPATH . '/_/functions/afc_options_functions.php');
 
+function tlw_change_post_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Cases';
+    $submenu['edit.php'][5][0] = 'Cases';
+    $submenu['edit.php'][10][0] = 'Add Case';
+    $submenu['edit.php'][16][0] = 'Case Tags';
+}
+function tlw_change_post_object() {
+    global $wp_post_types;
+    //echo '<pre class="debug">';print_r($wp_post_types);echo '</pre>';
+    $wp_post_types['post']->menu_icon = "dashicons-category";
+    
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Cases';
+    $labels->singular_name = 'Cases';
+    $labels->add_new = 'Add Case';
+    $labels->add_new_item = 'Add Case';
+    $labels->edit_item = 'Edit Case';
+    $labels->new_item = 'Case';
+    $labels->view_item = 'View Case';
+    $labels->search_items = 'Search Cases';
+    $labels->not_found = 'No Cases found';
+    $labels->not_found_in_trash = 'No Cases found in Trash';
+    $labels->all_items = 'All Cases';
+    $labels->menu_name = 'Cases';
+    $labels->name_admin_bar = 'Cases';
+    
+}
+ 
+add_action( 'admin_menu', 'tlw_change_post_label' );
+add_action( 'init', 'tlw_change_post_object' );
+
+add_action('admin_head', 'my_custom_fonts');
+
+function my_custom_fonts() {
+  echo '<style>
+    pre.debug {
+      position: fixed;
+      right: 30px;
+      top: 30px;
+      z-index: 2000;
+      height: 80%;
+      width: 400px;
+      overflow: scroll;
+      padding: 20px;
+      background: #000;
+      color: lime;
+    } 
+  </style>';
+}
+
+function wpse120418_unregister_taxonomies() {
+    register_taxonomy( 'category', array() );
+    register_taxonomy( 'post_tag', array() );
+    unregister_widget( 'WP_Widget_Categories' );
+}
+add_action( 'init', 'wpse120418_unregister_taxonomies' );
 ?>

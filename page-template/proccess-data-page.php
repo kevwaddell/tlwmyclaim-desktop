@@ -16,7 +16,8 @@ $caseDetails = json_decode(json_encode((array)$caseDetailsXML), TRUE);
 //Check if user email exsists
 $first_name =  $caseDetails['forename'];
 $last_name = $caseDetails['surname'];
-$user_name = $first_name."_".$last_name;
+$tlw_ref = $caseDetails['solicitor-reference'];
+$user_name = $first_name."_".$last_name."_".strtolower($tlw_ref);
 $user_id = username_exists( $user_name );
 
 //Fee Earsner Details
@@ -33,8 +34,8 @@ $insurer_data['ref'] = $caseDetails['insurer-reference'];
 $insurer_data['policy-number'] = $caseDetails['insurer-policy'];
 
 //Case status
-$case_status = array();
-$case_status[] = array('date'=> date('d/m/Y'), 'status'	=> 'Case created' );	 
+$case_progress = array();
+$case_progress[] = array('date'=> date('d/m/Y'), 'status'	=> 'Case created' );	 
 
 // Client Personal Details
 $client_personal = array();
@@ -45,10 +46,10 @@ $client_personal['date-of-birth'] = $caseDetails['date-of-birth'];
 
 // Client Address
 $client_address = array();
-$client_address['address1'] = $caseDetails['address1'];
-$client_address['address2'] = $caseDetails['address2'];
-$client_address['address3'] = $caseDetails['address3'];
-$client_address['address4'] = $caseDetails['address4'];
+$client_address['address1'] = (is_array($caseDetails['address1'])) ? "" : $caseDetails['address1'];
+$client_address['address2'] = (is_array($caseDetails['address2'])) ? "" : $caseDetails['address2'];
+$client_address['address3'] = (is_array($caseDetails['address3'])) ? "" : $caseDetails['address3'];
+$client_address['address4'] = (is_array($caseDetails['address4'])) ? "" : $caseDetails['address4'];
 $client_address['postcode'] = $caseDetails['postcode'];
 
 //Client contact details
@@ -79,13 +80,15 @@ if (!$user_id) {
 	 add_user_meta( $user_id, "client_personal", serialize($client_personal), true );
 	 add_user_meta( $user_id, "client_address", serialize($client_address), true );
 	 add_user_meta( $user_id, "client_contact", serialize($client_contact), true );
+	 add_user_meta( $user_id, "_user_type", "field_581c5aad45023", true );
+	 add_user_meta( $user_id, "user_type", "client", true );
 	 wp_send_new_user_notifications( $user_id );
 	 
 	 	if ( !empty($caseDetails['solicitor-reference']) ) {
 
 		 	$case_args['post_author']= $user_id;
 		 	$case_args['post_type']= 'post';
-		 	$case_args['post_status']= 'publish';
+		 	$case_args['post_status']= 'private';
 		 	$case_args['post_name']	= sanitize_title($caseDetails['solicitor-reference']);
 		 	$case_args['post_title'] = wp_strip_all_tags($caseDetails['solicitor-reference']);
 		 	
@@ -98,8 +101,12 @@ if (!$user_id) {
 		 	
 		 	if ($case_id) {
 				echo "New case created\n";
-				add_post_meta( $case_id, 'case_status', serialize($case_status), true );
-				echo "Case status added\n";	
+				add_post_meta( $case_id, 'case_ref', $caseDetails['solicitor-reference'], true );
+				echo "Case reference added\n";	
+				add_post_meta( $case_id, 'case_status', "open", true );
+				echo "Case status added\n";
+				add_post_meta( $case_id, 'case_progress', serialize($case_progress), true );
+				echo "Case progress added\n";	
 				add_post_meta( $case_id, 'fee_earner', serialize($fee_earner), true );
 				echo "Fee Earner data added\n";	
 				add_post_meta( $case_id, 'insurer', serialize($insurer_data), true );
@@ -107,7 +114,20 @@ if (!$user_id) {
 			
 				if ( !empty($caseDetails['source-company']) ) {
 					$src_company = $caseDetails['source-company'];
+					$src_ref = sanitize_title($caseDetails['source-reference']);
+					if (empty($caseDetails['source-reference'])) {
+					$src_ref =  sanitize_title($caseDetails['source-company']);
+					}
+					
 					add_post_meta( $case_id, 'src_company', $src_company, true );
+					add_post_meta( $case_id, 'src_ref', $src_ref, true );	
+					
+					$ref_id = username_exists( $src_ref );
+					
+					if ($ref_id) {
+					add_post_meta( $case_id, 'src_ref_id', $ref_id, true );		
+					}
+					
 					echo "Source company added\n";	
 				}
 
@@ -154,7 +174,9 @@ if (!$user_id) {
 	$claims_args = array(
 		'posts_per_page' => -1,
 		'post_type'		=> 'post',
-		'author'	=> $user_id
+		'author'	=> $user_id,
+		'meta_key'	=> 'case_status',
+		'meta_value' => 'open'
 	);
 	$claims = get_posts( $claims_args );
 	
@@ -162,10 +184,10 @@ if (!$user_id) {
 		
 		if ($claim->post_title === $case_ref) {
 			$new_case = false;		
-			$case_status_raw = get_post_meta( $claim->ID, 'case_status', true );
-			$case_status = unserialize($case_status_raw);
-			$case_status[] = array('date'=> date('d/m/Y'), 'status'	=> 'New case status - '.count($case_status) );
-			update_post_meta( $claim->ID, 'case_status', serialize($case_status), $case_status_raw );	
+			$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
+			$case_progress = unserialize($case_progress_raw);
+			$case_progress[] = array('date'=> date('d/m/Y'), 'status'	=> 'New case status - '.count($case_progress) );
+			update_post_meta( $claim->ID, 'case_progress', serialize($case_progress), $case_progress_raw );	
 			echo "Updated claim status\n";
 			
 			$fee_earner_raw = get_post_meta( $claim->ID, 'fee_earner', true );
@@ -201,8 +223,10 @@ if (!$user_id) {
 		 	
 		 	if ($new_case_id) {
 				echo "New case created\n";
-				add_post_meta( $new_case_id, 'case_status', serialize($case_status), true );
-				echo "Case status added\n";	
+				add_post_meta( $case_id, 'case_status', "open", true );
+				echo "Case status added\n";
+				add_post_meta( $new_case_id, 'case_progress', serialize($case_progress), true );
+				echo "Case progress added\n";	
 				add_post_meta( $new_case_id, 'fee_earner', serialize($fee_earner), true );
 				echo "Fee Earner data added\n";	
 				add_post_meta( $new_case_id, 'insurer', serialize($insurer_data), true );
@@ -210,7 +234,21 @@ if (!$user_id) {
 			
 				if ( !empty($caseDetails['source-company']) ) {
 					$src_company = $caseDetails['source-company'];
+					$src_ref = sanitize_title($caseDetails['source-reference']);
+					
+					if (empty($caseDetails['source-reference'])) {
+					$src_ref =  sanitize_title($caseDetails['source-company']);
+					}
+					
 					add_post_meta( $new_case_id, 'src_company', $src_company, true );
+					add_post_meta( $new_case_id, 'src_ref', $src_ref, true );	
+					
+					$ref_id = username_exists( $src_ref );
+					
+					if ($ref_id) {
+					add_post_meta( $new_case_id, 'src_ref_id', $ref_id, true );		
+					}
+					
 					echo "Source company added\n";	
 				}
 

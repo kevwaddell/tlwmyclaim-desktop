@@ -60,7 +60,7 @@ echo '<pre class="debug">';print_r($client_contact);echo '</pre>';
 							  	 <tr>
 								  <td>
 									  <?php foreach ($client_address as $part) { ?>
-									  <?php echo $part; ?><br/>
+									  <?php echo ( empty($part) ) ? "" : $part."<br/>"; ?>									  
 									  <?php } ?>
 								  </td>
 							  </tr>		

@@ -3,6 +3,7 @@
 Template Name: User Account Page
 */
 ?>
+<?php if ( is_user_logged_in() ) { ?>
 
 <?php get_header(); ?>
 
@@ -33,3 +34,12 @@ Template Name: User Account Page
 </main><!-- .site-main -->
 
 <?php get_footer(); ?>
+
+<?php } else { ?>
+<?php 
+$index_id = get_option( 'page_on_front' );
+$url = get_permalink( $index_id  );
+wp_safe_redirect( $url );
+exit;
+?>
+<?php }	?>

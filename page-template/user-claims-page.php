@@ -3,6 +3,7 @@
 Template Name: User Claims Page
 */
 ?>
+<?php if ( is_user_logged_in() ) { ?>
 
 <?php get_header(); ?>
 
@@ -25,6 +26,7 @@ Template Name: User Claims Page
 				$claims_args = array(
 					'posts_per_page' => -1,
 					'post_type'		=> 'post',
+					'post_status'	=>	'private',
 					'author'	=> $user_id,
 					'orderby'	=> 'date'
 				);
@@ -33,12 +35,13 @@ Template Name: User Claims Page
 				?>
 				<section class="claims-list">
 					<?php
-					$case_status_raw = get_post_meta( $claims[0]->ID, 'case_status', true );
-					$case_status = unserialize($case_status_raw);
+					$case_progress_raw = get_post_meta( $claims[0]->ID, 'case_progress', true );
+					$case_progress = unserialize($case_progress_raw);
 					$fee_earner_raw = get_post_meta( $claims[0]->ID, 'fee_earner', true );
 					$fee_earner = unserialize($fee_earner_raw);
 					$insurer_raw = get_post_meta( $claims[0]->ID, 'insurer', true );
 					$insurer = unserialize($insurer_raw);
+					$case_ref = get_post_meta( $claims[0]->ID, 'case_ref', true);
 					?>
 					<div class="container">
 					<div class="row">
@@ -52,11 +55,11 @@ Template Name: User Claims Page
 								<tbody>
 									<tr>
 										<th width="40%">Claim Reference:</th>
-										<td><?php echo get_the_title( $claims[0]->ID ); ?></td>
+										<td><?php echo $case_ref; ?></td>
 								  	</tr>
 								  	<tr>
 										<th>Date created:</th>
-										<td><?php echo $case_status[0]['date']; ?></td>
+										<td><?php echo $case_progress[0]['date']; ?></td>
 								  	</tr>	
 								</tbody>
 							</table>
@@ -119,20 +122,20 @@ Template Name: User Claims Page
 							
 							<div class="panel panel-default">
 				
-					 		<div class="panel-heading text-center">Case status history</div>	
+					 		<div class="panel-heading text-center">Case progress status</div>	
 					
 							<table class="table table-bordered">
 								<tbody>
 								  	<?php 
-									$case_status = array_reverse($case_status); 	
-									foreach ($case_status as $k => $status) {
-									$date = date('l jS F, Y', strtotime( str_replace('/','-',$status['date']) ) ) ;
+									$case_progress = array_reverse($case_progress); 	
+									foreach ($case_progress as $k => $progress) {
+									$date = date('l jS F, Y', strtotime( str_replace('/','-',$progress['date']) ) ) ;
 									//echo '<pre class="debug">';print_r($date);echo '</pre>';
 								  	?>
 								  	<tr<?php echo ($k == 0) ? ' class="success"':''; ?>>
 									  	<td width="5%" class="text-center"><i class="fa fa-check-circle text-success"></i></td>
 									  	<td width="45%" class="text-center"><strong><?php echo $date; ?></strong></td>
-									  	<td width="50%" class="text-center"><?php echo $status['status']; ?></td>
+									  	<td width="50%" class="text-center"><?php echo $progress['status']; ?></td>
 								  	</tr>	
 								  	<?php } ?>
 								  	
@@ -159,13 +162,14 @@ Template Name: User Claims Page
 									<th width="5%"></th>
 									</tr>
 									<?php foreach ($claims as $claim) { 
-									$case_status_raw = get_post_meta( $claim->ID, 'case_status', true );
-									$case_status = unserialize($case_status_raw);
+									$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
+									$case_progress = unserialize($case_progress_raw);
+									$case_ref = get_post_meta( $claim->ID, 'case_ref', true);
 									?>
 									<tr>
 									  	<td class="text-center"><i class="fa fa-info-circle text-primary"></i></td>
-									  	<td class="text-center"><?php echo $case_status[count($case_status) - 1]['date']; ?></td>
-									  	<td class="text-center"><?php echo get_the_title($claim->ID); ?></td>
+									  	<td class="text-center"><?php echo $case_progress[count($case_progress) - 1]['date']; ?></td>
+									  	<td class="text-center"><?php echo $case_ref; ?></td>
 									  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View claim details</span> <i class="fa fa-chevron-right"><i></a></td>
 
 								  	</tr>	
@@ -192,3 +196,12 @@ Template Name: User Claims Page
 </main><!-- .site-main -->
 
 <?php get_footer(); ?>
+
+<?php } else { ?>
+<?php 
+$index_id = get_option( 'page_on_front' );
+$url = get_permalink( $index_id  );
+wp_safe_redirect( $url );
+exit;
+?>
+<?php }	?>

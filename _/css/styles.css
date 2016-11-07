@@ -3485,12 +3485,16 @@ COLOUR STRIP
   margin-bottom: 0px;
 }
 #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a {
+#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+#masthead .pg-tool-bar ul#menu-user-menu li.current_page_parent a,
+#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a {
   background-color: white;
   color: #4b4b4b;
 }
 #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i {
+#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+#masthead .pg-tool-bar ul#menu-user-menu li.current_page_parent a i,
+#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a i {
   color: #C60751;
 }
 #masthead .pg-tool-bar .user-name {
@@ -3737,4 +3741,18 @@ html.svg #masthead .logo a {
   background-color: white;
   padding-top: 40px;
   padding-bottom: 30px;
+}
+/** --------------------------- /
+/* Sections */
+/* --------------------------- */
+#client-cases,
+.account-info-panels,
+#users-list {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+#client-cases .btn-group,
+.account-info-panels .btn-group,
+#users-list .btn-group {
+  width: 100%;
 }
