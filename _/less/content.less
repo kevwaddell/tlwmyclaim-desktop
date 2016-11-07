@@ -48,3 +48,24 @@ background-position: center center;
 .welcome-banner {
 .gradient(@red, @red, @redMid);
 }
+.panel {
+.shadow-inset-none;
+.border-col(@redMid);	
+
+	.panel-heading {
+	.bg-col-red-dk;
+	.txt-col-wht;
+	.no-border;	
+	}
+	.table-bordered {
+		
+	}
+	.table-bordered>tbody>tr>th,
+	.table-bordered>tbody>tr>td,
+	.table-bordered>thead>tr>td,
+	.table-bordered>tfoot>tr>td {
+	.border-col(@redMid);	
+	vertical-align: middle;
+	}
+	
+}

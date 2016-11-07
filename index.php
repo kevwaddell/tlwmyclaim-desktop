@@ -23,7 +23,7 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<td colspan="5">Status: <span class="label label-success">Open</span> <span class="label label-danger">Closed</span></td>
+						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-danger">Closed</span></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,7 +58,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td><?php wp_pagenavi(); ?></td>
+						<td colspan="6"><?php wp_pagenavi(); ?></td>
 					</tr>
 				</tfoot>
 			</table>
