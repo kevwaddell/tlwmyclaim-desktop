@@ -1,14 +1,12 @@
-<?php if ( is_user_logged_in() ) { ?>
-<?php get_header(); ?>
 <?php 
 $user_id = get_current_user_id();	
 ?>
+<?php if ($post->post_author == $user_id || current_user_can( 'administrator' ) ) { ?>
+<?php get_header(); ?>
 <main id="main" class="site-main" role="main">
 	<?php if ( have_posts() ) : ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
-			
-			<?php if ($post->post_author == $user_id || current_user_can( 'administrator' ) ) { ?>
 			<article id="user-account-info" <?php post_class(); ?>>
 				<section class="claims-list">
 					<?php
@@ -184,15 +182,6 @@ $user_id = get_current_user_id();
 				</section>
 				
 			</article><!-- #post-## -->
-			<?php } else { ?>
-			<?php 
-				$index_id = get_option( 'page_on_front' );
-				$url = get_permalink( $index_id  );
-				wp_redirect( $url );
-				exit;
-			?>
-			<?php } ?>
-			
 			<?php endwhile; ?>
 
 	<?php endif; ?>
