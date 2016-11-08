@@ -17,8 +17,8 @@ $caseDetails = json_decode(json_encode((array)$caseDetailsXML), TRUE);
 $first_name =  $caseDetails['forename'];
 $last_name = $caseDetails['surname'];
 $tlw_ref = $caseDetails['solicitor-reference'];
-$user_name = $first_name."_".$last_name."_".strtolower($tlw_ref);
-$user_id = username_exists( $user_name );
+$user_email = $caseDetails['email'];
+$user_id = email_exists( $user_email );
 
 //Fee Earsner Details
 $fee_earner = array();
@@ -62,7 +62,7 @@ if (!$user_id) {
 	
 	// User data for user account creation
 	$random_password = wp_generate_password( 12, true, true );
-	$user_email = $caseDetails['email'];
+	$user_name = $first_name."-".$last_name;
 	
 	$userdata = array(
 	 'user_login'  =>  $user_name,
@@ -156,15 +156,6 @@ if (!$user_id) {
 			}
 			
 			if (serialize($client_contact) != $client_contact_raw) {
-			$client_contact_old = unserialize($client_contact_raw);
-				if ($client_contact['email'] != $client_contact_old['email']) {
-				$email_updated = wp_update_user( array( 'ID' => $user_id, 'user_email' => $client_contact['email'] ) );
-					if ( is_wp_error( $email_updated ) ) {
-						echo "Client email was not updated\n";
-					} else {
-						echo "Client email updated\n";
-					}		
-				}
 			update_user_meta( $user_id, 'client_contact', serialize($client_contact), $client_contact_raw );
 			echo "Client Contact details updated\n";	
 			}

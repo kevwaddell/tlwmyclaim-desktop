@@ -1,21 +1,6 @@
 <?php 
 $user_id = $current_user->ID;
 $user_type = get_user_meta( $user_id, 'user_type', true); 
-
-if ($user_type == 'client') {
-$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
-$client_personal = unserialize($client_personal_raw);
-$client_address_raw = get_user_meta($user_id, 'client_address', true);	
-$client_address = unserialize($client_address_raw);
-$client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
-$client_contact = unserialize($client_contact_raw);		
-}
-
-/*
-echo '<pre class="debug">';print_r($client_personal);echo '</pre>'; 
-echo '<pre class="debug">';print_r($client_address);echo '</pre>'; 
-echo '<pre class="debug">';print_r($client_contact);echo '</pre>'; 
-*/
 ?>
 
 <div class="tml tml-profile" id="theme-my-login<?php $template->the_instance(); ?>">

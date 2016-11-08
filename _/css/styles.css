@@ -3647,6 +3647,18 @@ html.svg #masthead .logo a {
   color: white;
   border: none;
 }
+.panel .table-bordered,
+.panel .panel-body {
+  font-size: 16px;
+}
+.panel .add-info-txt {
+  height: 116px;
+  overflow-y: auto;
+}
+.panel .address-txt {
+  height: 155px;
+  overflow-y: auto;
+}
 .panel .table-bordered > tbody > tr > th,
 .panel .table-bordered > tbody > tr > td,
 .panel .table-bordered > thead > tr > td,
@@ -3716,8 +3728,28 @@ html.svg #masthead .logo a {
   text-transform: uppercase;
   background-color: #C60751;
   color: white;
-  border: none;
-  line-height: 25px;
+  border: 4px solid white;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  line-height: 22px;
+  position: relative;
+}
+.site-footer .visit-site-btn:after {
+  content: "\f0a9";
+  font-family: FontAwesome;
+  line-height: 30px;
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  margin-top: -15px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  color: #C60751;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
 }
 .site-footer .visit-site-btn span {
   display: block;
