@@ -1,19 +1,38 @@
-<?php if ( is_user_logged_in() && current_user_can( 'administrator' ) ) { ?>
+<?php
+$user_id = get_current_user_id();
+$user_type = get_user_meta( $user_id, 'user_type', true); 	
+if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?>
 
 <?php get_header(); ?>
 
 	<main id="main" class="site-main" role="main">
 		
-		<div class="welcome-banner jumbotron wht-border-bottom">
+		<div class="jumbotron wht-border-bottom">
 			<div class="container text-center">
 				<h1>Client cases archive</h1>
-				<p><strong>TLW's recent open and completed case files</strong></p>
+				<p><strong>TLW's recent open and completed case files.</strong></p>
 			</div>
 		</div>
 		
 		<div class="container">
 		
 		<section id="client-cases">
+			
+		<?php 
+		global $current_user;
+		get_currentuserinfo();
+		
+		$args = array(
+		'post_status' => 'private'	
+		);
+		
+		if ($user_type == "ref") {
+		$args['meta_key'] = 'src_ref';	
+		$args['meta_value'] = $current_user->user_login;
+		}
+		
+		$wp_query = new WP_Query( $args );
+		?>
 			
 		<?php if ( have_posts() ) : ?>
 		<div class="panel panel-default">	
@@ -26,36 +45,13 @@
 						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-danger">Closed</span></td>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<th width="20%">Ref:</th>
-						<th width="20%">Client name:</th>
-						<th width="25%">Progress status:</th>
-						<th width="15%">Date created:</th>
-						<th width="15%">Referer:</th>
-						<th width="5%"></th>
-				  	</tr>
-				  	<?php while ( have_posts() ) : the_post(); ?>
-				  	<?php
-					$case_progress_raw = get_post_meta( $post->ID, 'case_progress', true );
-					$case_progress = unserialize($case_progress_raw);
-					$client_personal_raw = get_user_meta($post->post_author, 'client_personal', true);
-					$client_personal = unserialize($client_personal_raw); 	
-					$case_status = get_post_meta( $post->ID, 'case_status', true);
-					$case_ref = get_post_meta( $post->ID, 'case_ref', true);
-					$referer = get_post_meta( $post->ID, 'src_company', true);
-					//echo '<pre class="debug">';print_r($case_status);echo '</pre>';
-				  	?>
-				  	<tr class="<?php echo ($case_status == "open") ? 'success':'danger'; ?>">
-					  	<td><?php echo $case_ref; ?></td>
-					  	<td><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
-					  	<td><?php echo $case_progress[count($case_progress) - 1][status]; ?></td>
-					  	<td><?php echo $case_progress[0][date]; ?></td>
-					  	<td><?php echo (empty($referer)) ? "": $referer; ?></td>
-					  	<td><a href="<?php the_permalink(); ?>" class="btn btn-<?php echo ($case_status == "open") ? 'success':'danger'; ?> btn-block"><span class="sr-only">View case details</span><i class="fa fa-chevron-right"></i></a></td>
-				  	</tr>
-				  	<?php endwhile; ?>
-				</tbody>
+				
+				<?php if ($user_type == "ref") { ?>
+				<?php get_template_part( 'parts/cases/ref', 'caselist' ); ?>
+				<?php } else { ?>
+				<?php get_template_part( 'parts/cases/admin', 'caselist' ); ?>
+				<?php } ?>
+				
 				<tfoot>
 					<tr>
 						<td colspan="6"><?php wp_pagenavi(); ?></td>

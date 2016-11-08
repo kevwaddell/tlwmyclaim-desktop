@@ -14,7 +14,7 @@ Template Name: User Claims Page
 
 			<article id="user-account-info" <?php post_class(); ?>>
 				
-				<div class="welcome-banner jumbotron wht-border-bottom">
+				<div class="jumbotron wht-border-bottom">
 					<div class="container">
 					<?php the_content(); ?>	
 					</div>

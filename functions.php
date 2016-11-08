@@ -10,7 +10,8 @@ if ( ! function_exists( 'tlwmyclaim_setup' ) ) :
 		register_nav_menus( array(
 			'user-menu' => __( 'User Menu',      'tlwmyclaim' ),
 			'footer-menu'  => __( 'Footer Menu', 'tlwmyclaim' ),
-			'admin-menu'  => __( 'Admin Menu', 'tlwmyclaim' )
+			'admin-menu'  => __( 'Admin Menu', 'tlwmyclaim' ),
+			'referer-menu'  => __( 'Referer Menu', 'tlwmyclaim' )
 		) );
 		
 	if ( function_exists( 'register_sidebar' ) ) {

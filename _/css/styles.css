@@ -3440,13 +3440,15 @@ COLOUR STRIP
   border-bottom: 4px solid white;
 }
 #masthead .pg-tool-bar ul#menu-user-menu,
-#masthead .pg-tool-bar ul#menu-admin-menu {
+#masthead .pg-tool-bar ul#menu-admin-menu,
+#masthead .pg-tool-bar ul#menu-referer-menu {
   list-style: none;
   padding-left: 0px;
   margin-bottom: 0px;
 }
 #masthead .pg-tool-bar ul#menu-user-menu a,
-#masthead .pg-tool-bar ul#menu-admin-menu a {
+#masthead .pg-tool-bar ul#menu-admin-menu a,
+#masthead .pg-tool-bar ul#menu-referer-menu a {
   line-height: 40px;
   color: white;
   text-transform: uppercase;
@@ -3461,40 +3463,52 @@ COLOUR STRIP
 }
 #masthead .pg-tool-bar ul#menu-user-menu a:hover,
 #masthead .pg-tool-bar ul#menu-admin-menu a:hover,
+#masthead .pg-tool-bar ul#menu-referer-menu a:hover,
 #masthead .pg-tool-bar ul#menu-user-menu a:active,
 #masthead .pg-tool-bar ul#menu-admin-menu a:active,
+#masthead .pg-tool-bar ul#menu-referer-menu a:active,
 #masthead .pg-tool-bar ul#menu-user-menu a:focus,
-#masthead .pg-tool-bar ul#menu-admin-menu a:focus {
+#masthead .pg-tool-bar ul#menu-admin-menu a:focus,
+#masthead .pg-tool-bar ul#menu-referer-menu a:focus {
   color: #918F8F;
 }
 #masthead .pg-tool-bar ul#menu-user-menu a:hover i,
 #masthead .pg-tool-bar ul#menu-admin-menu a:hover i,
+#masthead .pg-tool-bar ul#menu-referer-menu a:hover i,
 #masthead .pg-tool-bar ul#menu-user-menu a:active i,
 #masthead .pg-tool-bar ul#menu-admin-menu a:active i,
+#masthead .pg-tool-bar ul#menu-referer-menu a:active i,
 #masthead .pg-tool-bar ul#menu-user-menu a:focus i,
-#masthead .pg-tool-bar ul#menu-admin-menu a:focus i {
+#masthead .pg-tool-bar ul#menu-admin-menu a:focus i,
+#masthead .pg-tool-bar ul#menu-referer-menu a:focus i {
   color: #C60751;
 }
 #masthead .pg-tool-bar ul#menu-user-menu i,
-#masthead .pg-tool-bar ul#menu-admin-menu i {
+#masthead .pg-tool-bar ul#menu-admin-menu i,
+#masthead .pg-tool-bar ul#menu-referer-menu i {
   padding-right: 5px;
 }
 #masthead .pg-tool-bar ul#menu-user-menu li,
-#masthead .pg-tool-bar ul#menu-admin-menu li {
+#masthead .pg-tool-bar ul#menu-admin-menu li,
+#masthead .pg-tool-bar ul#menu-referer-menu li {
   display: inline-block;
   margin-bottom: 0px;
 }
 #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
 #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+#masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
 #masthead .pg-tool-bar ul#menu-user-menu li.current_page_parent a,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a {
+#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a,
+#masthead .pg-tool-bar ul#menu-referer-menu li.current_page_parent a {
   background-color: white;
   color: #4b4b4b;
 }
 #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
 #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+#masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
 #masthead .pg-tool-bar ul#menu-user-menu li.current_page_parent a i,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a i {
+#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a i,
+#masthead .pg-tool-bar ul#menu-referer-menu li.current_page_parent a i {
   color: #C60751;
 }
 #masthead .pg-tool-bar .user-name {
@@ -3556,6 +3570,22 @@ html.svg #masthead .logo a {
   font-stretch: normal;
   text-transform: uppercase;
 }
+.jumbotron {
+  background: #C60751;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #C60751), color-stop(1, #7A1039));
+  background: -ms-linear-gradient(bottom, #C60751, #7A1039);
+  background: -moz-linear-gradient(center bottom, #C60751 0%, #7A1039 100%);
+  background: -o-linear-gradient(#7A1039, #C60751);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7A1039', endColorstr='#C60751', GradientType=0);
+}
+.jumbotron a {
+  color: white;
+}
+.jumbotron a:hover,
+.jumbotron a:active,
+.jumbotron a:focus {
+  color: white;
+}
 .hp-banner {
   padding-top: 400px;
   height: 750px;
@@ -3606,14 +3636,6 @@ html.svg #masthead .logo a {
   background: -o-linear-gradient(transparent, #4b4b4b);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='transparent', endColorstr='#4b4b4b', GradientType=0);
 }
-.welcome-banner {
-  background: #C60751;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #C60751), color-stop(1, #7A1039));
-  background: -ms-linear-gradient(bottom, #C60751, #7A1039);
-  background: -moz-linear-gradient(center bottom, #C60751 0%, #7A1039 100%);
-  background: -o-linear-gradient(#7A1039, #C60751);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7A1039', endColorstr='#C60751', GradientType=0);
-}
 .panel {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -3641,6 +3663,73 @@ html.svg #masthead .logo a {
   color: white;
   padding-top: 30px;
   padding-bottom: 30px;
+  font-size: 14px;
+  line-height: 18px;
+}
+.site-footer .copyright-legal {
+  padding-top: 10px;
+}
+.site-footer .copyright-legal a {
+  color: white;
+  font-weight: bold;
+}
+.site-footer .copyright-legal a:hover,
+.site-footer .copyright-legal a:active,
+.site-footer .copyright-legal a:focus {
+  color: #C60751;
+}
+.site-footer #tlw-footer-logo {
+  height: 50px;
+  width: 280px;
+  margin: auto;
+  background-image: url(img/tlw-logo-wide-wht.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+.site-footer .footer-links {
+  padding-top: 5px;
+}
+.site-footer .footer-links ul {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+.site-footer .footer-links ul li {
+  margin-bottom: 5px;
+}
+.site-footer .footer-links ul a {
+  color: white;
+}
+.site-footer .footer-links ul a:hover,
+.site-footer .footer-links ul a:active,
+.site-footer .footer-links ul a:focus {
+  color: #C60751;
+}
+.site-footer .visit-site-btn {
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  text-transform: uppercase;
+  background-color: #C60751;
+  color: white;
+  border: none;
+  line-height: 25px;
+}
+.site-footer .visit-site-btn span {
+  display: block;
+  font-size: 25px;
+}
+.site-footer .visit-site-btn:hover,
+.site-footer .visit-site-btn:active,
+.site-footer .visit-site-btn:focus {
+  background-color: #7A1039;
+}
+html.svg .site-footer #tlw-footer-logo {
+  background-image: url(img/tlw-logo-wide-wht.svg);
 }
 /** --------------------------- /
 /* User styles */
@@ -3709,6 +3798,7 @@ html.svg #masthead .logo a {
 .tml-resetpass input[type="submit"]:focus,
 .tml-lostpassword input[type="submit"]:focus {
   background-color: #7A1039;
+  color: white;
 }
 .tml-login .tml-action-links,
 .tml-resetpass .tml-action-links,

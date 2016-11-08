@@ -143,6 +143,7 @@ if (!$user_id) {
 	$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
 	$client_address_raw = get_user_meta($user_id, 'client_address', true);	
 	$client_contact_raw = get_user_meta($user_id, 'client_contact', true);
+	$src_ref = get_user_meta($user_id, 'src_ref', true);
 	
 			if (serialize($client_personal) != $client_personal_raw) {
 			update_user_meta( $user_id, 'client_personal', serialize($client_personal), $client_personal_raw );
@@ -166,6 +167,19 @@ if (!$user_id) {
 				}
 			update_user_meta( $user_id, 'client_contact', serialize($client_contact), $client_contact_raw );
 			echo "Client Contact details updated\n";	
+			}
+			
+			if ($src_ref) {
+			$src_ref_id = get_user_meta($user_id, 'src_ref_id', true);
+				
+				if(empty($src_ref_id)) {
+				$ref_id = username_exists( $src_ref );	
+					if ($ref_id) {
+					add_post_meta( $user_id, 'src_ref_id', $ref_id, true );	
+					echo "Referer user ID added\n";	
+					}
+				}
+				
 			}
 	
 	$case_ref = $caseDetails['solicitor-reference'];

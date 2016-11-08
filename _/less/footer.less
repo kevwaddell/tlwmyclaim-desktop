@@ -4,4 +4,67 @@
 .txt-col-wht;
 .pad-top(3);
 .pad-bot(3);	
+.font-size(1.4);
+.line-h(1.8);
+
+	.copyright-legal {
+	.pad-top(1);
+		a {
+		.txt-col-wht;
+		.bold;
+			&:hover, &:active, &:focus {
+			.txt-col-red;
+			}	
+		}	
+	}
+	
+	#tlw-footer-logo {
+	.h(5);
+	.w(28);
+	.mag-auto;
+	.bg-img("tlw-logo-wide-wht.png");
+	.bg-repeat(no-repeat);
+	background-position: center top;
+	.bg-size(contain);	
+	}
+	
+	.footer-links {
+	.pad-top(0.5);
+		ul {
+		.list-style-gone;
+		.mag-bot(0);
+		
+			li {
+			.mag-bot(0.5);	
+			}	
+			
+			a {
+			.txt-col-wht;
+				&:hover, &:active, &:focus {
+				.txt-col-red;
+				}	
+			}
+		}
+	}
+	
+	.visit-site-btn {
+	.font-slab-serif;
+	.caps;
+	.bg-col-red;
+	.txt-col-wht;
+	.no-border;	
+	.line-h(2.5);
+		span {
+		.block;	
+		.font-size(2.5);
+		}
+		
+		&:hover, &:active, &:focus {
+		.bg-col-red-dk;
+		}
+	}
+}
+
+html.svg .site-footer #tlw-footer-logo {
+	.bg-img("tlw-logo-wide-wht.svg");
 }

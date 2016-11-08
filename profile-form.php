@@ -1,11 +1,15 @@
 <?php 
 $user_id = $current_user->ID;
+$user_type = get_user_meta( $user_id, 'user_type', true); 
+
+if ($user_type == 'client') {
 $client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
 $client_personal = unserialize($client_personal_raw);
 $client_address_raw = get_user_meta($user_id, 'client_address', true);	
 $client_address = unserialize($client_address_raw);
 $client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
-$client_contact = unserialize($client_contact_raw);
+$client_contact = unserialize($client_contact_raw);		
+}
 
 /*
 echo '<pre class="debug">';print_r($client_personal);echo '</pre>'; 
@@ -20,56 +24,26 @@ echo '<pre class="debug">';print_r($client_contact);echo '</pre>';
 		
 		<?php do_action( 'profile_personal_options', $profileuser ); ?>
 		<div class="row">
-		<div class="col-xs-8">
-			<div class="panel panel-default">
-			  <div class="panel-heading text-center">Contact details</div>
-				  <table class="table table-bordered">
-					  <tbody>
-						  <tr>
-							  <th width="30%">Primary Contact:</th>
-							  <td><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
-						  </tr>
-						  <tr>
-							  <th>Contact email:</th>
-							  <td><?php echo $client_contact['email']; ?></td>
-						  </tr>
-						  <?php if (!empty($client_contact['tel'])) { ?>
-						  <tr>
-							  <th>Telephone:</th>
-							  <td><?php echo $client_contact['tel']; ?></td>
-						  </tr>
-						   <?php } ?>
-						   <?php if (!empty($client_contact['mobile'])) { ?>
-						  <tr>
-							  <th>Mobile:</th>
-							  <td><?php echo $client_contact['mobile']; ?></td>
-						  </tr>
-						   <?php } ?>
-					  </tbody>
-				  </table>
+			<div class="col-xs-<?php echo ($user_type == 'client') ? '8': '6' ; ?>">
+				<div class="panel panel-default">
+				  <div class="panel-heading text-center">Contact details</div>
+				  	<?php if ($user_type == 'client') { ?>
+				  	 <?php get_template_part( 'parts/profile/client', 'contact' ); ?>
+				  	<?php } else { ?>
+				  	 <?php get_template_part( 'parts/profile/ref', 'contact' ); ?>
+				  	<?php } ?>
+				</div>
 			</div>
-		</div>
-		
-		<div class="col-xs-4">
-
-			<div class="panel panel-default">
-				  <div class="panel-heading text-center">Address details</div>
-					  <table class="table table-bordered" style="min-height: 179px;">
-						  <tbody>
-							  <?php if (!empty($client_address)) { ?>
-							  	 <tr>
-								  <td>
-									  <?php foreach ($client_address as $part) { ?>
-									  <?php echo ( empty($part) ) ? "" : $part."<br/>"; ?>									  
-									  <?php } ?>
-								  </td>
-							  </tr>		
-							  <?php } ?>
-						  </tbody>
-					  </table>
-
-			</div>	
-		</div>
+			
+			<div class="col-xs-<?php echo ($user_type == 'client') ? '4': '6' ; ?>">
+			
+				<?php if ($user_type == 'client') { ?>
+			  	 <?php get_template_part( 'parts/profile/client', 'address' ); ?>
+			  	<?php } else { ?>
+			  	 <?php get_template_part( 'parts/profile/ref', 'username' ); ?>
+			  	<?php } ?>
+				
+			</div>
 		</div>
 		
 		<div class="row">

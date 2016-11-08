@@ -40,6 +40,8 @@
 			<?php if ( is_user_logged_in() ) { 
 			$user_id = get_current_user_id();	
 			$user_firstname = get_user_meta( $user_id, 'first_name', true ); 
+			$user_type = get_user_meta( $user_id, 'user_type', true); 
+			//echo '<pre class="debug">';print_r($user_type);echo '</pre>';
 			?>
 			<div class="pg-tool-bar">
 				<div class="container">
@@ -48,7 +50,11 @@
 							<?php if (current_user_can('administrator')) { ?>
 							<?php wp_nav_menu(array( 'container_class' => 'admin-links', 'theme_location' => 'admin-menu', 'fallback_cb' => false ) ); ?>
 							<?php } else { ?>
-							<?php wp_nav_menu(array( 'container_class' => 'user-links', 'theme_location' => 'user-menu', 'fallback_cb' => false ) ); ?>	
+								<?php if ($user_type == 'ref') { ?>
+								<?php wp_nav_menu(array( 'container_class' => 'ref-links', 'theme_location' => 'referer-menu', 'fallback_cb' => false ) ); ?>	
+								<?php } else { ?>
+								<?php wp_nav_menu(array( 'container_class' => 'user-links', 'theme_location' => 'user-menu', 'fallback_cb' => false ) ); ?>	
+								<?php } ?>
 							<?php } ?>
 						</div>
 						<div class="col-xs-4">
@@ -57,7 +63,14 @@
 							?>
 							<div class="user-name text-right"><i class="fa fa-user"></i> <?php echo $user_firstname; ?> <?php echo $user_lastname; ?></strong></div>	
 							<?php } else { ?>
-							<div class="user-name text-right"><i class="fa fa-thumbs-up"></i> Welcome <strong><?php echo $user_firstname; ?></strong></div>	
+							<?php if ($user_type == 'ref') { 
+							$company = get_user_meta( $user_id, 'company_name', true ); 	
+							?>
+							<div class="user-name text-right"><i class="fa fa-user"></i> <strong><?php echo $company; ?></strong></div>
+							<?php } else { ?>
+							<div class="user-name text-right"><i class="fa fa-thumbs-up"></i> Welcome <strong><?php echo $user_firstname; ?></strong></div>
+							<?php } ?>
+								
 							<?php } ?>
 						</div>
 					</div>

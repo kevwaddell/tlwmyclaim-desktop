@@ -9,7 +9,7 @@
 					
 					<?php if (is_user_logged_in()) { ?>
 					
-					<div class="welcome-banner jumbotron wht-border-bottom">
+					<div class="jumbotron wht-border-bottom">
 						<div class="container">
 						<?php the_content(); ?>	
 						</div>
