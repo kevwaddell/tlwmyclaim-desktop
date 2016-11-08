@@ -115,35 +115,45 @@ $user_id = get_current_user_id();
 					</div>
 					</div>
 					<div class="row">
+						<div class="col-xs-6">
+							<div class="panel panel-default">
+			
+								<div class="panel-heading text-center">Additional information</div>
+								
+								<div class="panel-body add-info-txt">
+									<?php the_content(); ?>
+								</div>
+
+							</div>		
+						</div>
+						<div class="col-xs-6">
+							<div class="panel panel-default">
+			
+								<div class="panel-heading text-center">Insurer details</div>
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<th width="40%">Company:</th>
+											<td width="60%"><?php echo ($insurer['company']) ? $insurer['company'] : " - "; ?></td>
+									  	</tr>
+									  	<tr>
+											<th>Reference number:</th>
+											<td><?php echo ($insurer['ref']) ? $insurer['ref'] : " - "; ?></td>
+									  	</tr>	
+									  	<tr>
+											<th>Policy number:</th>
+											<td><?php echo ($insurer['policy-number']) ? $insurer['policy-number'] : " - "; ?></td>
+									  	</tr>	
+									</tbody>
+								</table>
+
+							</div>			
+						</div>
+					</div>
+					<div class="row">
 						
 						<div class="col-xs-12">
-							
-							<?php if (!empty($insurer)) { ?>
-								<div class="panel panel-default">
-				
-									<div class="panel-heading text-center">Insurer details</div>
-									<table class="table table-bordered">
-										<tbody>
-											<tr>
-												<th width="40%">Company:</th>
-												<td><?php echo $insurer['company']; ?></td>
-										  	</tr>
-										  	<?php if ($insurer['ref']) { ?>
-										  	<tr>
-												<th>Reference number:</th>
-												<td><?php echo $insurer['ref']; ?></td>
-										  	</tr>	
-										  	<?php } ?>
-										  	<tr>
-												<th>Policy number:</th>
-												<td><?php echo $insurer['policy-number']; ?></td>
-										  	</tr>	
-										</tbody>
-									</table>
-
-								</div>		
-							<?php } ?>
-							
+																					
 							<div class="panel panel-default">
 				
 					 		<div class="panel-heading text-center">Case progress status</div>	

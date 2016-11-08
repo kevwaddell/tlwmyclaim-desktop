@@ -390,6 +390,12 @@
 		"oAP": "\/page-template\/proccess-data-page.php",
 		"oF": 0
 		},
+	"\/page-template\/referrers-list-page.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/page-template\/referrers-list-page.php",
+		"oF": 0
+		},
 	"\/page-template\/user-account-page.php": {
 		"ft": 8192,
 		"oA": 0,

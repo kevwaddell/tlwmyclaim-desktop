@@ -1,6 +1,6 @@
 <?php 
 /*
-Template Name: Clients List page
+Template Name: Referrers List page
 */
 ?>
 
@@ -11,7 +11,7 @@ Template Name: Clients List page
 <?php $users_args = array(
 	'role'         => 'subscriber',
 	'meta_key'     => 'user_type',
-	'meta_value'   => 'client',
+	'meta_value'   => 'ref',
 	'orderby'      => 'display_name'
  ); 
 $users = get_users( $users_args ); 
@@ -37,55 +37,52 @@ $users = get_users( $users_args );
 				<div class="container">	
 					<div class="panel panel-default">	
 			
-						<div class="panel-heading text-center">Clients</div>	
+						<div class="panel-heading text-center">Referrers</div>	
 			
 						<table class="table table-bordered">
 							<tbody>
 								<tr>
-									<th width="40%" class="text-center">Client name</th>
-									<th width="40%" class="text-center">Email</th>
-									<th width="15%" class="text-center">Cases</th>
-									<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
+									<th width="35%" class="text-center">Company</th>
+									<th width="35%" class="text-center">Main contact</th>
+									<th width="25%" class="text-center">Number of cases</th>
 							  	</tr>
 							  	
 							  	<?php foreach ($users as $user) { 
-								$client_personal_raw = get_user_meta($user->ID, 'client_personal', true); 	
-								$client_personal = unserialize($client_personal_raw); 	
-								$client_contact_raw = get_user_meta($user->ID, 'client_contact', true);
-								$client_contact = unserialize($client_contact_raw);
+								$company = get_user_meta($user->ID, 'company_name', true);
+								$user_data = get_userdata($user->ID);
+								//echo '<pre>';print_r($user_data);echo '</pre>';
+								
 								$claims_args = array(
 								'posts_per_page' => -1,
 								'post_type'		=> 'post',
 								'post_status'	=>	'private',
-								'author'	=> $user->ID,
-								'orderby'	=> 'date'
+								'meta_key'	=> 'src_ref',
+								'meta_value'	=> $user_data->user_nicename
 								);
 								$claims = get_posts( $claims_args );
+								$open = 0;
+								$closed = 0;
 								//echo '<pre class="debug">';print_r($claims);echo '</pre>';
 							  	?>
 							  	<tr>
-									<td class="text-center" style="vertical-align: middle;"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
-									<td class="text-center" style="vertical-align: middle;"><a href="mailto:<?php echo $client_contact['email']; ?>"><?php echo $client_contact['email']; ?></a></td>
+									<td class="text-center" style="vertical-align: middle;"><?php echo $company; ?></td>
+									<td class="text-center" style="vertical-align: middle;"><?php echo $user_data->display_name; ?></td>
 									<td class="text-center" style="vertical-align: middle;">
-										<?php if (empty($claims)) { ?>
-										[0]
-										<?php } else { ?>
-										<div class="btn-group">
-										  <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Select a case <span class="caret"></span>
-										  </button>
-										  <ul class="dropdown-menu">
-											  <?php foreach ($claims as $claim) { 
-											   $case_ref = get_post_meta( $claim->ID, 'case_ref', true);
-											  ?>
-											  <li><a href="<?php echo get_permalink( $claim->ID ); ?>"><?php echo $case_ref; ?></a></li>
-											  <?php } ?>
-										   
-										  </ul>
+									  <?php foreach ($claims as $claim) { 
+									   $case_status = get_post_meta( $claim->ID, 'case_status', true);
+									   		if ($case_status == 'open') {
+										   	$open++;	
+									   		}
+									   		
+									   		if ($case_status == 'closed') {
+										   	$closed++;	
+									   		}
+									   }
+									  ?>
+									 <span class="label label-success">Open cases: <?php echo $open; ?></span> 
+									 <span class="label label-danger">Closed cases: <?php echo $closed; ?></span>
 										</div>
-										<?php } ?>
 									</td>
-									<td width="5%"><a href="<?php echo get_author_posts_url($user->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View client details</span><i class="fa fa-chevron-right fa-lg" style="line-height: 20px;"></i></a></th>
 							  	</tr>
 							  	<?php } ?>
 							  	

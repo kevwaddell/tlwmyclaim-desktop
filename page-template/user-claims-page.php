@@ -116,12 +116,10 @@ Template Name: User Claims Page
 											<th width="40%">Company:</th>
 											<td width="60%"><?php echo ($insurer['company']) ? $insurer['company'] : " - "; ?></td>
 									  	</tr>
-									  	<?php if ($insurer['ref']) { ?>
 									  	<tr>
 											<th>Reference number:</th>
 											<td><?php echo ($insurer['ref']) ? $insurer['ref'] : " - "; ?></td>
 									  	</tr>	
-									  	<?php } ?>
 									  	<tr>
 											<th>Policy number:</th>
 											<td><?php echo ($insurer['policy-number']) ? $insurer['policy-number'] : " - "; ?></td>

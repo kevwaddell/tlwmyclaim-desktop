@@ -3470,7 +3470,8 @@ COLOUR STRIP
 #masthead .pg-tool-bar ul#menu-user-menu a:focus,
 #masthead .pg-tool-bar ul#menu-admin-menu a:focus,
 #masthead .pg-tool-bar ul#menu-referer-menu a:focus {
-  color: #918F8F;
+  color: #4b4b4b;
+  background-color: white;
 }
 #masthead .pg-tool-bar ul#menu-user-menu a:hover i,
 #masthead .pg-tool-bar ul#menu-admin-menu a:hover i,
@@ -3493,23 +3494,6 @@ COLOUR STRIP
 #masthead .pg-tool-bar ul#menu-referer-menu li {
   display: inline-block;
   margin-bottom: 0px;
-}
-#masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
-#masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
-#masthead .pg-tool-bar ul#menu-user-menu li.current_page_parent a,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a,
-#masthead .pg-tool-bar ul#menu-referer-menu li.current_page_parent a {
-  background-color: white;
-  color: #4b4b4b;
-}
-#masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
-#masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
-#masthead .pg-tool-bar ul#menu-user-menu li.current_page_parent a i,
-#masthead .pg-tool-bar ul#menu-admin-menu li.current_page_parent a i,
-#masthead .pg-tool-bar ul#menu-referer-menu li.current_page_parent a i {
-  color: #C60751;
 }
 #masthead .pg-tool-bar .user-name {
   line-height: 40px;
