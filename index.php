@@ -15,9 +15,6 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 		</div>
 		
 		<div class="container">
-		
-		<section id="client-cases">
-			
 		<?php 
 		global $current_user;
 		get_currentuserinfo();
@@ -35,6 +32,8 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 		?>
 			
 		<?php if ( have_posts() ) : ?>
+		<section id="client-cases">
+			
 		<div class="panel panel-default">	
 			
 			<div class="panel-heading text-center">Recent cases</div>	
@@ -60,6 +59,9 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			</table>
 			
 		</div>
+
+		</section>	
+		
 		<?php else: ?>
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2">
@@ -70,8 +72,6 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			</div>
 		</div>
 		<?php endif; ?>
-		
-		</section>	
 		
 		</div>
 	</main><!-- .site-main -->
