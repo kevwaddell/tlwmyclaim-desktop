@@ -156,10 +156,15 @@ $user_id = get_current_user_id();
 																					
 							<div class="panel panel-default">
 				
-					 		<div class="panel-heading text-center">Case progress status</div>	
+					 		<div class="panel-heading text-center">Case progress</div>	
 					
 							<table class="table table-bordered">
 								<tbody>
+								  	<tr>
+									  	<th width="45%" class="text-center">Date</th>
+									  	<th width="50%" class="text-center">Status</th>
+									  	<th width="5%" class="text-center"></th>
+								  	</tr>
 								  	<?php 
 									$case_progress = array_reverse($case_progress); 	
 									foreach ($case_progress as $k => $status) {
@@ -167,15 +172,15 @@ $user_id = get_current_user_id();
 									//echo '<pre class="debug">';print_r($date);echo '</pre>';
 								  	?>
 								  	<tr<?php echo ($k == 0) ? ' class="success"':''; ?>>
-									  	<td width="5%" class="text-center">
+									  	<td class="text-center"><strong><?php echo $date; ?></strong></td>
+									  	<td class="text-center"><?php echo $status['status']; ?></td>
+									  	<td class="text-center">
 										  	<?php if ($k == 0) { ?>
-										  	<i class="fa fa-check-circle text-success"></i>	
-										  	<?php } else { ?>
 										  	<i class="fa fa-clock-o text-info"></i>		
+										  	<?php } else { ?>
+										  	<i class="fa fa-check-circle text-success"></i>		
 										  	<?php } ?>
 										</td>
-									  	<td width="45%" class="text-center"><strong><?php echo $date; ?></strong></td>
-									  	<td width="50%" class="text-center"><?php echo $status['status']; ?></td>
 								  	</tr>	
 								  	<?php } ?>
 								  	
