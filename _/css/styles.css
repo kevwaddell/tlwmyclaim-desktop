@@ -3650,6 +3650,24 @@ html.svg #masthead .logo a {
   border-color: #7A1039;
   vertical-align: middle;
 }
+.well-message {
+  background-color: #E9E9E9;
+  margin: 40px 0px 40px 0px;
+  border: 4px solid #C60751;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.well-message h2 {
+  font-size: 40px;
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  color: #C60751;
+}
+.well-message p {
+  font-size: 20px;
+}
 /** --------------------------- /
 /* Footer area */
 /* --------------------------- */

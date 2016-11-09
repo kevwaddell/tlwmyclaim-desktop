@@ -96,9 +96,9 @@ $users = get_users( $users_args );
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-8 col-xs-offset-2">
-							<div class="well well-lg text-center">
+							<div class="well well-lg well-message text-center">
 								<h2>Sorry</h2>
-								<p>There are no clients at the moment</p>
+								<p>There are no referrers at the moment</p>
 							</div>
 						</div>
 					</div>
