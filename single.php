@@ -163,7 +163,7 @@ $user_id = get_current_user_id();
 								  	<tr>
 									  	<th width="45%" class="text-center">Date</th>
 									  	<th width="50%" class="text-center">Status</th>
-									  	<th width="5%" class="text-center"></th>
+									  	<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
 								  	</tr>
 								  	<?php 
 									$case_progress = array_reverse($case_progress); 	
