@@ -171,7 +171,7 @@ $user_id = get_current_user_id();
 									$date = date('l jS F, Y', strtotime( str_replace('/','-',$status['date']) ) ) ;
 									//echo '<pre class="debug">';print_r($date);echo '</pre>';
 								  	?>
-								  	<tr<?php echo ($k == 0) ? ' class="success"':''; ?>>
+								  	<tr class="<?php echo ($k == 0) ? 'info':'success'; ?>">
 									  	<td class="text-center"><strong><?php echo $date; ?></strong></td>
 									  	<td class="text-center"><?php echo $status['status']; ?></td>
 									  	<td class="text-center">
