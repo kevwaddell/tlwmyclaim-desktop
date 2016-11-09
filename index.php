@@ -67,7 +67,7 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			<div class="col-xs-8 col-xs-offset-2">
 				<div class="well well-lg well-message text-center">
 					<h2>Sorry</h2>
-					There are no open cases at the moment.
+					<p>There are no open cases at the moment.</p>
 				</div>
 			</div>
 		</div>
