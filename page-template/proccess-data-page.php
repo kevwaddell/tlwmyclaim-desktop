@@ -229,6 +229,8 @@ if (!$user_id) {
 		 	
 		 	if ($new_case_id) {
 				echo "New case created\n";
+				add_post_meta( $case_id, 'case_ref', $caseDetails['solicitor-reference'], true );
+				echo "Case reference added\n";	
 				add_post_meta( $case_id, 'case_status', "open", true );
 				echo "Case status added\n";
 				add_post_meta( $new_case_id, 'case_progress', serialize($case_progress), true );

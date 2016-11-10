@@ -16,6 +16,7 @@ $user_id = get_current_user_id();
 					$fee_earner = unserialize($fee_earner_raw);
 					$insurer_raw = get_post_meta( $post->ID, 'insurer', true );
 					$insurer = unserialize($insurer_raw);
+					$case_ref = get_post_meta( $post->ID, 'case_ref', true);
 					?>
 					<div class="container">
 					
@@ -26,7 +27,6 @@ $user_id = get_current_user_id();
 					$client_contact_raw = get_user_meta($post->post_author, 'client_contact', true);
 					$client_contact = unserialize($client_contact_raw);
 					$case_status = get_post_meta( $post->ID, 'case_status', true);
-					$case_ref = get_post_meta( $post->ID, 'case_ref', true);
 					//echo '<pre class="debug">';print_r($client_contact);echo '</pre>';
 					?>
 					<div class="row" style="margin-bottom: 20px;">
