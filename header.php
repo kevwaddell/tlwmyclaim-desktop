@@ -13,8 +13,16 @@
 	<?php wp_head(); ?>
 
 </head>
-
-<body <?php body_class(); ?>>
+<?php
+if (is_page()) {
+$page = get_page($post->ID);
+$page_class = $page->post_name.'-pg';		
+}
+if (is_single()) {
+$page_class = 'case-details-pg';	
+}	
+?>
+<body <?php body_class($page_class); ?>>
 	
 <div id="page" class="site">
 	

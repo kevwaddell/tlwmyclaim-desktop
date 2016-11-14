@@ -72,3 +72,89 @@ z-index: 2;
 	.no-border;
 	}
 }
+
+.red-btn {
+.bg-col-red;
+.no-border;
+.txt-col-wht;
+.font-slab-serif;
+.font-size(3);
+.caps;
+	i {
+	.font-size(2);	
+	.line-h(4);
+	}	
+	&:hover, &:active, &:focus {
+	.bg-col-red-dk;
+	.txt-col-wht;
+	}
+}
+
+#global-tel-num {
+.pad-top(1.5);
+.pad-bot(1.5);
+.rel;
+.bg-col-red-dk;
+
+	.container {
+	.pad-top(0);	
+	.pad-bot(0);
+	}
+	
+	.overlay {
+	.abs;
+	width: 100%;
+	height: 100%;
+	.top(0);
+	.left(0);
+	.bg-img("thin-stripe-wht.png");	
+	z-index: 0;
+	.opacity(0.2);
+	.inner-shadow(0, 0, 20px, 0.7);
+	}
+
+	i {
+	.block;
+	.w(9);
+	.h(9);
+	.line-h(8.2);
+	.border(@wht; 0.4);
+	.rounded(100%);	
+	text-align: center;
+	.col(@wht);	
+	.bg-col-red;
+	.drop-shadow(0, 3px, 10px, 0.8);
+	.rel;
+	z-index: 2;
+	.animated;
+		&.fa-phone {
+		.bounceInLeft;	
+		}
+		
+		&.fa-mobile-phone {
+		.bounceInRight;	
+		}
+	}
+	
+	.number {
+	.rel;
+	z-index: 2;
+	.font-size(6.5);
+	.line-h(9);	
+	.col(@wht);	
+	text-shadow: 0px 3px 5px rgba(50, 50, 50, 0.8);
+	text-align: center;
+		span {
+		.txt-col-green;	
+		}
+		a {
+		.txt-col-orange;	
+		.bold;
+		.no-text-dec;
+			&:hover, &:active, &:focus {
+			.txt-col-red;
+			}
+		}
+	}
+	
+}

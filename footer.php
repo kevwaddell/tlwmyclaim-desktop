@@ -1,5 +1,7 @@
 	</div><!-- .site-content -->
-
+	
+	<?php get_template_part( 'parts/global/freephone', 'number' ); ?>
+	
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="container">
 			<div class="col-xs-3">

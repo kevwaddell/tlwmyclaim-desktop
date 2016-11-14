@@ -3427,6 +3427,104 @@ COLOUR STRIP
   background-color: #2D7EA9;
   border: none;
 }
+.red-btn {
+  background-color: #C60751;
+  border: none;
+  color: white;
+  font-family: "aleoreg", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.red-btn i {
+  font-size: 20px;
+  line-height: 40px;
+}
+.red-btn:hover,
+.red-btn:active,
+.red-btn:focus {
+  background-color: #7A1039;
+  color: white;
+}
+#global-tel-num {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  position: relative;
+  background-color: #7A1039;
+}
+#global-tel-num .container {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+#global-tel-num .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-image: url(img/thin-stripe-wht.png);
+  z-index: 0;
+  -moz-opacity: 0.2;
+  -khtml-opacity: 0.2;
+  -webkit-opacity: 0.2;
+  opacity: 0.2;
+  -webkit-box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+}
+#global-tel-num i {
+  display: block;
+  width: 90px;
+  height: 90px;
+  line-height: 82px;
+  border: 4px solid white;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  text-align: center;
+  color: white;
+  background-color: #C60751;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 2;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+#global-tel-num i.fa-phone {
+  -webkit-animation-name: bounceInLeft;
+  animation-name: bounceInLeft;
+}
+#global-tel-num i.fa-mobile-phone {
+  -webkit-animation-name: bounceInRight;
+  animation-name: bounceInRight;
+}
+#global-tel-num .number {
+  position: relative;
+  z-index: 2;
+  font-size: 65px;
+  line-height: 90px;
+  color: white;
+  text-shadow: 0px 3px 5px rgba(50, 50, 50, 0.8);
+  text-align: center;
+}
+#global-tel-num .number span {
+  color: #ACD15C;
+}
+#global-tel-num .number a {
+  color: #FBAD4F;
+  font-weight: bold;
+  text-decoration: none;
+}
+#global-tel-num .number a:hover,
+#global-tel-num .number a:active,
+#global-tel-num .number a:focus {
+  color: #C60751;
+}
 /** --------------------------- /
 /* Header area */
 /* --------------------------- */
@@ -3445,6 +3543,7 @@ COLOUR STRIP
   list-style: none;
   padding-left: 0px;
   margin-bottom: 0px;
+  overflow: hidden;
 }
 #masthead .pg-tool-bar ul#menu-user-menu a,
 #masthead .pg-tool-bar ul#menu-admin-menu a,
@@ -3471,7 +3570,7 @@ COLOUR STRIP
 #masthead .pg-tool-bar ul#menu-admin-menu a:focus,
 #masthead .pg-tool-bar ul#menu-referer-menu a:focus {
   color: #4b4b4b;
-  background-color: white;
+  background-color: #918F8F;
 }
 #masthead .pg-tool-bar ul#menu-user-menu a:hover i,
 #masthead .pg-tool-bar ul#menu-admin-menu a:hover i,
@@ -3492,7 +3591,7 @@ COLOUR STRIP
 #masthead .pg-tool-bar ul#menu-user-menu li,
 #masthead .pg-tool-bar ul#menu-admin-menu li,
 #masthead .pg-tool-bar ul#menu-referer-menu li {
-  display: inline-block;
+  float: left;
   margin-bottom: 0px;
 }
 #masthead .pg-tool-bar .user-name {
@@ -3544,6 +3643,24 @@ COLOUR STRIP
 }
 html.svg #masthead .logo a {
   background-image: url(img/tlw-logo-wide.svg);
+}
+body.dashboard-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+body.your-claim-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+body.account-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a {
+  color: #4b4b4b;
+  background-color: white;
+}
+body.dashboard-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+body.your-claim-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+body.account-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i {
+  color: #C60751;
+}
+body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a {
+  color: #4b4b4b;
+  background-color: white;
+}
+body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i {
+  color: #C60751;
 }
 /** --------------------------- /
 /* Main content area */
@@ -3888,12 +4005,14 @@ html.svg .site-footer #tlw-footer-logo {
 /* --------------------------- */
 #client-cases,
 .account-info-panels,
-#users-list {
+#users-list,
+#dashboard-panels {
   padding-top: 40px;
   padding-bottom: 30px;
 }
 #client-cases .btn-group,
 .account-info-panels .btn-group,
-#users-list .btn-group {
+#users-list .btn-group,
+#dashboard-panels .btn-group {
   width: 100%;
 }

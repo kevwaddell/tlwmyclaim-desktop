@@ -65,6 +65,14 @@
 		"oAP": "\/_\/css\/fonts\/aleo-regular-webfont.woff",
 		"oF": 0
 		},
+	"\/_\/css\/img\/thin-stripe-wht.png": {
+		"ft": 32768,
+		"iS": 87,
+		"oA": 0,
+		"oAP": "\/_\/css\/img\/thin-stripe-wht.png",
+		"oF": 0,
+		"opt": 0
+		},
 	"\/_\/css\/img\/tlw-logo-wide-wht.png": {
 		"ft": 32768,
 		"iS": 0,
@@ -384,6 +392,12 @@
 		"oAP": "\/page-template\/all-users-page.php",
 		"oF": 0
 		},
+	"\/page-template\/dashboard-page.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/page-template\/dashboard-page.php",
+		"oF": 0
+		},
 	"\/page-template\/proccess-data-page.php": {
 		"ft": 8192,
 		"oA": 0,
@@ -432,10 +446,22 @@
 		"oAP": "\/parts\/cases\/ref-caselist.php",
 		"oF": 0
 		},
+	"\/parts\/dashboard\/client-panels.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/parts\/dashboard\/client-panels.php",
+		"oF": 0
+		},
 	"\/parts\/global\/col-strip.php": {
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/parts\/global\/col-strip.php",
+		"oF": 0
+		},
+	"\/parts\/global\/freephone-number.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/parts\/global\/freephone-number.php",
 		"oF": 0
 		},
 	"\/parts\/profile\/client-address.php": {

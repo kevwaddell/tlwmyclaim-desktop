@@ -24,7 +24,7 @@ Template Name: User Claims Page
 				$user_id = $current_user->ID;
 				
 				$claims_args = array(
-					'posts_per_page' => -1,
+					'posts_per_page' => 1,
 					'post_type'		=> 'post',
 					'post_status'	=>	'private',
 					'author'	=> $user_id,
@@ -168,52 +168,6 @@ Template Name: User Claims Page
 								</table>
 								
 							</div>
-							
-							<?php if (count($claims) > 1) { 
-							unset($claims[0]);	
-							?>
-							<div class="rule"></div>
-							
-							<div class="panel panel-default">
-				
-					 		<div class="panel-heading text-center">Other cases</div>	
-					
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-									<th width="30%" class="text-center">Case reference</th>
-									<th width="35%" class="text-center">Case progress</th>
-									<th width="30%" class="text-center">Case handler</th>
-									<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
-									</tr>
-									<?php foreach ($claims as $claim) { 
-									$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
-									$case_progress = unserialize($case_progress_raw);
-									$fee_earner_raw = get_post_meta( $claim->ID, 'fee_earner', true );
-									$fee_earner = unserialize($fee_earner_raw);
-									$case_status = get_post_meta( $claim->ID, 'case_status', true );
-									$case_ref = get_post_meta( $claim->ID, 'case_ref', true);
-									?>
-									<tr>
-									  	<td class="text-center"><?php echo $case_ref; ?></td>
-									  	<td class="text-center">
-										  	<?php if ($case_status == 'closed') { ?>
-										  	<span class="label label-danger">Case <?php echo $case_status; ?></span>
-										  	<?php } else { ?>
-										  	<?php echo $case_progress[count($case_progress) - 1]['status']; ?>
-										  	<?php } ?>
-										</td>
-										<td class="text-center"><?php echo $fee_earner['name']; ?></td>
-									  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View claim details</span> <i class="fa fa-chevron-right"><i></a></td>
-
-								  	</tr>	
-									<?php } ?>
-								</tbody>
-							</table>
-								
-							</div>
-	
-							<?php } ?>
 						
 						</div>
 

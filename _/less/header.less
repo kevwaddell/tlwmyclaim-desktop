@@ -10,6 +10,7 @@
 		ul#menu-user-menu, ul#menu-admin-menu, ul#menu-referer-menu {
 		.list-style-gone;
 		.mag-bot(0);
+		.over-hide;
 		
 			a {
 			.line-h(4);	
@@ -23,7 +24,7 @@
 			.pad-right(1.5);
 				&:hover, &:active, &:focus {
 				.txt-col-grayDk;
-				.bg-col(@wht);
+				.bg-col(@gray);
 					i {
 					.txt-col-red;	
 					}
@@ -35,7 +36,7 @@
 			}
 				
 			li {
-			.in-block;	
+			.fleft;	
 			.mag-bot(0);
 			}
 				
@@ -87,4 +88,40 @@
 
 html.svg #masthead .logo a {
 .bg-img("tlw-logo-wide.svg");	
+}
+
+body.dashboard-pg, 
+body.your-claim-pg,
+body.account-details-pg
+{
+	#masthead .pg-tool-bar ul#menu-user-menu  {
+		
+		li.current-menu-item {
+			a {
+			.txt-col-grayDk;
+			.bg-col(@wht);
+				i {
+				.txt-col-red;	
+				}
+			}
+		}
+
+	}
+}
+
+body.case-details-pg
+{
+	#masthead .pg-tool-bar ul#menu-user-menu  {
+		
+		li.your-claim {
+			a {
+			.txt-col-grayDk;
+			.bg-col(@wht);
+				i {
+				.txt-col-red;	
+				}
+			}
+		}
+
+	}
 }
