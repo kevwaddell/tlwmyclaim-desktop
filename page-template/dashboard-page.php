@@ -37,11 +37,10 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 					
 					<section id="dashboard-panels">
 						<div class="container">
-							<div class="panel panel-default">
-								<?php if ($user_type == 'client') { ?>
-								<?php get_template_part( 'parts/dashboard/client', 'panels' ); ?>
-								<?php } ?>
-							</div>
+							<?php if ($user_type == 'client') { ?>
+							<?php get_template_part( 'parts/dashboard/client', 'panels' ); ?>
+							<?php } ?>
+						</div>
 					</section>
 								
 				</article><!-- #post-## -->

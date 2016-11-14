@@ -1,6 +1,25 @@
 <?php 
-	global $user_id;
-	
+global $current_user;
+$user_id = $current_user->ID;
+$username = $current_user->user_login;	
+$login_email = $current_user->user_email;
+$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
+$client_personal = unserialize($client_personal_raw);
+$client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
+$client_contact = unserialize($client_contact_raw);	
+$account_pg = get_page_by_path( 'account-details' );
+?>
+
+<div class="panel panel-default">
+		<div class="panel-heading text-center">Primary contact</div>
+		<div class="panel-body text-center">
+			<h2 class="txt-col-red font-slab-serif caps"><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></h2>
+			<h3 class="txt-col-gray font-slab-serif"><?php echo $client_contact['email']; ?></h3>
+		</div>
+</div>
+
+<div class="panel panel-default">
+<?php 
 	$current_claims_args = array(
 		'posts_per_page' => 1,
 		'post_type'		=> 'post',
@@ -48,15 +67,11 @@
 	</table>
 </div>
 
-<a href="<?php echo get_permalink( $current_claims[0]->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">View claim information <i class="fa fa-chevron-right fa-lg pull-right"></i></a>
-
-<?php } else { ?>
-	<div class="panel-body text-center">
-		<h2>Sorry</h2>
-		<p>You have no open cases at the moment.</p>
-	</div>
-</div>
+<a href="<?php echo get_permalink( $current_claims[0]->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">View progress report<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
 <?php } ?>
+
+<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">View Account details<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+
 <?php
 $claims_args = array(
 	'posts_per_page' => -1,
