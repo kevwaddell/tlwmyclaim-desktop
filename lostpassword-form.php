@@ -36,6 +36,7 @@ Theme My Login will always look in your theme's directory first, before using th
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
 	<?php $template->the_action_links( array( 'lostpassword' => false ) ); ?>
+	<a href="<?php echo get_option('home'); ?>/"><i class="fa fa-angle-double-left"></i> Return to home page</a>
 		</div>
 	</div>
 </div>

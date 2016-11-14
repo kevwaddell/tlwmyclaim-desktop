@@ -52,6 +52,8 @@ Theme My Login will always look in your theme's directory first, before using th
 				'register' => false,
 				'lostpassword' => false
 			) ); ?>
+			
+			<a href="<?php echo get_option('home'); ?>/"><i class="fa fa-angle-double-left"></i> Return to home page</a>
 		</div>
 	</div>
 </div>

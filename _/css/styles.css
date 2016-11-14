@@ -3717,11 +3717,18 @@ body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i 
   background-color: #C60751;
   color: white;
   margin-top: 30px;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 .hp-banner .btn:hover,
 .hp-banner .btn:active,
 .hp-banner .btn:focus {
   background-color: #7A1039;
+}
+.hp-banner .btn i {
+  line-height: 50px;
+  padding-right: 15px;
 }
 .hp-banner:after {
   content: "";
