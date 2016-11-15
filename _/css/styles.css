@@ -3703,9 +3703,7 @@ body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i 
   z-index: 2;
 }
 .hp-banner .btn {
-  width: 50%;
   border: none;
-  margin: auto;
   padding: 0px;
   height: 50px;
   line-height: 50px;

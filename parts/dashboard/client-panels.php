@@ -57,12 +57,15 @@ $account_pg = get_page_by_path( 'account-details' );
 				<td><strong>Case Status:</strong> <?php echo ucfirst( $case_status ); ?></td>
 				<td><strong>Case Progress:</strong> <?php echo $case_progress[count($case_progress) - 1]['status']; ?></td>
 		  	</tr>
+		  	<?php if (!empty($additinal_info)) { ?>
 		  	<tr>
 				<th colspan="2" class="text-center">Additional information:</th>
 		  	</tr>	
 		  	<tr>
 				<td colspan="2"><?php echo $additinal_info; ?></td>
-		  	</tr>	
+		  	</tr>			
+		  	<?php } ?>
+		  
 		</tbody>
 	</table>
 </div>

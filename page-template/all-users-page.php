@@ -49,6 +49,7 @@ $users = get_users( $users_args );
 							  	</tr>
 							  	
 							  	<?php foreach ($users as $user) { 
+								//echo '<pre class="debug">';print_r($user->ID);echo '</pre>';
 								$client_personal_raw = get_user_meta($user->ID, 'client_personal', true); 	
 								$client_personal = unserialize($client_personal_raw); 	
 								$client_contact_raw = get_user_meta($user->ID, 'client_contact', true);

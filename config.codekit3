@@ -398,10 +398,10 @@
 		"oAP": "\/page-template\/dashboard-page.php",
 		"oF": 0
 		},
-	"\/page-template\/proccess-data-page.php": {
+	"\/page-template\/process-data-page.php": {
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/page-template\/proccess-data-page.php",
+		"oAP": "\/page-template\/process-data-page.php",
 		"oF": 0
 		},
 	"\/page-template\/referrers-list-page.php": {
@@ -426,6 +426,12 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/page-template\/user-login-page.php",
+		"oF": 0
+		},
+	"\/page-template\/xml-processor.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/page-template\/xml-processor.php",
 		"oF": 0
 		},
 	"\/page.php": {

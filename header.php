@@ -54,7 +54,7 @@ $page_class = 'case-details-pg';
 			<div class="pg-tool-bar">
 				<div class="container">
 					<div class="row">
-						<div class="col-xs-8">
+						<div class="col-xs-9">
 							<?php if (current_user_can('administrator')) { ?>
 							<?php wp_nav_menu(array( 'container_class' => 'admin-links', 'theme_location' => 'admin-menu', 'fallback_cb' => false ) ); ?>
 							<?php } else { ?>
@@ -65,7 +65,7 @@ $page_class = 'case-details-pg';
 								<?php } ?>
 							<?php } ?>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<?php if (current_user_can('administrator')) { 
 							$user_lastname = get_user_meta( $user_id, 'last_name', true ); 	
 							?>
