@@ -29,6 +29,8 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 		}
 		
 		$wp_query = new WP_Query( $args );
+		$found_posts = $wp_query->found_posts;
+		$posts_per_page = get_query_var('posts_per_page');
 		?>
 			
 		<?php if ( have_posts() ) : ?>
@@ -36,7 +38,7 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			
 		<div class="panel panel-default">	
 			
-			<div class="panel-heading text-center">Recent cases</div>	
+			<div class="panel-heading text-center">Reccent cases</div>	
 			
 			<table class="table table-bordered">
 				<thead>
@@ -50,12 +52,13 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 				<?php } else { ?>
 				<?php get_template_part( 'parts/cases/admin', 'caselist' ); ?>
 				<?php } ?>
-				
+				<?php if ($found_posts > $posts_per_page) { ?>
 				<tfoot>
 					<tr>
 						<td colspan="6"><?php wp_pagenavi(); ?></td>
 					</tr>
 				</tfoot>
+				<?php } ?>
 			</table>
 			
 		</div>
