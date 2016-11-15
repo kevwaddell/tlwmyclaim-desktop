@@ -1,11 +1,11 @@
 <tbody>
 	<tr>
-		<th width="20%">Ref:</th>
-		<th width="20%">Client name:</th>
-		<th width="25%">Progress status:</th>
-		<th width="15%">Date created:</th>
-		<th width="15%">Referer:</th>
-		<th width="5%"></th>
+		<th width="15%" class="text-center">Case referrence:</th>
+		<th width="20%" class="text-center">Client name:</th>
+		<th width="30%" class="text-center">Progress status:</th>
+		<th width="12%" class="text-center">Date created:</th>
+		<th width="18%" class="text-center">Referer:</th>
+		<th width="5%" class="text-center"><i class="fa fa-eye fa-lg"></i></th>
   	</tr>
   	<?php while ( have_posts() ) : the_post(); ?>
   	<?php
@@ -23,7 +23,7 @@
 	  	<td><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
 	  	<td><?php echo $case_progress[count($case_progress) - 1][status]; ?></td>
 	  	<td><?php echo $case_progress[0][date]; ?></td>
-	  	<td><?php echo (empty($referer)) ? "": $referer; ?></td>
+	  	<td><?php echo (empty($referer)) ? " - ": $referer; ?></td>
 	  	<td><a href="<?php the_permalink(); ?>" class="btn btn-<?php echo ($case_status == "open") ? 'success':'danger'; ?> btn-block"><span class="sr-only">View case details</span><i class="fa fa-chevron-right"></i></a></td>
   	</tr>
   	<?php endwhile; ?>

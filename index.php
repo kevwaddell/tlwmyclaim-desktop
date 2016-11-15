@@ -40,7 +40,7 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			
 			<div class="panel-heading text-center">Reccent cases</div>	
 			
-			<table class="table table-bordered">
+			<table class="table table-bordered text-center">
 				<thead>
 					<tr>
 						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-danger">Closed</span></td>

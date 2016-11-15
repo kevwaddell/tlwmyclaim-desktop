@@ -31,7 +31,7 @@ $user_id = get_current_user_id();
 					?>
 					<div class="row" style="margin-bottom: 20px;">
 						<div class="col-xs-4">
-						<a href="/cases/" class="btn btn-info btn-block btn-lg"><i class="fa fa-chevron-left fa-lg pull-left" style="line-height: 25px;"></i> Back to cases</a>
+						<a href="/cases/" class="btn btn-default btn-block btn-lg"><i class="fa fa-chevron-left fa-lg pull-left" style="line-height: 25px;"></i> Back to cases</a>
 						</div>
 						<div class="col-xs-4">
 							<div class="label label-<?php echo ($case_status == open) ? 'success':'danger'; ?> block" style="line-height: 38px;">
@@ -39,7 +39,7 @@ $user_id = get_current_user_id();
 							</div>
 						</div>
 						<div class="col-xs-4">
-							<a href="<?php echo get_author_posts_url($post->post_author); ?>" class="btn btn-info btn-block btn-lg">View client details<i class="fa fa-info-circle fa-lg pull-right" style="line-height: 25px;"></i></a>
+							<a href="<?php echo get_author_posts_url($post->post_author); ?>" class="btn btn-default btn-block btn-lg">View client details<i class="fa fa-info-circle fa-lg pull-right" style="line-height: 25px;"></i></a>
 						</div>
 
 					</div>
@@ -161,18 +161,18 @@ $user_id = get_current_user_id();
 							<table class="table table-bordered">
 								<tbody>
 								  	<tr>
-									  	<th width="45%" class="text-center">Date</th>
-									  	<th width="50%" class="text-center">Status</th>
+									  	<th width="15%" class="text-center">Date</th>
+									  	<th width="80%" class="text-center">Status</th>
 									  	<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
 								  	</tr>
 								  	<?php 
 									$case_progress = array_reverse($case_progress); 	
 									foreach ($case_progress as $k => $status) {
-									$date = date('l jS F, Y', strtotime( str_replace('/','-',$status['date']) ) ) ;
+									//$date = date('l jS F, Y', strtotime( str_replace('/','-',$status['date']) ) ) ;
 									//echo '<pre class="debug">';print_r($date);echo '</pre>';
 								  	?>
 								  	<tr class="<?php echo ($k == 0) ? 'info':'success'; ?>">
-									  	<td class="text-center"><strong><?php echo $date; ?></strong></td>
+									  	<td class="text-center"><strong><?php echo $status['date']; ?></strong></td>
 									  	<td class="text-center"><?php echo $status['status']; ?></td>
 									  	<td class="text-center">
 										  	<?php if ($k == 0) { ?>

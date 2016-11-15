@@ -71,17 +71,7 @@ background-position: center center;
 	.no-border;	
 	}
 	.table-bordered, .panel-body {
-	.font-size(1.6);
-	}
-	
-	.add-info-txt {
-	.h(11.6);
-	overflow-y: auto;	
-	}
-	
-	.address-txt {
-	.h(15.5);
-	overflow-y: auto;	
+	.font-size(1.4);
 	}
 	
 	.table-bordered>tbody>tr>th,
@@ -90,6 +80,26 @@ background-position: center center;
 	.table-bordered>tfoot>tr>td {
 	.border-col(@redMid);	
 	vertical-align: middle;
+	.pad-all(0.5);
+	}
+	
+	.add-info-txt {
+	.h(9.2);
+	overflow-y: auto;	
+	}
+	
+	.table-bordered>tbody>tr>td.address-txt {
+	.h(12.3);
+	overflow-y: auto;	
+	vertical-align: top;
+	}
+	
+	.table-bordered>tbody>tr>th {
+	.txt-col-gray;	
+	}
+	
+	.btn-block i.pull-right {
+	.line-h(2);
 	}
 	
 }

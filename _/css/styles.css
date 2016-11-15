@@ -3646,20 +3646,68 @@ html.svg #masthead .logo a {
 }
 body.dashboard-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
 body.your-claim-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
-body.account-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a {
+body.account-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+body.cases-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+body.clients-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+body.referrers-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a,
+body.dashboard-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
+body.your-claim-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
+body.account-details-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
+body.cases-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
+body.clients-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
+body.referrers-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a,
+body.dashboard-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+body.your-claim-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+body.account-details-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+body.cases-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+body.clients-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a,
+body.referrers-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a {
   color: #4b4b4b;
   background-color: white;
 }
 body.dashboard-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
 body.your-claim-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
-body.account-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i {
+body.account-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+body.cases-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+body.clients-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+body.referrers-pg #masthead .pg-tool-bar ul#menu-user-menu li.current-menu-item a i,
+body.dashboard-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
+body.your-claim-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
+body.account-details-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
+body.cases-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
+body.clients-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
+body.referrers-pg #masthead .pg-tool-bar ul#menu-referer-menu li.current-menu-item a i,
+body.dashboard-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+body.your-claim-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+body.account-details-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+body.cases-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+body.clients-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i,
+body.referrers-pg #masthead .pg-tool-bar ul#menu-admin-menu li.current-menu-item a i {
   color: #C60751;
 }
-body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a {
+body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a,
+body.case-details-pg #masthead .pg-tool-bar ul#menu-admin-menu li.your-claim a {
   color: #4b4b4b;
   background-color: white;
 }
-body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i {
+body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i,
+body.case-details-pg #masthead .pg-tool-bar ul#menu-admin-menu li.your-claim a i {
+  color: #C60751;
+}
+body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.cases a,
+body.case-details-pg #masthead .pg-tool-bar ul#menu-admin-menu li.cases a {
+  color: #4b4b4b;
+  background-color: white;
+}
+body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.cases a i,
+body.case-details-pg #masthead .pg-tool-bar ul#menu-admin-menu li.cases a i {
+  color: #C60751;
+}
+body.clients-pg #masthead .pg-tool-bar ul#menu-admin-menu li.clients a {
+  color: #4b4b4b;
+  background-color: white;
+}
+body.clients-pg #masthead .pg-tool-bar ul#menu-admin-menu li.clients a i {
   color: #C60751;
 }
 /** --------------------------- /
@@ -3755,15 +3803,7 @@ body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i 
 }
 .panel .table-bordered,
 .panel .panel-body {
-  font-size: 16px;
-}
-.panel .add-info-txt {
-  height: 116px;
-  overflow-y: auto;
-}
-.panel .address-txt {
-  height: 155px;
-  overflow-y: auto;
+  font-size: 14px;
 }
 .panel .table-bordered > tbody > tr > th,
 .panel .table-bordered > tbody > tr > td,
@@ -3771,6 +3811,22 @@ body.case-details-pg #masthead .pg-tool-bar ul#menu-user-menu li.your-claim a i 
 .panel .table-bordered > tfoot > tr > td {
   border-color: #7A1039;
   vertical-align: middle;
+  padding: 5px;
+}
+.panel .add-info-txt {
+  height: 92px;
+  overflow-y: auto;
+}
+.panel .table-bordered > tbody > tr > td.address-txt {
+  height: 123px;
+  overflow-y: auto;
+  vertical-align: top;
+}
+.panel .table-bordered > tbody > tr > th {
+  color: #918F8F;
+}
+.panel .btn-block i.pull-right {
+  line-height: 20px;
 }
 .well-message {
   background-color: #E9E9E9;

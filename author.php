@@ -50,11 +50,11 @@
 
 			<div class="panel panel-default">
 				  <div class="panel-heading text-center">Address details</div>
-					  <table class="table table-bordered" style="min-height: 179px;">
+					  <table class="table table-bordered">
 						  <tbody>
 							  <?php if (!empty($client_address)) { ?>
 							  	 <tr>
-								  <td>
+								  <td class="address-txt">
 									  <?php foreach ($client_address as $part ) { ?>
 									 <?php echo ( empty($part) ) ? "" : $part."<br/>"; ?>
 									  <?php } ?>

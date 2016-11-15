@@ -36,6 +36,27 @@
 						</div>		
 						<?php } ?>
 						
+						<?php if ($user_type == 'ref') { 
+						$dashboard_pg = get_page_by_path( 'dashboard' );
+						$cases_pg =  get_option('page_for_posts');
+						$account_pg = get_page_by_path( 'account-details' );		
+						$banner_intro = get_field( 'hp_banner_ref_intro', 'options' );	
+						?>
+						<?php echo $banner_intro; ?>
+						<div class="row">
+							<div class="col-xs-4">
+						<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="btn btn-default btn-block btn-lg"><?php echo get_the_title($dashboard_pg->ID); ?> <i class="fa fa-dashboard pull-right"></i></a>
+							</div>
+							<div class="col-xs-4">
+						<a href="<?php echo get_permalink($cases_pg); ?>" class="btn btn-default btn-block btn-lg"><?php echo get_the_title($cases_pg); ?><i class="fa fa-folder-open pull-right"></i></a>
+							</div>
+							<div class="col-xs-4">
+								<a href="<?php echo get_permalink($account_pg->ID ); ?>" class="btn btn-default btn-block btn-lg"><?php echo get_the_title($account_pg->ID); ?> <i class="fa fa-vcard pull-right"></i></a>
+							</div>
+						</div>
+						</div>		
+						<?php } ?>
+						
 						<?php if ($user_type == 'admin') { 
 						$cases_pg =  get_option('page_for_posts');
 						$clients_pg = get_page_by_path( 'clients' );

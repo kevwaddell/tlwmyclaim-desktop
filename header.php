@@ -20,7 +20,13 @@ $page_class = $page->post_name.'-pg';
 }
 if (is_single()) {
 $page_class = 'case-details-pg';	
+}
+if (is_home()) {
+$page_class = 'cases-pg';	
 }	
+if (is_author()) {
+$page_class = 'clients-pg';	
+}		
 ?>
 <body <?php body_class($page_class); ?>>
 	

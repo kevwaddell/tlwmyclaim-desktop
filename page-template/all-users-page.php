@@ -86,7 +86,7 @@ $users = get_users( $users_args );
 										</div>
 										<?php } ?>
 									</td>
-									<td width="5%"><a href="<?php echo get_author_posts_url($user->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View client details</span><i class="fa fa-chevron-right fa-lg" style="line-height: 20px;"></i></a></th>
+									<td width="5%"><a href="<?php echo get_author_posts_url($user->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View client details</span><i class="fa fa-chevron-right" style="line-height: 20px;"></i></a></th>
 							  	</tr>
 							  	<?php } ?>
 							  	
