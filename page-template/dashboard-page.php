@@ -29,8 +29,8 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 							<?php if ($user_type == 'ref') { 
 							$company = get_user_meta( $user_id, 'company_name', true);	
 							?>
-							<h1><?php echo $company; ?></h1>
-							<p><strong>TLW Solicitors referrer account.</strong></p>
+							<h1>Referrer account dashboard</h1>
+							<p><strong>A brief overview of referred cases from <?php echo $company; ?></strong></p>
 							<?php } ?>
 						</div>
 					</div>
@@ -39,6 +39,9 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<div class="container">
 							<?php if ($user_type == 'client') { ?>
 							<?php get_template_part( 'parts/dashboard/client', 'panels' ); ?>
+							<?php } ?>
+								<?php if ($user_type == 'ref') { ?>
+							<?php get_template_part( 'parts/dashboard/ref', 'panels' ); ?>
 							<?php } ?>
 						</div>
 					</section>

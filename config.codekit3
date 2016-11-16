@@ -458,6 +458,12 @@
 		"oAP": "\/parts\/dashboard\/client-panels.php",
 		"oF": 0
 		},
+	"\/parts\/dashboard\/ref-panels.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/parts\/dashboard\/ref-panels.php",
+		"oF": 0
+		},
 	"\/parts\/global\/col-strip.php": {
 		"ft": 8192,
 		"oA": 0,

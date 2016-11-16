@@ -3790,42 +3790,42 @@ body.clients-pg #masthead .pg-tool-bar ul#menu-admin-menu li.clients a i {
   background: -o-linear-gradient(transparent, #4b4b4b);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='transparent', endColorstr='#4b4b4b', GradientType=0);
 }
-.panel {
+.panel-default {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
   border-color: #7A1039;
 }
-.panel .panel-heading {
+.panel-default .panel-heading {
   background-color: #7A1039;
   color: white;
   border: none;
 }
-.panel .table-bordered,
-.panel .panel-body {
+.panel-default .table-bordered,
+.panel-default .panel-body {
   font-size: 14px;
 }
-.panel .table-bordered > tbody > tr > th,
-.panel .table-bordered > tbody > tr > td,
-.panel .table-bordered > thead > tr > td,
-.panel .table-bordered > tfoot > tr > td {
+.panel-default .table-bordered > tbody > tr > th,
+.panel-default .table-bordered > tbody > tr > td,
+.panel-default .table-bordered > thead > tr > td,
+.panel-default .table-bordered > tfoot > tr > td {
   border-color: #7A1039;
   vertical-align: middle;
   padding: 5px;
 }
-.panel .add-info-txt {
+.panel-default .add-info-txt {
   height: 92px;
   overflow-y: auto;
 }
-.panel .table-bordered > tbody > tr > td.address-txt {
+.panel-default .table-bordered > tbody > tr > td.address-txt {
   height: 123px;
   overflow-y: auto;
   vertical-align: top;
 }
-.panel .table-bordered > tbody > tr > th {
+.panel-default .table-bordered > tbody > tr > th {
   color: #918F8F;
 }
-.panel .btn-block i.pull-right {
+.panel-default .btn-block i.pull-right {
   line-height: 20px;
 }
 .well-message {
