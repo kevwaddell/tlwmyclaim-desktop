@@ -114,41 +114,28 @@ $user_id = get_current_user_id();
 
 					</div>
 					</div>
-					<div class="row">
-						<div class="col-xs-6">
-							<div class="panel panel-default">
-			
-								<div class="panel-heading text-center">Additional information</div>
+						<div class="row">
+						
+						<div class="col-xs-12">
+							
+							<div class="alert alert-info text-center case-progress">
+						 		<?php 
+							 	$case_progress = array_reverse($case_progress); 
+							 	$date = date('l jS F, Y', strtotime( str_replace('/','-',$case_progress[0]['date']) ) );
+							 	$status = $case_progress[0]['status'];
+							 	?>
+							 	<div class="icon">
+								 	<i class="fa fa-clock-o fa-3x"></i>
+								 	<div class="icon-label">Case Status</div>
+							 	</div>
+							 	
+								<div class="status-date"><?php echo $date; ?></div>
+								<div class="case-status"><?php echo $status; ?></div>
 								
-								<div class="panel-body add-info-txt">
-									<?php the_content(); ?>
-								</div>
-
-							</div>		
+							</div>
+						
 						</div>
-						<div class="col-xs-6">
-							<div class="panel panel-default">
-			
-								<div class="panel-heading text-center">Insurer details</div>
-								<table class="table table-bordered">
-									<tbody>
-										<tr>
-											<th width="40%">Company:</th>
-											<td width="60%"><?php echo ($insurer['company']) ? $insurer['company'] : " - "; ?></td>
-									  	</tr>
-									  	<tr>
-											<th>Reference number:</th>
-											<td><?php echo ($insurer['ref']) ? $insurer['ref'] : " - "; ?></td>
-									  	</tr>	
-									  	<tr>
-											<th>Policy number:</th>
-											<td><?php echo ($insurer['policy-number']) ? $insurer['policy-number'] : " - "; ?></td>
-									  	</tr>	
-									</tbody>
-								</table>
 
-							</div>			
-						</div>
 					</div>
 					<div class="row">
 						
@@ -161,26 +148,20 @@ $user_id = get_current_user_id();
 							<table class="table table-bordered">
 								<tbody>
 								  	<tr>
-									  	<th width="15%" class="text-center">Date</th>
-									  	<th width="80%" class="text-center">Status</th>
 									  	<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
+									  	<th width="45%" class="text-center">Date</th>
+									  	<th width="50%" class="text-center">Status</th>
 								  	</tr>
 								  	<?php 
-									$case_progress = array_reverse($case_progress); 	
+									array_shift($case_progress);	
 									foreach ($case_progress as $k => $status) {
-									//$date = date('l jS F, Y', strtotime( str_replace('/','-',$status['date']) ) ) ;
+									$date = date('l jS F, Y', strtotime( str_replace('/','-',$status['date']) ) ) ;
 									//echo '<pre class="debug">';print_r($date);echo '</pre>';
 								  	?>
-								  	<tr class="<?php echo ($k == 0) ? 'info':'success'; ?>">
-									  	<td class="text-center"><strong><?php echo $status['date']; ?></strong></td>
-									  	<td class="text-center"><?php echo $status['status']; ?></td>
-									  	<td class="text-center">
-										  	<?php if ($k == 0) { ?>
-										  	<i class="fa fa-clock-o text-info"></i>		
-										  	<?php } else { ?>
-										  	<i class="fa fa-check-circle text-success"></i>		
-										  	<?php } ?>
-										</td>
+								  	<tr class="success">
+									  	<td class="text-center"><i class="fa fa-check-circle text-success"></i></td>
+									  	<td class="text-center"><strong><?php echo $date; ?></strong></td>
+									  	<td class="text-center"><?php echo $status['status']; ?></td>	
 								  	</tr>	
 								  	<?php } ?>
 								  	

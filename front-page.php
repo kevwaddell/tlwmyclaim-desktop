@@ -91,7 +91,7 @@
 						<?php echo $banner_intro; ?>
 						<div class="row">
 							<div class="col-xs-8 col-xs-offset-2">
-						<a href="<?php echo get_permalink( $login_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">Login now <i class="fa fa-chevron-right pull-right"></i></a>
+						<a href="<?php echo get_permalink( $login_pg->ID ); ?>" class="btn btn-default btn-block btn-lg"> <i class="fa fa-chevron-right pull-right"></i>Login now</a>
 							</div>
 						</div>
 						</div>

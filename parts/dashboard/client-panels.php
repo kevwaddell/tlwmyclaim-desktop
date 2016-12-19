@@ -70,10 +70,10 @@ $account_pg = get_page_by_path( 'account-details' );
 	</table>
 </div>
 
-<a href="<?php echo get_permalink( $current_claims[0]->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">View progress report<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo get_permalink( $current_claims[0]->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg"><i class="fa fa-chevron-right fa-lg pull-right"></i>View progress report</a>
 <?php } ?>
 
-<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">View Account details<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg"><i class="fa fa-chevron-right fa-lg pull-right"></i>View Account details</a>
 
 <?php
 $claims_args = array(
@@ -89,7 +89,7 @@ $claims = get_posts( $claims_args );
 
 <?php if (!empty($claims)) { ?>
 <div class="rule"></div>
-<div class="panel">
+<div class="panel panel-default">
 	<div class="panel-heading text-center">Other claims</div>	
 	<table class="table table-bordered">
 	<tbody>
