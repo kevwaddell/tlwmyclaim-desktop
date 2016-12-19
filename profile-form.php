@@ -55,7 +55,7 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<tr id="password" class="user-pass1-wrap">
 							<td>
 								<input class="hidden form-control input-lg" value=" " /><!-- #24364 workaround -->
-								<button type="button" class="btn btn-info btn-block btn-lg wp-generate-pw hide-if-no-js">Generate New Password<i class="glyphicon glyphicon-refresh pull-right"></i></button>
+								<button type="button" class="btn btn-info btn-block btn-lg wp-generate-pw hide-if-no-js"><i class="glyphicon glyphicon-refresh pull-right"></i>Generate New Password</button>
 								<div class="wp-pwd hide-if-js">
 									<span class="password-input-wrapper">
 										<input type="password" name="pass1" id="pass1" class="regular-text form-control input-lg" value="" autocomplete="off" data-pw="<?php echo esc_attr( wp_generate_password( 24 ) ); ?>" aria-describedby="pass-strength-result" />
