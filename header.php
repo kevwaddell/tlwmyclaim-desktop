@@ -75,12 +75,12 @@ $page_class = 'clients-pg';
 							<?php if (current_user_can('administrator')) { 
 							$user_lastname = get_user_meta( $user_id, 'last_name', true ); 	
 							?>
-							<div class="user-name text-right"><i class="fa fa-user"></i> <?php echo $user_firstname; ?> <?php echo $user_lastname; ?></strong></div>	
+							<div class="user-name text-right"><i class="fa fa-user-circle"></i> <?php echo $user_firstname; ?> <?php echo $user_lastname; ?></strong></div>	
 							<?php } else { ?>
 							<?php if ($user_type == 'ref') { 
 							$company = get_user_meta( $user_id, 'company_name', true ); 	
 							?>
-							<div class="user-name text-right"><i class="fa fa-user"></i> <strong><?php echo $company; ?></strong></div>
+							<div class="user-name text-right"><i class="fa fa-info-circle"></i> <strong><?php echo $company; ?></strong></div>
 							<?php } else { ?>
 							<div class="user-name text-right"><i class="fa fa-thumbs-up"></i> Welcome <strong><?php echo $user_firstname; ?></strong></div>
 							<?php } ?>
