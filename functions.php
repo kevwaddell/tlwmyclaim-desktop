@@ -106,4 +106,19 @@ function wpse120418_unregister_taxonomies() {
     unregister_widget( 'WP_Widget_Categories' );
 }
 add_action( 'init', 'wpse120418_unregister_taxonomies' );
+
+function user_name_shortcode() {
+	global $current_user;
+	get_currentuserinfo();
+	
+	$username = $current_user->user_login;
+
+   return $username;
+}
+
+function register_shortcodes(){
+   add_shortcode('user_name', 'user_name_shortcode');
+}
+
+add_action( 'init', 'register_shortcodes');
 ?>

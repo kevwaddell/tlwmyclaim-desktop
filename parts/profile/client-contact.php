@@ -18,7 +18,7 @@ $client_contact = unserialize($client_contact_raw);
 	  <?php if ($client_contact['email'] != $login_email) { ?>
 	   <tr>
 		  <th width="30%">Account email:</th>
-		  <td colspan="2"><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
+		  <td colspan="2"><<?php echo $login_email; ?></td>
 	  </tr>
 	  <?php } ?>
 	  <tr>

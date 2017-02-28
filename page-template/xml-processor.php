@@ -38,17 +38,8 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 	$fee_earner['name'] = $caseDetails['fee-earner'];
 	$fee_earner['email'] = $caseDetails['fee-earner-email'];
 	
-	//Insurer Details
-	$insurer_data = array();
-	$insurer_data['company'] = $caseDetails['insurer-company'];
-	if(!empty($caseDetails['insurer-reference'])) {
-	$insurer_data['ref'] = $caseDetails['insurer-reference'];	
-	}
-	$insurer_data['policy-number'] = $caseDetails['insurer-policy'];
-	
-	//Case status
-	$case_progress = array();
-	$case_progress[] = array('date'=> date('d/m/Y'), 'status'	=> 'Case created' );	 
+	//Case progress
+	$case_update = $caseDetails['case-status'];	 
 	
 	// Client Personal Details
 	$client_personal = array();
@@ -56,21 +47,28 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 	$client_personal['forename'] = $first_name;
 	$client_personal['surname'] = $last_name;
 	$client_personal['date-of-birth'] = $caseDetails['date-of-birth'];
+	$client_personal['national-insurance-number'] = $caseDetails['national-insurance-number'];
 	
 	// Client Address
 	$client_address = array();
 	$client_address['address1'] = (is_array($caseDetails['address1'])) ? "" : $caseDetails['address1'];
 	$client_address['address2'] = (is_array($caseDetails['address2'])) ? "" : $caseDetails['address2'];
 	$client_address['address3'] = (is_array($caseDetails['address3'])) ? "" : $caseDetails['address3'];
-	$client_address['address4'] = (is_array($caseDetails['address4'])) ? "" : $caseDetails['address4'];
 	$client_address['postcode'] = $caseDetails['postcode'];
 	
 	//Client contact details
 	$client_contact = array();
 	$client_contact['email'] = $caseDetails['email'];
 	$client_contact['tel'] = $caseDetails['telephone'];
-	$client_contact['mobile'] = $caseDetails['mobile'];			
-
+	$client_contact['mobile'] = $caseDetails['mobile'];		
+	
+	//Claim details		
+	$claim_details = array();	
+	$claim_details['claim-type'] = $caseDetails['Claim-type'];
+	if ($caseDetails['accident-date']) {
+	$claim_details['accident-date'] = $caseDetails['accident-date'];	
+	}
+	
 	echo "<br>*---------------------------------------*<br>\n";
 		if ($user_id) {
 		echo "User exists!<br>\n";
@@ -78,6 +76,7 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 		$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
 		$client_address_raw = get_user_meta($user_id, 'client_address', true);	
 		$client_contact_raw = get_user_meta($user_id, 'client_contact', true);
+		
 		$src_ref = get_user_meta($user_id, 'src_ref', true);
 		$case_ref = $caseDetails['solicitor-reference'];
 		$new_case = true;
@@ -125,7 +124,8 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 					echo "Case exists<br>\n";
 					$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
 					$case_progress = unserialize($case_progress_raw);
-					$case_progress[] = array('date'=> date('d/m/Y'), 'status'	=> 'New case status - '.count($case_progress) );
+					$case_progress[] = array('date'=> date('d/m/Y'), 'status' => $case_update );
+					
 					update_post_meta( $claim->ID, 'case_progress', serialize($case_progress), $case_progress_raw );	
 					echo "*---------------------------------------*<br>\n";
 					echo "Updated claim progress<br>\n";
@@ -141,14 +141,14 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 					//echo '<pre class="debug">';print_r($fee_earner);echo '</pre>';
 					}
 					
-					$insurer_raw = get_post_meta( $claim->ID, 'insurer', true );
+					$claim_details_raw = get_post_meta( $claim->ID, 'claim_details', true );
 					
-					if (serialize($insurer_data) != $insurer_raw) {
-					update_post_meta( $claim->ID, 'insurer', serialize($insurer_data), $insurer_raw );
+					if (serialize($claim_details) != $claim_details_raw) {
+					update_post_meta( $claim->ID, 'claim_details', serialize($claim_details), $claim_details_raw );
 					echo "*---------------------------------------*<br>\n";
-					echo "Updated Insurer<br>\n";	
-					//echo '<pre class="debug">';print_r(unserialize($insurer_raw));echo '</pre>';
-					//echo '<pre class="debug">';print_r($insurer_data);echo '</pre>';
+					echo "Updated claim details<br>\n";	
+					//echo '<pre class="debug">';print_r(unserialize($fee_earner_raw));echo '</pre>';
+					//echo '<pre class="debug">';print_r($fee_earner);echo '</pre>';
 					}
 				
 				}
@@ -166,17 +166,14 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 		 	$new_case_args['post_name']	= sanitize_title($case_ref);
 		 	$new_case_args['post_title'] = wp_strip_all_tags($case_ref);
 		 	
-		 	if (!empty($caseDetails['additional-info'])) {
-			 $content = $caseDetails['additional-info'];
-			 $new_case_args['post_content'] = $content;	
-		 	}
-		 	
 		 	//echo '<pre class="debug">';print_r($new_case_args);echo '</pre>';
 		 	
 		 	$new_case_id = wp_insert_post($new_case_args);
 		 	//$new_case_id = true;
 			 	
 			 	if ($new_case_id) {
+				 	$case_progress = array();
+				 	$case_progress[] = array('date'=> date('d/m/Y'), 'status' => $case_update );
 				 	echo "*---------------------------------------*<br>\n";
 					echo "- New case created<br>\n";
 					add_post_meta( $new_case_id, 'case_ref', $case_ref, true );
@@ -187,8 +184,8 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 					echo "- Case progress added<br>\n";	
 					add_post_meta( $new_case_id, 'fee_earner', serialize($fee_earner), true );
 					echo "- Fee Earner data added<br>\n";	
-					add_post_meta( $new_case_id, 'insurer', serialize($insurer_data), true );
-					echo "- Insurer data added<br>\n";	
+					add_post_meta( $new_case_id, 'claim_details', serialize($claim_details), true );
+					echo "- Claim details data added<br>\n";	
 				
 					if ( !empty($caseDetails['source-company']) ) {
 						$src_company = $caseDetails['source-company'];
@@ -244,6 +241,7 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 			//$user_id = true;
 			
 			if ( ! is_wp_error( $user_id ) ) {
+
 			echo "*---------------------------------------*<br>\n";
 			echo "New user created<br>\n";
 			add_user_meta( $user_id, "client_personal", serialize($client_personal), true );
@@ -253,6 +251,7 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 			echo "Client address details added<br>\n";
 			add_user_meta( $user_id, "client_contact", serialize($client_contact), true );
 			echo "Client contact details added<br>\n";
+			echo "*---------------------------------------*<br>\n";
 			add_user_meta( $user_id, "_user_type", "field_581c5aad45023", true );
 			add_user_meta( $user_id, "user_type", "client", true );
 			echo "Client user type added<br>\n";
@@ -267,11 +266,7 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 			 	$case_args['post_status']= 'private';
 			 	$case_args['post_name']	= sanitize_title($caseDetails['solicitor-reference']);
 			 	$case_args['post_title'] = wp_strip_all_tags($caseDetails['solicitor-reference']);
-			 	
-			 	if (!empty($caseDetails['additional-info'])) {
-				 $content = $caseDetails['additional-info'];
-				 $case_args['post_content'] = $content;	
-			 	}
+
 			 	//echo '<pre class="debug">';print_r($case_args);echo '</pre>';
 			 	
 			 	$case_id = wp_insert_post($case_args);
@@ -286,13 +281,15 @@ echo "<br>********------START OF PROCESSING-------*******<br>\n";
 					add_post_meta( $case_id, 'case_ref', $caseDetails['solicitor-reference'], true );
 					echo "Case reference added<br>\n";	
 					add_post_meta( $case_id, 'case_status', "open", true );
-					echo "Case status added<br>\n";
+					echo "Case status added<br>\n";	
+					$case_progress = array();
+					$case_progress[] = array('date'=> date('d/m/Y'), 'status' => $case_update );
 					add_post_meta( $case_id, 'case_progress', serialize($case_progress), true );
 					echo "Case progress added<br>\n";	
 					add_post_meta( $case_id, 'fee_earner', serialize($fee_earner), true );
 					echo "Fee Earner data added<br>\n";	
-					add_post_meta( $case_id, 'insurer', serialize($insurer_data), true );
-					echo "Insurer data added<br>\n";	
+					add_post_meta( $case_id, 'claim_details', serialize($claim_details), true );
+					echo "Claim details data added<br>\n";
 				
 					if ( !empty($caseDetails['source-company']) ) {
 						

@@ -139,6 +139,9 @@ list-style: none;
 .bg-col(@col) {
 background-color: @col;
 }
+.bg-col-wht {
+.bg-col(@wht);	
+}
 .bg-col-gray {
 .bg-col(@gray);	
 }
@@ -489,4 +492,19 @@ border-radius: 0px;
   &:after {
     clear: both;
   }
+}
+
+.bg-lines {
+	&:before {
+	content: "";
+	.abs;
+	.top(0);
+	.left(0);
+	width: 100%;
+	height: 100%;
+	//.bg-col-gray;	
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQImU3HoQEAAAwCIOb/P7sqjWtrNBtcNpANPEhdBwSAP45MAAAAAElFTkSuQmCC');
+	opacity: .3;
+	.border-radius(4px, 0, 0, 4px);
+	}	
 }

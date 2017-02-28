@@ -25,17 +25,11 @@ $fee_earner = array();
 $fee_earner['name'] = $caseDetails['fee-earner'];
 $fee_earner['email'] = $caseDetails['fee-earner-email'];
 
-//Insurer Details
-$insurer_data = array();
-$insurer_data['company'] = $caseDetails['insurer-company'];
-if(!empty($caseDetails['insurer-reference'])) {
-$insurer_data['ref'] = $caseDetails['insurer-reference'];	
-}
-$insurer_data['policy-number'] = $caseDetails['insurer-policy'];
+//Welcome message
+$welcome_message = $caseDetails['welcome-message'];
 
-//Case status
-$case_progress = array();
-$case_progress[] = array('date'=> date('d/m/Y'), 'status'	=> 'Case created' );	 
+//Case progress
+$case_progress = $caseDetails['case-status'];	 
 
 // Client Personal Details
 $client_personal = array();
@@ -43,20 +37,23 @@ $client_personal['title'] = $caseDetails['title'];
 $client_personal['forename'] = $first_name;
 $client_personal['surname'] = $last_name;
 $client_personal['date-of-birth'] = $caseDetails['date-of-birth'];
+$client_personal['national-insurance-number'] = $caseDetails['national-insurance-number'];
 
 // Client Address
 $client_address = array();
 $client_address['address1'] = (is_array($caseDetails['address1'])) ? "" : $caseDetails['address1'];
 $client_address['address2'] = (is_array($caseDetails['address2'])) ? "" : $caseDetails['address2'];
 $client_address['address3'] = (is_array($caseDetails['address3'])) ? "" : $caseDetails['address3'];
-$client_address['address4'] = (is_array($caseDetails['address4'])) ? "" : $caseDetails['address4'];
 $client_address['postcode'] = $caseDetails['postcode'];
 
 //Client contact details
 $client_contact = array();
 $client_contact['email'] = $caseDetails['email'];
 $client_contact['tel'] = $caseDetails['telephone'];
-$client_contact['mobile'] = $caseDetails['mobile'];			
+$client_contact['mobile'] = $caseDetails['mobile'];	
+
+//Claim details		
+$client_details = array();
 
 if (!$user_id) {
 	
@@ -81,6 +78,7 @@ if (!$user_id) {
 	 add_user_meta( $user_id, "client_personal", serialize($client_personal), true );
 	 add_user_meta( $user_id, "client_address", serialize($client_address), true );
 	 add_user_meta( $user_id, "client_contact", serialize($client_contact), true );
+	 add_user_meta( $user_id, "welcome_message", $welcome_message, true );
 	 add_user_meta( $user_id, "_user_type", "field_581c5aad45023", true );
 	 add_user_meta( $user_id, "user_type", "client", true );
 	 wp_send_new_user_notifications( $user_id );
@@ -92,11 +90,6 @@ if (!$user_id) {
 		 	$case_args['post_status']= 'private';
 		 	$case_args['post_name']	= sanitize_title($caseDetails['solicitor-reference']);
 		 	$case_args['post_title'] = wp_strip_all_tags($caseDetails['solicitor-reference']);
-		 	
-		 	if (!empty($caseDetails['additional-info'])) {
-			 $content = $caseDetails['additional-info'];
-			 $case_args['post_content'] = $content;	
-		 	}
 
 		 	$case_id = wp_insert_post($case_args);
 		 	
@@ -110,8 +103,6 @@ if (!$user_id) {
 				echo "Case progress added\n";	
 				add_post_meta( $case_id, 'fee_earner', serialize($fee_earner), true );
 				echo "Fee Earner data added\n";	
-				add_post_meta( $case_id, 'insurer', serialize($insurer_data), true );
-				echo "Insurer data added\n";	
 			
 				if ( !empty($caseDetails['source-company']) ) {
 					$src_company = $caseDetails['source-company'];
@@ -144,6 +135,8 @@ if (!$user_id) {
 	$client_personal_raw = get_user_meta($user_id, 'client_personal', true);	
 	$client_address_raw = get_user_meta($user_id, 'client_address', true);	
 	$client_contact_raw = get_user_meta($user_id, 'client_contact', true);
+	$welcome_message_orig = get_user_meta( $user_id, 'welcome-message', true );
+	
 	$src_ref = get_user_meta($user_id, 'src_ref', true);
 	
 			if (serialize($client_personal) != $client_personal_raw) {
@@ -157,6 +150,11 @@ if (!$user_id) {
 			}
 			
 			if (serialize($client_contact) != $client_contact_raw) {
+			update_user_meta( $user_id, 'client_contact', serialize($client_contact), $client_contact_raw );
+			echo "Client Contact details updated\n";	
+			}
+			
+			if ($welcome_message_orig != $welcome_message) {
 			update_user_meta( $user_id, 'client_contact', serialize($client_contact), $client_contact_raw );
 			echo "Client Contact details updated\n";	
 			}
