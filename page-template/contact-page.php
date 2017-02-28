@@ -12,13 +12,13 @@ Template Name: Contact us page
 				
 				<div class="jumbotron wht-border-bottom text-center">
 					<div class="container">
-						<h1><?php the_title(); ?></h1>	
+						<?php the_content(); ?>	
 					</div>
 				</div>
 				
 				<article <?php post_class(); ?>>
 					<div class="container">
-						<?php the_content(); ?>
+						<?php gravity_form( 1, false, false, false, $field_values, true ); ?>
 					</div>			
 				</article><!-- #post-## -->
 			
