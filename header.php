@@ -80,10 +80,12 @@ $user_name_tag = $user_firstname. " " .$user_lastname;
 						</div>	
 					</div>
 					<div class="col-xs-4">
+						<?php if ( is_user_logged_in() ) { ?>
 						<div class="main-nav-btn-wrap pull-right">
 							<span>Menu</span>
 							<button id="nav-btn" class="btn btn-default"><i class="fa fa-bars fa-lg"></i></button>
 						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
