@@ -35,35 +35,24 @@ $closed = 0;
 //echo '<pre class="debug">';print_r($open_cases);echo '</pre>';
 //echo '<pre class="debug">';print_r($closed_cases);echo '</pre>';
 ?>
-
-<div class="panel panel-default">
-	<div class="panel-heading text-center">Primary contact</div>
-	<div class="panel-body text-center">
-		<h2 class="txt-col-red font-slab-serif caps"><?php echo $current_user->display_name; ?></h2>
-		<h3 class="txt-col-gray font-slab-serif"><?php echo $current_user->user_email; ?></h3>
-	</div>
-</div>
-
 <div class="row">
 	<div class="col-xs-6">
-		<div class="panel panel-success text-center">
-			<div class="panel-heading text-center">Open Cases</div>
-			<div class="panel-body">
-				<div class="number"><?php echo $open; ?></div>
-			</div>
+		<div class="alert alert-success text-center dashboard-alert">
+			<div class="alert-heading text-center">Open Cases <i class="fa fa-folder-open"></i></div>
+			<div class="alert-number text-center"><?php echo $open; ?></div>
 		</div>
 	</div>
 	
 	<div class="col-xs-6">
-		<div class="panel panel-danger text-center">
-			<div class="panel-heading text-center">Closed Cases</div>
-			<div class="panel-body">
-				<div class="number"><?php echo $closed; ?></div>
-			</div>
+		<div class="alert alert-warning text-center dashboard-alert">
+			<div class="alert-heading text-center">Closed Cases <i class="fa fa-folder"></i></div>
+			<div class="alert-number"><?php echo $closed; ?></div>
 		</div>
 	</div>
 </div>
 
-<a href="<?php echo get_permalink( $cases_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg"><i class="fa fa-folder-open fa-lg pull-left"></i>View Your cases<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo get_permalink( $cases_pg->ID ); ?>" class="btn btn-default btn-block btn-lg red-btn"><i class="fa fa-folder-open fa-lg pull-left"></i>View Your cases<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
 
-<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg"><i class="fa fa-vcard fa-lg pull-left"></i>View Account details<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="btn btn-default btn-block btn-lg red-btn"><i class="fa fa-vcard fa-lg pull-left"></i>View Account details<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+
+<a href="<?php echo wp_logout_url( $redirect ); ?>" class="btn btn-block btn-lg red-btn"><i class="fa fa-power-off fa-lg pull-left"></i>Log Out<i class="fa fa-chevron-right fa-lg pull-right"></i></a>

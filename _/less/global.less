@@ -11,6 +11,17 @@ height: 100%;
 -moz-osx-font-smoothing: grayscale;
 .font-size(2);	
 .bg-col-grayDk;
+	&.nav-open {
+	.abs;
+	.top(0);
+	.left(0);
+	.over-hide;
+	
+		#page {
+		.drop-shadow(0, 0, 20px, 0.5);	
+		.opacity(0.5);
+		}
+	}
 }
 
 a {
@@ -33,7 +44,10 @@ a {
 }
 
 .site {
+.rel;
 .bg-col(@wht);	
+//.transition(0.5s);
+z-index: 2;
 }
 
 .site-main {
@@ -80,17 +94,21 @@ z-index: 2;
 	}
 }
 
-.red-btn {
-.bg-col-red;
+.btn {
 .no-border;
 .txt-col-wht;
 .font-slab-serif;
 .font-size(3);
-.caps;
+.caps;	
 	i {
 	.font-size(2);	
 	.line-h(4);
 	}	
+}
+
+.red-btn {
+.bg-col-red;
+.txt-col-wht;
 	&:hover, &:active, &:focus {
 	.bg-col-red-dk;
 	.txt-col-wht;

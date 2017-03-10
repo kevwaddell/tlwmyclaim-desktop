@@ -24,20 +24,20 @@
 							<?php the_content(); ?>	
 						<div class="row">
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-dashboard pull-left"></i>
+								<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-dashboard"></i>
 									<?php echo get_the_title($dashboard_pg->ID); ?>
 								</a>
 							</div>
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($your_claim_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-folder-open pull-left"></i>
+								<a href="<?php echo get_permalink($your_claim_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-folder-open"></i>
 									<?php echo get_the_title($your_claim_pg->ID); ?>
 								</a>
 							</div>
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($account_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-vcard pull-left"></i>
+								<a href="<?php echo get_permalink($account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-vcard"></i>
 									<?php echo get_the_title($account_pg->ID); ?>
 								</a>
 							</div>
@@ -54,20 +54,20 @@
 						<?php echo $banner_intro; ?>
 						<div class="row">
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-dashboard pull-left"></i>
+								<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-dashboard"></i>
 									<?php echo get_the_title($dashboard_pg->ID); ?>
 								</a>
 							</div>
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($cases_pg); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-folder-open pull-left"></i>
+								<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-folder-open"></i>
 									<?php echo get_the_title($cases_pg); ?>
 								</a>
 							</div>
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($account_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-vcard pull-left"></i>
+								<a href="<?php echo get_permalink($account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-vcard"></i>
 									<?php echo get_the_title($account_pg->ID); ?>
 								</a>
 							</div>
@@ -84,20 +84,20 @@
 						<?php echo $banner_intro; ?>
 						<div class="row">
 							<div class="col-xs-4">
-							<a href="<?php echo get_permalink($cases_pg); ?>" class="btn btn-default btn-block btn-lg">
-								<i class="fa fa-folder-open pull-left"></i>
+							<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-default btn-block btn-lg">
+								<i class="fa fa-folder-open"></i>
 								<?php echo get_the_title($cases_pg); ?>
 							</a>
 							</div>
 							<div class="col-xs-4">
-							<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-								<i class="fa fa-users pull-left"></i>
+							<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+								<i class="fa fa-users"></i>
 								<?php echo get_the_title($clients_pg->ID); ?>
 							</a>
 							</div>
 							<div class="col-xs-4">
-								<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="btn btn-default btn-block btn-lg">
-									<i class="fa fa-building pull-left"></i>
+								<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-building"></i>
 									<?php echo get_the_title($referrers_pg->ID); ?>
 								</a>
 							</div>
@@ -118,7 +118,9 @@
 						<?php echo $banner_intro; ?>
 						<div class="row">
 							<div class="col-xs-8 col-xs-offset-2">
-						<a href="<?php echo get_permalink( $login_pg->ID ); ?>" class="btn btn-default btn-block btn-lg"><i class="fa fa-chevron-right pull-right"></i>Login now</a>
+								<a href="<?php echo get_permalink( $login_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg">
+									<i class="fa fa-chevron-right"></i>Login now
+								</a>
 							</div>
 						</div>
 						</div>

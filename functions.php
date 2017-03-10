@@ -41,7 +41,7 @@ function tlwmyclaim_scripts() {
 	// Load JS
 	wp_enqueue_script( 'jQuery');
 	wp_enqueue_script( 'bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array( 'jquery' ), '3.3.6', true );
-	wp_enqueue_script( 'tlwmyclaim-script', get_template_directory_uri() . '/_/js/functions.js', array( 'jquery', 'bootstrap-js' ), filemtime( get_stylesheet_directory().'/_/js/functions.js' ), true );
+	wp_enqueue_script( 'tlwmyclaim-script', get_template_directory_uri() . '/_/js/min/functions-min.js', array( 'jquery', 'bootstrap-js' ), filemtime( get_stylesheet_directory().'/_/js/functions.js' ), true );
 }
 add_action( 'wp_enqueue_scripts', 'tlwmyclaim_scripts' );
 

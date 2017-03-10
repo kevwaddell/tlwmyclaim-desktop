@@ -30,7 +30,7 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 							$company = get_user_meta( $user_id, 'company_name', true);	
 							?>
 							<h1>Referrer account dashboard</h1>
-							<p><strong>A brief overview of referred cases from <?php echo $company; ?></strong></p>
+							<p><strong>A brief overview of referred cases from<br><span class="caps"><?php echo $company; ?></span></strong></p>
 							<?php } ?>
 						</div>
 					</div>

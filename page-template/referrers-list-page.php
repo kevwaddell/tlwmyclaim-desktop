@@ -39,7 +39,12 @@ $users = get_users( $users_args );
 			
 						<div class="panel-heading text-center">Referrers</div>	
 			
-						<table class="table table-bordered">
+						<table class="table table-bordered text-center">
+								<thead>
+									<tr>
+										<td colspan="3">Case status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
+									</tr>
+								</thead>
 							<tbody>
 								<tr>
 									<th width="35%" class="text-center">Company</th>
@@ -79,8 +84,8 @@ $users = get_users( $users_args );
 									   		}
 									   }
 									  ?>
-									 <span class="label label-success">Open cases: <?php echo $open; ?></span> 
-									 <span class="label label-danger">Closed cases: <?php echo $closed; ?></span>
+									 <span class="label label-success"><?php echo $open; ?></span> 
+									 <span class="label label-warning"><?php echo $closed; ?></span>
 										</div>
 									</td>
 							  	</tr>

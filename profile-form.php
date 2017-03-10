@@ -8,40 +8,29 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 		<?php $template->the_errors(); ?>
 		
 		<?php do_action( 'profile_personal_options', $profileuser ); ?>
-		<div class="row">
-			<div class="col-xs-<?php echo ($user_type == 'client') ? '8': '6' ; ?>">
-				<div class="panel panel-default">
-				  <div class="panel-heading text-center">Contact details</div>
-				  	<?php if ($user_type == 'client') { ?>
-				  	 <?php get_template_part( 'parts/profile/client', 'contact' ); ?>
-				  	<?php } else { ?>
-				  	 <?php get_template_part( 'parts/profile/ref', 'contact' ); ?>
-				  	<?php } ?>
-				</div>
-			</div>
-			
-			<div class="col-xs-<?php echo ($user_type == 'client') ? '4': '6' ; ?>">
-			
-				<?php if ($user_type == 'client') { ?>
-			  	 <?php get_template_part( 'parts/profile/client', 'address' ); ?>
-			  	<?php } else { ?>
-			  	 <?php get_template_part( 'parts/profile/ref', 'username' ); ?>
-			  	<?php } ?>
-				
-			</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading text-center">Account details</div>
+		  	<?php if ($user_type == 'client') { ?>
+		  	 <?php get_template_part( 'parts/profile/client', 'contact' ); ?>
+		  	<?php } else { ?>
+		  	 <?php get_template_part( 'parts/profile/ref', 'contact' ); ?>
+		  	<?php } ?>
 		</div>
 		
-		<div class="row">
-			
-		<div class="col-xs-12">	
-			<form id="your-profile" action="<?php $template->the_action_url( 'profile', 'login_post' ); ?>" method="post">
-			<?php wp_nonce_field( 'update-user_' . $current_user->ID ); ?>
-			
-			<input type="hidden" name="from" value="profile" />
-			<input type="hidden" name="checkuser_id" value="<?php echo $current_user->ID; ?>" />
-			<input type="hidden" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ); ?>" />
-			<input type="hidden" name="email" id="email" value="<?php echo esc_attr( $profileuser->user_email ); ?>" />
-			
+		<?php if ($user_type == 'client') { ?>
+	  	 <?php get_template_part( 'parts/profile/client', 'address' ); ?>
+	  	<?php } ?>
+		
+		
+		<form id="your-profile" action="<?php $template->the_action_url( 'profile', 'login_post' ); ?>" method="post">
+		<?php wp_nonce_field( 'update-user_' . $current_user->ID ); ?>
+		
+		<input type="hidden" name="from" value="profile" />
+		<input type="hidden" name="checkuser_id" value="<?php echo $current_user->ID; ?>" />
+		<input type="hidden" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ); ?>" />
+		<input type="hidden" name="email" id="email" value="<?php echo esc_attr( $profileuser->user_email ); ?>" />
+		
 			<div class="panel panel-default">
 				  <div class="panel-heading text-center">Account Password</div>
 				  <div class="panel-body">
@@ -55,7 +44,7 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<tr id="password" class="user-pass1-wrap">
 							<td>
 								<input class="hidden form-control input-lg" value=" " /><!-- #24364 workaround -->
-								<button type="button" class="btn btn-info btn-block btn-lg wp-generate-pw hide-if-no-js"><i class="glyphicon glyphicon-refresh pull-right"></i>Generate New Password</button>
+								<button type="button" class="btn btn-block btn-default btn-lg wp-generate-pw hide-if-no-js red-btn">Generate New Password<i class="fa fa-refresh pull-right"></i></button>
 								<div class="wp-pwd hide-if-js">
 									<span class="password-input-wrapper">
 										<input type="password" name="pass1" id="pass1" class="regular-text form-control input-lg" value="" autocomplete="off" data-pw="<?php echo esc_attr( wp_generate_password( 24 ) ); ?>" aria-describedby="pass-strength-result" />
@@ -95,15 +84,14 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<input type="hidden" name="action" value="profile" />
 						<input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
 						<input type="hidden" name="user_id" id="user_id" value="<?php echo esc_attr( $current_user->ID ); ?>" />
-						<input type="submit" class="btn btn-default btn-lg btn-block button-primary" value="<?php esc_attr_e( 'Change password', 'theme-my-login' ); ?>" name="submit" id="submit" />
+<!-- 						<input type="submit" class="btn btn-default btn-lg btn-block button-primary" value="<?php esc_attr_e( 'Change password', 'theme-my-login' ); ?>" name="submit" id="submit" /> -->
+						<button type="submit" class="btn btn-success btn-lg btn-block">Change password<i class="fa fa-check fa-lg pull-right"></i></button>
 						</p>
 				  </div>
 			</div>
 
-		<?php do_action( 'show_user_profile', $profileuser ); ?>
-		
-	</form>
+			<?php do_action( 'show_user_profile', $profileuser ); ?>
 	
-	</div>
-	</div>
+		</form>
+
 </div>
