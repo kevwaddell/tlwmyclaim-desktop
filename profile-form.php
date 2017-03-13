@@ -1,6 +1,9 @@
 <?php 
 $user_id = $current_user->ID;
 $user_type = get_user_meta( $user_id, 'user_type', true); 
+$contact_pg = get_page_by_path( 'contact-us');
+$dashboard_pg = get_page_by_path( 'dashboard' );
+$cases_pg =  get_option('page_for_posts');
 ?>
 
 <div class="tml tml-profile" id="theme-my-login<?php $template->the_instance(); ?>">
@@ -85,7 +88,7 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
 						<input type="hidden" name="user_id" id="user_id" value="<?php echo esc_attr( $current_user->ID ); ?>" />
 <!-- 						<input type="submit" class="btn btn-default btn-lg btn-block button-primary" value="<?php esc_attr_e( 'Change password', 'theme-my-login' ); ?>" name="submit" id="submit" /> -->
-						<button type="submit" class="btn btn-success btn-lg btn-block">Change password<i class="fa fa-check fa-lg pull-right"></i></button>
+						<button type="submit" class="btn btn-success btn-lg btn-block">Change password<i class="fa fa-check"></i></button>
 						</p>
 				  </div>
 			</div>
@@ -93,5 +96,18 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 			<?php do_action( 'show_user_profile', $profileuser ); ?>
 	
 		</form>
-
+		
+		<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+			<i class="fa fa-envelope fa-lg"></i>
+			<?php echo get_the_title($contact_pg->ID); ?>
+		</a>
+		<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+			<i class="fa fa-dashboard"></i>
+			<?php echo get_the_title($dashboard_pg->ID); ?>
+		</a>
+		<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
+			<i class="fa fa-power-off fa-lg"></i>
+			Log Out
+		</a>
+	
 </div>

@@ -51,8 +51,8 @@ $closed = 0;
 	</div>
 </div>
 
-<a href="<?php echo get_permalink( $cases_pg->ID ); ?>" class="btn btn-default btn-block btn-lg red-btn"><i class="fa fa-folder-open fa-lg pull-left"></i>View Your cases<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo get_permalink( $cases_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-folder-open fa-lg pull-left"></i>Cases archive<i class="fa fa-folder-open fa-lg"></i></a>
 
-<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="btn btn-default btn-block btn-lg red-btn"><i class="fa fa-vcard fa-lg pull-left"></i>View Account details<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-vcard fa-lg pull-left"></i>Account details<i class="fa fa-vcard fa-lg"></i></a>
 
-<a href="<?php echo wp_logout_url( $redirect ); ?>" class="btn btn-block btn-lg red-btn"><i class="fa fa-power-off fa-lg pull-left"></i>Log Out<i class="fa fa-chevron-right fa-lg pull-right"></i></a>
+<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-power-off fa-lg pull-left"></i>Log Out<i class="fa fa-power-off fa-lg"></i></a>

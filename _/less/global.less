@@ -94,25 +94,74 @@ z-index: 2;
 	}
 }
 
+.btns-group {
+.pad-bot(4);	
+}
+
 .btn {
 .no-border;
 .txt-col-wht;
 .font-slab-serif;
 .font-size(3);
 .caps;	
+.rel;
 	i {
 	.font-size(2);	
 	.line-h(4);
+	.abs;
+	.top(0);
+	.right(0);
+	.line-h(5);
+	.w(5);
+	.border-radius(4px, 4px, 0,0);	
+	}
+	
+	&.btn-lg {
+	.h(6);	
+		i {
+		.line-h(6);	
+		.w(6);
+		.font-size(3);
+		}
 	}	
+	
+	&.btn-success {
+		i {
+		.bg-col-green-dk;	
+		}
+	}
 }
 
 .red-btn {
 .bg-col-red;
 .txt-col-wht;
+
 	&:hover, &:active, &:focus {
 	.bg-col-red-dk;
 	.txt-col-wht;
 	}
+	
+	i {
+	.abs;
+	.top(0);
+	.right(0);
+	.line-h(5);
+	.w(5);
+	.bg-col-red-dk;
+	.border-radius(4px, 4px, 0,0);	
+	}
+}
+
+.btn-success {
+.bg-col-green-dk;
+	i {
+	.bg-col-green;	
+	}
+	
+	&:hover, &:active, &:focus {
+	.bg-col-green;
+	}
+	
 }
 
 #global-tel-num {

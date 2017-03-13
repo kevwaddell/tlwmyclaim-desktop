@@ -15,6 +15,9 @@ Template Name: Clients List page
 	'orderby'      => 'display_name'
  ); 
 $users = get_users( $users_args ); 
+
+$cases_pg =  get_option('page_for_posts');
+$referrers_pg = get_page_by_path( 'referrers' );	
 //$users = false;
 //echo '<pre class="debug">';print_r($users);echo '</pre>';
 ?>
@@ -101,6 +104,7 @@ $users = get_users( $users_args );
 					<div class="row">
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="well well-lg well-message text-center">
+								<i class="fa fa-group"></i>
 								<h2>Sorry</h2>
 								<p>There are no clients at the moment.</p>
 							</div>
@@ -108,6 +112,23 @@ $users = get_users( $users_args );
 					</div>
 				</div>
 				<?php } ?>
+				
+				<div class="container">
+					<div class="btns-group">
+						<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
+							<i class="fa fa-folder-open"></i>
+							<?php echo get_the_title($cases_pg); ?>
+						</a>
+						<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+							<i class="fa fa-building"></i>
+							<?php echo get_the_title($referrers_pg->ID); ?>
+						</a>
+						<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
+						<i class="fa fa-power-off"></i>
+						Log Out
+						</a>
+					</div>
+				</div>
 
 			</article><!-- #post-## -->
 

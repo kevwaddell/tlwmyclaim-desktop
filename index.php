@@ -69,12 +69,47 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2">
 				<div class="well well-lg well-message text-center">
+					<i class="fa fa-folder-open"></i>
 					<h2>Sorry</h2>
 					<p>There are no open cases at the moment.</p>
 				</div>
 			</div>
 		</div>
 		<?php endif; ?>
+			
+			<div class="btns-group">
+				<?php if ($user_type == "admin") { 
+				$clients_pg = get_page_by_path( 'clients' );
+				$referrers_pg = get_page_by_path( 'referrers' );	
+				?>
+				<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-users"></i>
+					<?php echo get_the_title($clients_pg->ID); ?>
+				</a>
+				<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-building"></i>
+					<?php echo get_the_title($referrers_pg->ID); ?>
+				</a>
+				<?php } else {
+				$dashboard_pg = get_page_by_path( 'dashboard' );
+				$account_pg = get_page_by_path( 'account-details' );		
+				?>
+				<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-dashboard"></i>
+					<?php echo get_the_title($dashboard_pg->ID); ?>
+				</a>
+				<a href="<?php echo get_permalink($account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-vcard"></i>
+					<?php echo get_the_title($account_pg->ID); ?>
+				</a>
+				
+				<?php } ?>
+				
+				<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-power-off"></i>
+					Log Out
+				</a>
+			</div>
 		
 		</div>
 	</main><!-- .site-main -->
