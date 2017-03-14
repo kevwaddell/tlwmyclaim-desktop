@@ -52,7 +52,7 @@ $user_name_tag = $user_firstname. " " .$user_lastname;
 		<?php wp_nav_menu(array( 'container_class' => 'user-links', 'theme_location' => 'user-menu', 'fallback_cb' => false ) ); ?>	
 		<?php } ?>
 	<?php } ?>
-	<button id="close-nav-btn" class="btn btn-default btn-block"><span class="sr-only">Close navigation</span><i class="fa fa-angle-right fa-lg"></i></button>
+	<button id="close-nav-btn" class="btn btn-block"><span class="sr-only">Close navigation</span><i class="fa fa-angle-right fa-lg"></i></button>
 </nav>
 <?php } ?>
 	
@@ -83,7 +83,7 @@ $user_name_tag = $user_firstname. " " .$user_lastname;
 						<?php if ( is_user_logged_in() ) { ?>
 						<div class="main-nav-btn-wrap pull-right">
 							<span>Menu</span>
-							<button id="nav-btn" class="btn btn-default"><i class="fa fa-bars fa-lg"></i></button>
+							<button id="nav-btn" class="btn"><i class="fa fa-bars fa-lg"></i></button>
 						</div>
 						<?php } ?>
 					</div>

@@ -18,7 +18,11 @@ Template Name: Contact us page
 				
 				<article <?php post_class(); ?>>
 					<div class="container">
-						<?php gravity_form( 1, false, false, false, $field_values, true ); ?>
+						<div class="row">
+							<div class="col-xs-8 col-xs-offset-2">
+								<?php gravity_form( 1, false, false, false, $field_values, true ); ?>
+							</div>
+						</div>
 					</div>			
 				</article><!-- #post-## -->
 			

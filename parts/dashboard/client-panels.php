@@ -8,17 +8,9 @@ $client_personal = unserialize($client_personal_raw);
 $client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
 $client_contact = unserialize($client_contact_raw);	
 $account_pg = get_page_by_path( 'account-details' );
+$contact_pg = get_page_by_path( 'contact-us');
+$claim_pg = get_page_by_path( 'your-claim');
 ?>
-
-<div class="panel panel-default">
-		<div class="panel-heading text-center">Primary contact</div>
-		<div class="panel-body text-center">
-			<h2 class="txt-col-red font-slab-serif caps"><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></h2>
-			<h3 class="txt-col-gray font-slab-serif"><?php echo $client_contact['email']; ?></h3>
-		</div>
-</div>
-
-<div class="panel panel-default">
 <?php 
 	$current_claims_args = array(
 		'posts_per_page' => 1,
@@ -31,49 +23,33 @@ $account_pg = get_page_by_path( 'account-details' );
 	);
 	$current_claims = get_posts( $current_claims_args );
 	?>
-	<div class="panel-heading text-center">Current claim</div>
-	<?php if (!empty($current_claims)) { ?>
-	<?php
+	<?php if (!empty($current_claims)) { 
 	$case_progress_raw = get_post_meta( $current_claims[0]->ID, 'case_progress', true );
 	$case_progress = unserialize($case_progress_raw);
-	$fee_earner_raw = get_post_meta( $current_claims[0]->ID, 'fee_earner', true );
-	$fee_earner = unserialize($fee_earner_raw);
+	$claim_details_raw = get_post_meta( $current_claims[0]->ID, 'claim_details', true );
+	$claim_details = unserialize($claim_details_raw);
 	$case_ref = get_post_meta( $current_claims[0]->ID, 'case_ref', true);
-	$case_status = get_post_meta( $current_claims[0]->ID, 'case_status', true);
-	$post_content = $current_claims[0]->post_content;
-	$additinal_info = apply_filters( "the_content", $post_content );
 	?>
-	<table class="table table-bordered text-center">
-		<tbody>
-			<tr>
-				<td width="50%"><strong>Claim Reference:</strong> <?php echo $case_ref; ?></td>
-				<td width="50%"><strong>Date created:</strong> <?php echo $case_progress[0]['date']; ?></td>
-		  	</tr>
-		  	<tr>
-				<td><strong>Case handler:</strong> <?php echo $fee_earner['name']; ?></td>
-				<td><strong>Case handler Email:</strong> <a href="mailto:<?php echo $fee_earner['email']; ?>"><?php echo $fee_earner['email']; ?></a></td>
-		  	</tr>
-		  	<tr>
-				<td><strong>Case Status:</strong> <?php echo ucfirst( $case_status ); ?></td>
-				<td><strong>Case Progress:</strong> <?php echo $case_progress[count($case_progress) - 1]['status']; ?></td>
-		  	</tr>
-		  	<?php if (!empty($additinal_info)) { ?>
-		  	<tr>
-				<th colspan="2" class="text-center">Additional information:</th>
-		  	</tr>	
-		  	<tr>
-				<td colspan="2"><?php echo $additinal_info; ?></td>
-		  	</tr>			
-		  	<?php } ?>
-		  
-		</tbody>
-	</table>
-</div>
+	
+	<div class="alert alert-info text-center case-progress">
+		<?php 
+	 	$case_progress = array_reverse($case_progress); 
+	 	$date = date('l jS F, Y', strtotime( str_replace('/','-',$case_progress[0]['date']) ) );
+	 	$status = $case_progress[0]['status'];
+	 	?>
+	 	<div class="icon">
+		 	<i class="fa fa-hourglass-half fa-3x"></i>
+		 	<div class="icon-label">Progress report</div>
+	 	</div>
+	 	
+		<div class="status-date"><?php echo $date; ?></div>
+		<div class="case-details"><span>Case type: <?php echo $claim_details['claim-type']; ?></span> | <span>Case Ref: <?php echo $case_ref; ?></span></div>
+		<div class="case-status"><?php echo $status; ?></div>
 
-<a href="<?php echo get_permalink( $current_claims[0]->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg"><i class="fa fa-chevron-right fa-lg pull-right"></i>View progress report</a>
+	</div>
+	
+<a href="<?php echo get_permalink( $claim_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-folder-open fa-lg"></i>Case details</a>
 <?php } ?>
-
-<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-default btn-block btn-lg"><i class="fa fa-chevron-right fa-lg pull-right"></i>View Account details</a>
 
 <?php
 $claims_args = array(
@@ -81,7 +57,6 @@ $claims_args = array(
 	'post_type'		=> 'post',
 	'post_status'	=>	'private',
 	'author'	=> $user_id,
-	'exclude'	=>  $current_claims[0]->ID,
 	'orderby'	=> 'date'
 );
 $claims = get_posts( $claims_args );
@@ -90,39 +65,36 @@ $claims = get_posts( $claims_args );
 <?php if (!empty($claims)) { ?>
 <div class="rule"></div>
 <div class="panel panel-default">
-	<div class="panel-heading text-center">Other claims</div>	
+	<div class="panel-heading text-center">Your claims</div>	
 	<table class="table table-bordered">
 	<tbody>
 		<tr>
-		<th width="30%" class="text-center">Case reference</th>
-		<th width="35%" class="text-center">Case progress</th>
-		<th width="30%" class="text-center">Case handler</th>
-		<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
+			<th width="20%" class="text-center">Reference</th>
+			<th width="20%" class="text-center">Status</th>
+			<th width="53%" class="text-center">Type</th>
+			<th width="7%" class="text-center"><i class="fa fa-cogs"></i></th>
 		</tr>
 		<?php foreach ($claims as $claim) { 
-		$case_progress_raw = get_post_meta( $claim->ID, 'case_progress', true );
-		$case_progress = unserialize($case_progress_raw);
-		$fee_earner_raw = get_post_meta( $claim->ID, 'fee_earner', true );
-		$fee_earner = unserialize($fee_earner_raw);
 		$case_status = get_post_meta( $claim->ID, 'case_status', true );
 		$case_ref = get_post_meta( $claim->ID, 'case_ref', true);
-		?>
-		<tr>
-		  	<td class="text-center"><?php echo $case_ref; ?></td>
-		  	<td class="text-center">
-			  	<?php if ($case_status == 'closed') { ?>
-			  	<span class="label label-danger">Case <?php echo $case_status; ?></span>
-			  	<?php } else { ?>
-			  	<?php echo $case_progress[count($case_progress) - 1]['status']; ?>
-			  	<?php } ?>
-			</td>
-			<td class="text-center"><?php echo $fee_earner['name']; ?></td>
-		  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View claim details</span> <i class="fa fa-chevron-right"><i></a></td>
-
+		$claim_details_raw = get_post_meta( $claim->ID, 'claim_details', true );
+		$claim_details = unserialize($claim_details_raw);
+		?> 
+		<tr class="<?php echo ($case_status == 'open') ? 'success':'danger'; ?>">
+			<td class="text-center"><?php echo $case_ref; ?></td>
+			<td class="text-center"><?php echo strtoupper($case_status); ?></td>
+		  	<td class="text-center"><?php echo $claim_details['claim-type']; ?></td>
+		  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-<?php echo ($case_status == 'open') ? 'success':'danger'; ?> btn-block"><span class="sr-only">View progress</span> <i class="fa fa-chevron-right"><i></a></td>
 	  	</tr>	
 		<?php } ?>
 	</tbody>
 </table>
 
 </div>
+
+<div class="rule"></div>
 <?php } ?>
+
+<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">Account details<i class="fa fa-vcard"></i></a>
+<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-envelope fa-lg"></i><?php echo get_the_title($contact_pg->ID); ?></a>
+<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-power-off fa-lg"></i>Log Out</a>

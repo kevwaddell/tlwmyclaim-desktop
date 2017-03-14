@@ -8,34 +8,43 @@ $client_personal_raw = get_user_meta($user_id, 'client_personal', true);
 $client_personal = unserialize($client_personal_raw);
 $client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
 $client_contact = unserialize($client_contact_raw);	
+$client_address_raw = get_user_meta($user_id, 'client_address', true);	
+$client_address = unserialize($client_address_raw);	 
 ?>
- <table class="table table-bordered">
+ <table class="table table-bordered text-center">
   <tbody>
 	  <tr>
-		  <th>Username:</th>
-		  <td colspan="2"><?php echo $username; ?></td>
+		  <th width="50%" class="text-center">Username:</th>
+		  <th width="50%" class="text-center">Primary Contact:</th>
 	  </tr>
-	  <?php if ($client_contact['email'] != $login_email) { ?>
 	   <tr>
-		  <th width="30%">Account email:</th>
-		  <td colspan="2"><<?php echo $login_email; ?></td>
-	  </tr>
-	  <?php } ?>
-	  <tr>
-		  <th width="30%">Primary Contact:</th>
-		  <td colspan="2"><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
+		  <td><?php echo $username; ?></td>
+		  <td><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
 	  </tr>
 	  <tr>
-		  <th>Contact email:</th>
-		  <td colspan="2"><?php echo $client_contact['email']; ?></td>
+		  <th class="text-center">Account email</th>
+		  <th class="text-center">Contact email</th>
 	  </tr>
 	  <tr>
-		  <th>Contact numbers:</th>
+		  <td><?php echo $login_email; ?></td>
+		  <td><?php echo $client_contact['email']; ?></td>
+	  </tr>
+	   <tr>
+		  <th class="text-center">Contact numbers</th>
+		  <th class="text-center">Address</th>
+	  </tr>
+	  <tr>
 		  <td>
-			<?php echo (!empty($client_contact['tel'])) ? "Tel: ".$client_contact['tel'] : " - "; ?> 
+			<strong><?php echo (!empty($client_contact['tel'])) ? "Tel: ".$client_contact['tel']."<br>" : ""; ?> 
+			<?php echo (!empty($client_contact['mobile'])) ? "Mobile: ".$client_contact['mobile'] : " - "; ?></strong>  
 		  </td>
 		  <td>
-			<?php echo (!empty($client_contact['mobile'])) ? "Mobile: ".$client_contact['mobile'] : " - "; ?>  
+			<strong><?php if (!empty($client_address)) { ?>
+			<?php foreach ($client_address as $k => $part) { ?>
+			<?php echo ( empty($part) || $k == 'postcode') ? $part."" : $part."<br>"; ?>									  
+			<?php } ?>	 
+			<?php } ?>
+			</strong>
 		  </td>
 	  </tr>
   </tbody>

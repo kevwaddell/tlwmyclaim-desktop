@@ -72,17 +72,24 @@ margin: auto;
 
 .tml-profile {
 	.tml-submit-wrap {
-	.mag-top(2);
+	//.mag-top(2);
 	.mag-bot(0);	
+	}
+	
+	button#update-profile {
+	.mag-top(2);	
 	}
 	
 	.acf-field {
 	.none;	
 	}
-}
-
-.claims-list {
-.bg-col(@wht);
-.pad-top(4);
-.pad-bot(3);
+	
+	button.wp-hide-pw, button.wp-cancel-pw {
+	.font-size(1.6);
+	.bg-col-grayDk;	
+	.txt-col-wht;
+		&:hover, &:active, &:focus {
+		.bg-col-red;
+		}
+	}
 }
