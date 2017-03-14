@@ -43,7 +43,7 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			<table class="table table-bordered text-center">
 				<thead>
 					<tr>
-						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-danger">Closed</span></td>
+						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
 					</tr>
 				</thead>
 				
@@ -76,6 +76,8 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			</div>
 		</div>
 		<?php endif; ?>
+			
+			<div class="rule"></div>
 			
 			<div class="btns-group">
 				<?php if ($user_type == "admin") { 

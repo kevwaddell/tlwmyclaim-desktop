@@ -1,9 +1,9 @@
 <tbody>
 	<tr>
-		<th width="25%" class="text-center">Client name:</th>
-		<th width="50%" class="text-center" colspan="2">Progress status:</th>
-		<th width="20%" class="text-center">Case handler:</th>
 		<th width="5%" class="text-center"><i class="fa fa-info-circle fa-lg"></i></th>
+		<th width="30%" class="text-center">Client name:</th>
+		<th width="35%" class="text-center">Progress status:</th>
+		<th width="30%" class="text-center">Case handler:</th>
   	</tr>
   	<?php while ( have_posts() ) : the_post(); ?>
   	<?php
@@ -16,12 +16,11 @@
 	$case_status = get_post_meta( $post->ID, 'case_status', true);
 	//echo '<pre class="debug">';print_r($case_status);echo '</pre>';
   	?>
-  	<tr class="<?php echo ($case_status == "open") ? 'success':'danger'; ?>">
+  	<tr class="<?php echo ($case_status == "open") ? 'success':'warning'; ?>">
+	  	<td><i class="fa fa-<?php echo ($case_status == "open") ? 'folder-open text-success':'folder text-warning'; ?> fa-lg"></i></td>
 	  	<td><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
-	  	<td width="15%"><i class="fa fa-calendar"></i> <?php echo $case_progress[count($case_progress) - 1][date]; ?></td>
-	  	<td width="35%"><?php echo $case_progress[count($case_progress) - 1][status]; ?></td>
-	  	<td><a href="mailto:<?php echo $fee_earner[email]; ?>" class="btn btn-block btn-primary"><?php echo $fee_earner[name]; ?> <i class="fa fa-envelope pull-right"></i><span class="sr-only">Email <?php echo $fee_earner[name]; ?></span></a> </td>
-	  	<td><i class="fa fa-<?php echo ($case_status == "open") ? 'folder-open text-success':'folder text-danger'; ?> fa-lg"></i></td>
+	  	<td><strong><?php echo $case_progress[count($case_progress) - 1][date]; ?>:</strong> <?php echo $case_progress[count($case_progress) - 1][status]; ?></td>
+	  	<td><?php echo $fee_earner[name]; ?></td>
   	</tr>
   	<?php endwhile; ?>
 </tbody>
