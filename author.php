@@ -6,6 +6,7 @@
 	<?php 
 	$cases_pg =  get_option('page_for_posts');
 	$clients_pg = get_page_by_path( 'clients' );
+	$referrers_pg = get_page_by_path( 'referrers' );
 
 	$client_personal_raw = get_user_meta($post->post_author, 'client_personal', true);
 	$client_personal = unserialize($client_personal_raw);
@@ -129,6 +130,10 @@
 				<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
 				<i class="fa fa-users"></i>
 				<?php echo get_the_title($clients_pg->ID); ?> archive
+				</a>
+				<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-building"></i>
+					<?php echo get_the_title($referrers_pg->ID); ?> archive
 				</a>
 				<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
 					<i class="fa fa-power-off fa-lg"></i>
