@@ -101,5 +101,5 @@ $claims = get_posts( $claims_args );
 <?php } ?>
 
 <a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">Account details<i class="fa fa-vcard"></i></a>
-<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-envelope fa-lg"></i><?php echo get_the_title($contact_pg->ID); ?></a>
-<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-power-off fa-lg"></i>Log Out</a>
+<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><?php echo get_the_title($contact_pg->ID); ?><i class="fa fa-envelope fa-lg"></i></a>
+<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">Log Out<i class="fa fa-power-off fa-lg"></i></a>

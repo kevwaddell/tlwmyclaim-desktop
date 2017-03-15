@@ -38,7 +38,7 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			
 		<div class="panel panel-default">	
 			
-			<div class="panel-heading text-center">Reccent cases</div>	
+			<div class="panel-heading text-center">Client cases</div>	
 			
 			<table class="table table-bordered text-center">
 				<thead>
@@ -95,6 +95,7 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 				<?php } else {
 				$dashboard_pg = get_page_by_path( 'dashboard' );
 				$account_pg = get_page_by_path( 'account-details' );		
+				$contact_pg = get_page_by_path( 'contact-us');
 				?>
 				<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
 					<i class="fa fa-dashboard"></i>
@@ -104,7 +105,10 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 					<i class="fa fa-vcard"></i>
 					<?php echo get_the_title($account_pg->ID); ?>
 				</a>
-				
+				<a href="<?php echo get_permalink($contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-envelope"></i>
+					<?php echo get_the_title($contact_pg->ID); ?>
+				</a>
 				<?php } ?>
 				
 				<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
