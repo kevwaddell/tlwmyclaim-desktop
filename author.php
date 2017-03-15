@@ -88,16 +88,15 @@
 				<table class="table table-bordered text-center">
 				<thead>
 					<tr>
-						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
+						<td colspan="4">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-					<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
-					<th width="28%" class="text-center">Case reference</th>
-					<th width="20%" class="text-center">Case Status</th>
-					<th width="40%" class="text-center">Case type</th>
-					<th width="7%" class="text-center"><i class="fa fa-cogs"></i></th>
+					<th width="25%" class="text-center">Case reference</th>
+					<th width="15%" class="text-center">Case Status</th>
+					<th class="text-center">Case type</th>
+					<th width="60" class="text-center"><i class="fa fa-folder-open"></i></th>
 					</tr>
 				<?php while ( have_posts() ) : the_post(); ?>
 					<?php 
@@ -108,9 +107,8 @@
 					$referer = get_post_meta( $post->ID, 'src_company', true);
 					?>
 					<tr class="<?php echo ($case_status == "open") ? 'success':'warning'; ?>">
-						<td class="text-center"><i class="fa fa-folder<?php echo ($case_status == 'open') ? '-open text-success' : ' text-warning'; ?>"></i></td>
 					  	<td class="text-center"><?php echo $case_ref; ?></td>
-					  	<td class="text-center"><span class="caps"><?php echo $case_status; ?></td></td>
+					  	<td class="text-center"><span class="caps label label-<?php echo ($case_status == "open") ? 'success':'warning'; ?>"><?php echo $case_status; ?></td></td>
 						<td class="text-center"><?php echo $claim_details['claim-type']; ?></td>
 					  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View claim details</span> <i class="fa fa-chevron-right"><i></a></td>
 					</tr><!-- #post-## -->

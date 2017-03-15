@@ -42,12 +42,17 @@ $referrers_pg = get_page_by_path( 'referrers' );
 			
 						<div class="panel-heading text-center">Clients</div>	
 			
-						<table class="table table-bordered">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr>
+									<td colspan="3">Total clients: <?php echo count($users); ?></td>
+								</tr>
+							</thead>
 							<tbody>
 								<tr>
 									<th width="30%" class="text-center">Case ref</th>
-									<th width="35%" class="text-center">Client name</th>
-									<th width="35%" class="text-center">Email</th>
+									<th class="text-center">Client name</th>
+									<th width="60" class="text-center"><i class="fa fa-vcard fa-lg"></i></th>
 							  	</tr>
 							  	
 							  	<?php foreach ($users as $user) { 
@@ -70,8 +75,11 @@ $referrers_pg = get_page_by_path( 'referrers' );
 								  	<td class="text-center">
 										<?php if (count($claims) == 1) { 
 										$case_ref = get_post_meta( $claims[0]->ID, 'case_ref', true);	
+										$case_status = get_post_meta( $claims[0]->ID, 'case_status', true);
 										?>
-										<a href="<?php echo get_permalink( $claims[0]->ID ); ?>"><?php echo $case_ref; ?></a>
+										<a href="<?php echo get_permalink( $claims[0]->ID ); ?>">
+											<i class="fa fa-<?php echo ($case_status == "open") ? 'folder-open text-success':'folder text-warning'; ?>"></i> <?php echo $case_ref; ?>
+										</a>
 										<?php } else { ?>
 										<div class="btn-group">
 										  <button type="button" class="btn btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,8 +88,13 @@ $referrers_pg = get_page_by_path( 'referrers' );
 										  <ul class="dropdown-menu">
 											  <?php foreach ($claims as $claim) { 
 											   $case_ref = get_post_meta( $claim->ID, 'case_ref', true);
+											   $case_status = get_post_meta( $claim->ID, 'case_status', true);
 											  ?>
-											  <li><a href="<?php echo get_permalink( $claim->ID ); ?>"><?php echo $case_ref; ?></a></li>
+											  <li>
+											  	<a href="<?php echo get_permalink( $claim->ID ); ?>">
+												  <i class="fa fa-<?php echo ($case_status == "open") ? 'folder-open text-success':'folder text-warning'; ?>"></i> <?php echo $case_ref; ?>
+												</a>
+											  </li>
 											  <?php } ?>
 										   
 										  </ul>
@@ -89,8 +102,8 @@ $referrers_pg = get_page_by_path( 'referrers' );
 										<?php } ?>
 									</td>
 
-									<td class="text-center"><a href="<?php echo get_author_posts_url($user->ID); ?>"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></a></td>
-									<td class="text-center"><a href="mailto:<?php echo $client_contact['email']; ?>"><?php echo $client_contact['email']; ?></a></td>
+									<td class="text-center"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
+									<td><a href="<?php echo get_author_posts_url($user->ID); ?>" class="btn red-btn btn-block"><span class="sr-only">View client details</span><i class="fa fa-chevron-right"></i></a></td>
 																  	</tr>
 							  	<?php } ?>
 							  	
