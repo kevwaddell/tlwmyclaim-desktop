@@ -106,7 +106,12 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 				
 						 		<div class="panel-heading text-center">Case history</div>	
 						
-								<table class="table table-bordered">
+								<table class="table table-bordered text-center">
+									<thead>
+										<tr>
+											<td colspan="3">Status: <span class="label label-success">Complete</span> <span class="label label-warning">In progress</span></td>
+										</tr>
+									</thead>
 									<tbody>
 										<tr>
 											<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>

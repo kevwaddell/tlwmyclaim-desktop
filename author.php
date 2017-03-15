@@ -84,7 +84,12 @@
 					
 				<div class="panel-heading text-center">Case archive</div>	
 				
-				<table class="table table-bordered">
+				<table class="table table-bordered text-center">
+				<thead>
+					<tr>
+						<td colspan="6">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
+					</tr>
+				</thead>
 				<tbody>
 					<tr>
 					<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>

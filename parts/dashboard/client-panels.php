@@ -66,7 +66,12 @@ $claims = get_posts( $claims_args );
 <div class="rule"></div>
 <div class="panel panel-default">
 	<div class="panel-heading text-center">Your claims</div>	
-	<table class="table table-bordered">
+	<table class="table table-bordered text-center">
+	<thead>
+		<tr>
+			<td colspan="4">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<th width="20%" class="text-center">Reference</th>
