@@ -35,27 +35,19 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 					<p><strong>Claim Ref: <?php echo $case_ref; ?></strong></p>
 				</div>
 			</div>
-		
-			<article id="user-account-info" <?php post_class(); ?>>
-				<?php if ( current_user_can( 'administrator' ) ) { ?>
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-6">
-							<div class="status-label caps status-<?php echo $case_status; ?> block text-center">
-								Case status: <strong><?php echo $case_status; ?></strong>
-								<i class="fa fa-folder-<?php echo ($case_status == 'open') ? 'open':''; ?>"></i>
-							</div>
-						</div>
-						<div class="col-xs-6">
-							<a href="<?php echo get_author_posts_url($post->post_author); ?>" class="red-btn btn btn-block btn-lg">
-								Client profile
-								<i class="fa fa-vcard"></i>
-							</a>
-						</div>
+			<?php if ( current_user_can( 'administrator' ) ) { ?>
+			
+				<div class="status-label caps status-<?php echo $case_status; ?> block text-center">
+					<div class="container">
+					<i class="fa fa-<?php echo ($case_status == 'open') ? 'check':'close'; ?>"></i>
+					Case status: <strong><?php echo $case_status; ?></strong>
+					<i class="fa fa-folder<?php echo ($case_status == 'open') ? '-open':''; ?>"></i>
 					</div>
 				</div>
-				<?php } ?>
 
+			<?php } ?>
+			<article id="user-account-info" <?php post_class(); ?>>
+				
 				<section class="claims-list">
 					<div class="container">
 						
@@ -81,19 +73,19 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						
 							 		<div class="panel-heading text-center">Client details</div>	
 							
-									<table class="table table-bordered">
+									<table class="table table-bordered text-center">
 										<tbody>
 											<tr>
-												<th width="50%">Name:</th>
-												<th width="50%">Email:</th>
+												<th width="50%" class="text-center">Name:</th>
+												<th width="50%" class="text-center">Email:</th>
 										  	</tr>
 										  	<tr>
-											  	<td width="30%"><a href="<?php echo get_author_posts_url($post->post_author); ?>"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></a></td>
+											  	<td><a href="<?php echo get_author_posts_url($post->post_author); ?>"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></a></td>
 											  	<td><a href="mailto:<?php echo $client_contact['email']; ?>"><?php echo $client_contact['email']; ?></a></td>
 										  	</tr>
 										  	<tr>
-												<th>Tel:</th>
-												<th>Mobile:</th>
+												<th class="text-center">Tel:</th>
+												<th class="text-center">Mobile:</th>
 										  	</tr>	
 										  	<tr>
 											  	<td><?php echo (!empty($client_contact[tel])) ? $client_contact[tel]:" - "; ?></td>
@@ -178,6 +170,12 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<a href="<?php echo get_permalink( $dashboard_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-dashboard fa-lg"></i><?php echo get_the_title($dashboard_pg->ID); ?></a>
 						<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">Account details<i class="fa fa-vcard"></i></a>
 						<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-envelope fa-lg"></i><?php echo get_the_title($contact_pg->ID); ?></a>
+						<?php } ?>
+						<?php if ( current_user_can( 'administrator' ) ) { ?>
+						<a href="<?php echo get_author_posts_url($post->post_author); ?>" class="red-btn btn btn-block btn-lg">
+							Client profile
+							<i class="fa fa-vcard"></i>
+						</a>
 						<?php } ?>
 						<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-power-off fa-lg"></i>Log Out</a>
 					</div><!-- end of container -->

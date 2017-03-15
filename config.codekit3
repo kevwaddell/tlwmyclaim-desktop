@@ -7,7 +7,7 @@
 		"uuidString": "29428543-5D94-4D84-B7BC-C2AC6F9445DF"
 		}
 	],
-"creatorBuild": "25568",
+"creatorBuild": "25704",
 "files": {
 	"\/_\/css\/fonts\/aleo-bold-webfont.eot": {
 		"ft": 8192,
@@ -136,26 +136,32 @@
 	"\/_\/css\/img\/icon-pattern-bg.png": {
 		"ft": 32768,
 		"iS": 132772,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/_\/css\/img\/icon-pattern-bg.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/_\/css\/img\/thin-stripe-wht.png": {
 		"ft": 32768,
 		"iS": 87,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/_\/css\/img\/thin-stripe-wht.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/_\/css\/img\/tlw-logo-wide-wht.png": {
 		"ft": 32768,
 		"iS": 0,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/_\/css\/img\/tlw-logo-wide-wht.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/_\/css\/img\/tlw-logo-wide-wht.svg": {
 		"ft": 2097152,
@@ -170,10 +176,12 @@
 	"\/_\/css\/img\/tlw-logo-wide.png": {
 		"ft": 32768,
 		"iS": 8274,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/_\/css\/img\/tlw-logo-wide.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/_\/css\/img\/tlw-logo-wide.svg": {
 		"ft": 2097152,
@@ -623,10 +631,12 @@
 	"\/screenshot.png": {
 		"ft": 32768,
 		"iS": 7316,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/screenshot.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/single.php": {
 		"ft": 8192,
@@ -1331,6 +1341,10 @@
 			"active": 1,
 			"optionString": ""
 			},
+		"no-compare-neg-zero": {
+			"active": 0,
+			"optionString": ""
+			},
 		"no-cond-assign": {
 			"active": 1,
 			"optionString": "'except-parens'"
@@ -1810,6 +1824,10 @@
 		"no-with": {
 			"active": 0,
 			"optionString": ""
+			},
+		"nonblock-statement-body-position": {
+			"active": 0,
+			"optionString": "'beside'"
 			},
 		"object-curly-newline": {
 			"active": 0,
@@ -2410,7 +2428,8 @@
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0
+		"autoOutputPathStyle": 0,
+		"quality": 100
 		},
 	"languageDefaultsJS": {
 		"autoOutputAction": 0,
@@ -2503,7 +2522,9 @@
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0
+		"autoOutputPathStyle": 0,
+		"enableLossy": 1,
+		"quality": 100
 		},
 	"languageDefaultsPUG": {
 		"autoOutputAction": 0,

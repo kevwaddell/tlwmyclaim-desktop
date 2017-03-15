@@ -45,10 +45,9 @@ $referrers_pg = get_page_by_path( 'referrers' );
 						<table class="table table-bordered">
 							<tbody>
 								<tr>
-									<th width="40%" class="text-center">Client name</th>
-									<th width="40%" class="text-center">Email</th>
-									<th width="15%" class="text-center">Cases</th>
-									<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
+									<th width="30%" class="text-center">Case ref</th>
+									<th width="35%" class="text-center">Client name</th>
+									<th width="35%" class="text-center">Email</th>
 							  	</tr>
 							  	
 							  	<?php foreach ($users as $user) { 
@@ -68,15 +67,15 @@ $referrers_pg = get_page_by_path( 'referrers' );
 								//echo '<pre class="debug">';print_r($claims);echo '</pre>';
 							  	?>
 							  	<tr>
-									<td class="text-center" style="vertical-align: middle;"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
-									<td class="text-center" style="vertical-align: middle;"><a href="mailto:<?php echo $client_contact['email']; ?>"><?php echo $client_contact['email']; ?></a></td>
-									<td class="text-center" style="vertical-align: middle;">
-										<?php if (empty($claims)) { ?>
-										[0]
+								  	<td class="text-center">
+										<?php if (count($claims) == 1) { 
+										$case_ref = get_post_meta( $claims[0]->ID, 'case_ref', true);	
+										?>
+										<a href="<?php echo get_permalink( $claims[0]->ID ); ?>"><?php echo $case_ref; ?></a>
 										<?php } else { ?>
 										<div class="btn-group">
-										  <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Select a case <span class="caret"></span>
+										  <button type="button" class="btn btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Select a case <i class="fa fa-angle-down"></i>
 										  </button>
 										  <ul class="dropdown-menu">
 											  <?php foreach ($claims as $claim) { 
@@ -89,8 +88,10 @@ $referrers_pg = get_page_by_path( 'referrers' );
 										</div>
 										<?php } ?>
 									</td>
-									<td width="5%"><a href="<?php echo get_author_posts_url($user->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View client details</span><i class="fa fa-chevron-right" style="line-height: 20px;"></i></a></th>
-							  	</tr>
+
+									<td class="text-center"><a href="<?php echo get_author_posts_url($user->ID); ?>"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></a></td>
+									<td class="text-center"><a href="mailto:<?php echo $client_contact['email']; ?>"><?php echo $client_contact['email']; ?></a></td>
+																  	</tr>
 							  	<?php } ?>
 							  	
 							</tbody>
@@ -114,6 +115,7 @@ $referrers_pg = get_page_by_path( 'referrers' );
 				<?php } ?>
 				
 				<div class="container">
+					<div class="rule"></div>
 					<div class="btns-group">
 						<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
 							<i class="fa fa-folder-open"></i>

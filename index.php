@@ -86,11 +86,11 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 				?>
 				<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
 					<i class="fa fa-users"></i>
-					<?php echo get_the_title($clients_pg->ID); ?>
+					<?php echo get_the_title($clients_pg->ID); ?> archive
 				</a>
 				<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
 					<i class="fa fa-building"></i>
-					<?php echo get_the_title($referrers_pg->ID); ?>
+					<?php echo get_the_title($referrers_pg->ID); ?> archive
 				</a>
 				<?php } else {
 				$dashboard_pg = get_page_by_path( 'dashboard' );

@@ -1,118 +1,143 @@
 <?php if ( is_user_logged_in() && current_user_can( 'administrator' ) ) { ?>
 
 <?php get_header(); ?>
+			
+	<?php if ( have_posts() ) : the_post(); ?>
+	<?php 
+	$cases_pg =  get_option('page_for_posts');
+	$clients_pg = get_page_by_path( 'clients' );
 
+	$client_personal_raw = get_user_meta($post->post_author, 'client_personal', true);
+	$client_personal = unserialize($client_personal_raw);
+	$client_contact_raw = get_user_meta($post->post_author, 'client_contact', true);
+	$client_contact = unserialize($client_contact_raw);
+	$client_address_raw = get_user_meta($post->post_author, 'client_address', true);	
+	$client_address = unserialize($client_address_raw);
+	$user_data = get_userdata( $post->post_author );
+	$login_email = $user_data->user_email;
+	$username = $user_data->user_login;
+	//echo '<pre>';print_r($user_data);echo '</pre>';
+	?>
+		
 	<main id="main" class="site-main" role="main">
+	
+	<div class="jumbotron wht-border-bottom">
+		<div class="container-fluid text-center">
+			<h1>Client and case details</h1>
+			<p><strong>Case archive and profile of TLW client<br><span class="caps"><?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></span></strong></p>
+		</div>
+	</div>
 	
 	<section class="account-info-panels">
 		<div class="container">
-		
-		<?php if ( have_posts() ) : the_post(); ?>
-		<?php 
-		$client_personal_raw = get_user_meta($post->post_author, 'client_personal', true);
-		$client_personal = unserialize($client_personal_raw);
-		$client_contact_raw = get_user_meta($post->post_author, 'client_contact', true);
-		$client_contact = unserialize($client_contact_raw);
-		$client_address_raw = get_user_meta($post->post_author, 'client_address', true);	
-		$client_address = unserialize($client_address_raw);
-		//echo '<pre class="debug">';print_r($client_contact);echo '</pre>';
-		?>
-		<div class="row">
-		<div class="col-xs-8">
-				<div class="panel panel-default">
+
+			<div class="panel panel-default">
 					
-			 		<div class="panel-heading text-center">Client details</div>	
-			
-					<table class="table table-bordered">
-						<tbody>
-							<tr>
-								<th width="20%">Primary Contact:</th>
-								<td width="30%"><?php echo $client_personal[title]; ?> <?php echo $client_personal[forename]; ?> <?php echo $client_personal[surname]; ?></td>
-							</tr>
-							<tr>
-								<th>Contact email:</th>
-								<td><a href="mailto:<?php echo $client_contact['email']; ?>"><?php echo $client_contact['email']; ?></td></td>
-							</tr>
-							<tr>
-								<th>Tel:</th>
-								<td><?php echo (!empty($client_contact[tel])) ? $client_contact[tel]:" - "; ?></td>
-							</tr>
-							<tr>
-								<th>Mobile:</th>
-								<td><?php echo (!empty($client_contact[mobile])) ? $client_contact[mobile]:" - "; ?></td>
-						  	</tr>
-						</tbody>
-					</table>
-						
-				</div>	
-		</div>
-		<div class="col-xs-4">
-
-			<div class="panel panel-default">
-				  <div class="panel-heading text-center">Address details</div>
-					  <table class="table table-bordered">
-						  <tbody>
-							  <?php if (!empty($client_address)) { ?>
-							  	 <tr>
-								  <td class="address-txt">
-									  <?php foreach ($client_address as $part ) { ?>
-									 <?php echo ( empty($part) ) ? "" : $part."<br/>"; ?>
-									  <?php } ?>
-								  </td>
-							  </tr>		
-							  <?php } ?>
-						  </tbody>
-					  </table>
-
-			</div>	
-		</div>
-		</div>
-	<?php endif; ?>
-			<?php rewind_posts(); ?>
-			<?php if ( have_posts() ) : ?>
-
-			<div class="panel panel-default">
+			 	<div class="panel-heading text-center">Client details</div>	
 				
-			<div class="panel-heading text-center">Current Cases</div>	
-			
-			<table class="table table-bordered">
-			<tbody>
-				<tr>
-				<th width="5%"></th>
-				<th width="30%" class="text-center">Case reference</th>
-				<th width="30%" class="text-center">Case Status</th>
-				<th width="30%" class="text-center">Referer</th>
-				<th width="5%"></th>
-				</tr>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php 
-				$case_progress_raw = get_post_meta( $post->ID, 'case_progress', true );
-				$case_progress = unserialize($case_progress_raw);	
-				$case_ref = get_post_meta( $post->ID, 'case_ref', true);
-				$referer = get_post_meta( $post->ID, 'src_company', true);
-				?>
-				<tr>
-					<td class="text-center"><i class="fa fa-info-circle text-primary"></i></td>
-				  	<td class="text-center"><?php echo $case_ref; ?></td>
-				  	<td class="text-center"><?php echo $case_progress[count($case_progress) - 1]['status']; ?></td>
-				  	<td class="text-center"><?php echo $referer; ?></td>
-				  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View claim details</span> <i class="fa fa-chevron-right"><i></a></td>
-				</tr><!-- #post-## -->
+				<table class="table table-bordered text-center">
+				  <tbody>
+					  <tr>
+						  <th width="50%" class="text-center">Username:</th>
+						  <th width="50%" class="text-center">Primary Contact:</th>
+					  </tr>
+					   <tr>
+						  <td><?php echo $username; ?></td>
+						  <td><?php echo $client_personal['title']; ?> <?php echo $client_personal['forename']; ?> <?php echo $client_personal['surname']; ?></td>
+					  </tr>
+					  <tr>
+						  <th class="text-center">Account email</th>
+						  <th class="text-center">Contact email</th>
+					  </tr>
+					  <tr>
+						  <td><?php echo $login_email; ?></td>
+						  <td><?php echo $client_contact['email']; ?></td>
+					  </tr>
+					   <tr>
+						  <th class="text-center">Contact numbers</th>
+						  <th class="text-center">Address</th>
+					  </tr>
+					  <tr>
+						  <td>
+							<?php echo (!empty($client_contact['tel'])) ? "Tel: ".$client_contact['tel']."<br>" : ""; ?> 
+							<?php echo (!empty($client_contact['mobile'])) ? "Mobile: ".$client_contact['mobile'] : " - "; ?>
+						  </td>
+						  <td>
+							<?php if (!empty($client_address)) { ?>
+							<?php foreach ($client_address as $k => $part) { ?>
+							<?php echo ( empty($part) || $k == 'postcode') ? $part."" : $part."<br>"; ?>									  
+							<?php } ?>	 
+							<?php } ?>
+						  </td>
+					  </tr>
+				  </tbody>
+				</table>
+						
+			</div>	
 
-			
-			<?php endwhile; ?>
-			</tbody>
-			</table>
-
-		</div>	
-		
 		<?php endif; ?>
-		
+			
+				<?php rewind_posts(); ?>
+				<?php if ( have_posts() ) : ?>
+			<div class="rule"></div>
+			<div class="panel panel-default">
+					
+				<div class="panel-heading text-center">Case archive</div>	
+				
+				<table class="table table-bordered">
+				<tbody>
+					<tr>
+					<th width="5%" class="text-center"><i class="fa fa-info-circle"></i></th>
+					<th width="28%" class="text-center">Case reference</th>
+					<th width="20%" class="text-center">Case Status</th>
+					<th width="40%" class="text-center">Case type</th>
+					<th width="7%" class="text-center"><i class="fa fa-cogs"></i></th>
+					</tr>
+				<?php while ( have_posts() ) : the_post(); ?>
+					<?php 
+					$case_status = get_post_meta( $post->ID, 'case_status', true );	
+					$case_ref = get_post_meta( $post->ID, 'case_ref', true);
+					$claim_details_raw = get_post_meta( $post->ID, 'claim_details', true );
+					$claim_details = unserialize($claim_details_raw);
+					$referer = get_post_meta( $post->ID, 'src_company', true);
+					?>
+					<tr class="<?php echo ($case_status == "open") ? 'success':'warning'; ?>">
+						<td class="text-center"><i class="fa fa-folder<?php echo ($case_status == 'open') ? '-open text-success' : ' text-warning'; ?>"></i></td>
+					  	<td class="text-center"><?php echo $case_ref; ?></td>
+					  	<td class="text-center"><span class="caps"><?php echo $case_status; ?></td></td>
+						<td class="text-center"><?php echo $claim_details['claim-type']; ?></td>
+					  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-success btn-block"><span class="sr-only">View claim details</span> <i class="fa fa-chevron-right"><i></a></td>
+					</tr><!-- #post-## -->
+	
+				
+				<?php endwhile; ?>
+				</tbody>
+				</table>
+	
+			</div>	
+			<div class="rule"></div>
+			<div class="btns-group">
+				<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
+				<i class="fa fa-folder-open"></i>
+				<?php echo get_the_title($cases_pg); ?> archive
+				</a>
+				<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+				<i class="fa fa-users"></i>
+				<?php echo get_the_title($clients_pg->ID); ?> archive
+				</a>
+				<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-power-off fa-lg"></i>
+					Log Out
+				</a>
+			</div>
+			
 		</div>
 		
 		</section>
 	</main><!-- .site-main -->
-
+	
+	<?php endif; ?>
+	
 <?php get_footer(); ?>
 
 <?php } else { ?>
