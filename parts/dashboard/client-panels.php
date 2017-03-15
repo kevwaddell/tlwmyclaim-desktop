@@ -7,8 +7,6 @@ $client_personal_raw = get_user_meta($user_id, 'client_personal', true);
 $client_personal = unserialize($client_personal_raw);
 $client_contact_raw = get_user_meta($user_id, 'client_contact', true);	
 $client_contact = unserialize($client_contact_raw);	
-$account_pg = get_page_by_path( 'account-details' );
-$contact_pg = get_page_by_path( 'contact-us');
 $claim_pg = get_page_by_path( 'your-claim');
 ?>
 <?php 
@@ -41,14 +39,12 @@ $claim_pg = get_page_by_path( 'your-claim');
 		 	<i class="fa fa-hourglass-half fa-3x"></i>
 		 	<div class="icon-label">Progress report</div>
 	 	</div>
-	 	
-		<div class="status-date"><?php echo $date; ?></div>
+ 	
+		<div class="status-date"><i class="fa fa-calendar"></i><?php echo $date; ?></div>
 		<div class="case-details"><span>Case type: <?php echo $claim_details['claim-type']; ?></span> | <span>Case Ref: <?php echo $case_ref; ?></span></div>
-		<div class="case-status"><?php echo $status; ?></div>
-
+		<div class="case-status"><i class="fa fa-check-circle txt-col-orange-dk fa-lg"></i> <?php echo $status; ?></div>
 	</div>
-	
-<a href="<?php echo get_permalink( $claim_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-folder-open fa-lg"></i>Case details</a>
+	<a href="<?php echo get_permalink( $claim_pg->ID ); ?>" class="orange-btn btn btn-block btn-lg"><i class="fa fa-folder-open fa-lg"></i>Case details</a>
 <?php } ?>
 
 <?php
@@ -67,39 +63,32 @@ $claims = get_posts( $claims_args );
 <div class="panel panel-default">
 	<div class="panel-heading text-center">Your claims</div>	
 	<table class="table table-bordered text-center">
-	<thead>
-		<tr>
-			<td colspan="4">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th width="20%" class="text-center">Reference</th>
-			<th width="20%" class="text-center">Status</th>
-			<th width="53%" class="text-center">Type</th>
-			<th width="7%" class="text-center"><i class="fa fa-cogs"></i></th>
-		</tr>
-		<?php foreach ($claims as $claim) { 
-		$case_status = get_post_meta( $claim->ID, 'case_status', true );
-		$case_ref = get_post_meta( $claim->ID, 'case_ref', true);
-		$claim_details_raw = get_post_meta( $claim->ID, 'claim_details', true );
-		$claim_details = unserialize($claim_details_raw);
-		?> 
-		<tr class="<?php echo ($case_status == 'open') ? 'success':'danger'; ?>">
-			<td class="text-center"><?php echo $case_ref; ?></td>
-			<td class="text-center"><?php echo strtoupper($case_status); ?></td>
-		  	<td class="text-center"><?php echo $claim_details['claim-type']; ?></td>
-		  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-<?php echo ($case_status == 'open') ? 'success':'danger'; ?> btn-block"><span class="sr-only">View progress</span> <i class="fa fa-chevron-right"><i></a></td>
-	  	</tr>	
-		<?php } ?>
-	</tbody>
-</table>
-
+		<thead>
+			<tr>
+				<td colspan="4">Status: <span class="label label-success">Open</span> <span class="label label-warning">Closed</span></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th width="20%" class="text-center">Reference</th>
+				<th width="15%" class="text-center">Status</th>
+				<th class="text-center">Type</th>
+				<th width="60" class="text-center"><i class="fa fa-folder-open"></i></th>
+			</tr>
+			<?php foreach ($claims as $claim) { 
+			$case_status = get_post_meta( $claim->ID, 'case_status', true );
+			$case_ref = get_post_meta( $claim->ID, 'case_ref', true);
+			$claim_details_raw = get_post_meta( $claim->ID, 'claim_details', true );
+			$claim_details = unserialize($claim_details_raw);
+			?> 
+			<tr class="<?php echo ($case_status == 'open') ? 'success':'warning'; ?>">
+				<td class="text-center"><?php echo $case_ref; ?></td>
+				<td class="text-center"><span class="label label-<?php echo ($case_status == 'open') ? 'success':'warning'; ?> caps"><?php echo $case_status; ?></span></td>
+			  	<td class="text-center"><?php echo $claim_details['claim-type']; ?></td>
+			  	<td><a href="<?php echo get_permalink($claim->ID); ?>" class="btn btn-<?php echo ($case_status == 'open') ? 'success':'warning'; ?> btn-block"><span class="sr-only">View progress</span> <i class="fa fa-chevron-right"><i></a></td>
+		  	</tr>	
+			<?php } ?>
+		</tbody>
+	</table>
 </div>
-
-<div class="rule"></div>
 <?php } ?>
-
-<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">Account details<i class="fa fa-vcard"></i></a>
-<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><?php echo get_the_title($contact_pg->ID); ?><i class="fa fa-envelope fa-lg"></i></a>
-<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">Log Out<i class="fa fa-power-off fa-lg"></i></a>

@@ -1,12 +1,3 @@
-<?php 
-$user_id = $current_user->ID;
-$user_type = get_user_meta( $user_id, 'user_type', true); 
-$contact_pg = get_page_by_path( 'contact-us');
-$dashboard_pg = get_page_by_path( 'dashboard' );
-$cases_pg =  get_option('page_for_posts');
-$claim_pg = get_page_by_path( 'your-claim');
-?>
-
 <div class="tml tml-profile" id="theme-my-login<?php $template->the_instance(); ?>">
 		<?php $template->the_action_template_message( 'profile' ); ?>
 		<?php $template->the_errors(); ?>
@@ -30,7 +21,7 @@ $claim_pg = get_page_by_path( 'your-claim');
 		<input type="hidden" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ); ?>" />
 		<input type="hidden" name="email" id="email" value="<?php echo esc_attr( $profileuser->user_email ); ?>" />
 		
-			<div class="panel panel-default">
+			<div class="panel panel-default no-mag-bot">
 				  <div class="panel-heading text-center">Account Password</div>
 				  <div class="panel-body">
 					  			
@@ -93,29 +84,4 @@ $claim_pg = get_page_by_path( 'your-claim');
 	
 		</form>
 		
-		<a href="<?php echo get_permalink($dashboard_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
-			<i class="fa fa-dashboard"></i>
-			<?php echo get_the_title($dashboard_pg->ID); ?>
-		</a>
-		<?php if ($user_type == 'ref') { ?>
-		<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
-			<i class="fa fa-folder-open"></i>
-			<?php echo get_the_title($cases_pg); ?> Archive
-		</a>
-		<?php } ?>
-		<?php if ($user_type == 'client') { ?>
-		<a href="<?php echo get_permalink($claim_pg->ID); ?>" class="red-btn btn btn-block btn-lg">
-			<i class="fa fa-folder-open"></i>
-			<?php echo get_the_title($claim_pg->ID); ?>
-		</a>
-		<?php } ?>
-		<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
-			<i class="fa fa-envelope fa-lg"></i>
-			<?php echo get_the_title($contact_pg->ID); ?>
-		</a>
-		<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
-			<i class="fa fa-power-off fa-lg"></i>
-			Log Out
-		</a>
-	
 </div>

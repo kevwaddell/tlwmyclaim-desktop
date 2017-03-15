@@ -26,18 +26,16 @@ $clients_pg = get_page_by_path( 'clients' );
 	<?php if ( have_posts() ) : ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
-
-			<article <?php post_class(); ?>>
-				
-				<div class="jumbotron wht-border-bottom">
-					<div class="container">
-					<?php the_content(); ?>	
-					</div>
+			<div class="jumbotron wht-border-bottom">
+				<div class="container">
+				<?php the_content(); ?>	
 				</div>
+			</div>
 				
+			<div class="container">
 				<?php if (!empty($users)) { ?>
 				<section id="users-list">
-				<div class="container">	
+					
 					<div class="panel panel-default">	
 			
 						<div class="panel-heading text-center">Referrers</div>	
@@ -98,40 +96,35 @@ $clients_pg = get_page_by_path( 'clients' );
 						</table>
 						
 					</div>
-				</div>
 				</section>
 				<?php } else { ?>
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-8 col-xs-offset-2">
-							<div class="well well-lg well-message text-center">
-								<h2>Sorry</h2>
-								<p>There are no referrers at the moment.</p>
-							</div>
+				<div class="row">
+					<div class="col-xs-8 col-xs-offset-2">
+						<div class="well well-lg well-message text-center">
+							<h2>Sorry</h2>
+							<p>There are no referrers at the moment.</p>
 						</div>
 					</div>
 				</div>
 				<?php } ?>
 				
-				<div class="container">
-					<div class="rule"></div>
-					<div class="btns-group">
-						<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
-						<i class="fa fa-folder-open"></i>
-						<?php echo get_the_title($cases_pg); ?> archive
-						</a>
-						<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
-						<i class="fa fa-users"></i>
-						<?php echo get_the_title($clients_pg->ID); ?> archive
-						</a>
-						<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
-							<i class="fa fa-power-off fa-lg"></i>
-							Log Out
-						</a>
-					</div>
+				<div class="rule"></div>
+				<div class="btns-group">
+					<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-folder-open"></i>
+					<?php echo get_the_title($cases_pg); ?> archive
+					</a>
+					<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-users"></i>
+					<?php echo get_the_title($clients_pg->ID); ?> archive
+					</a>
+					<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
+						<i class="fa fa-power-off fa-lg"></i>
+						Log Out
+					</a>
 				</div>
 
-			</article><!-- #post-## -->
+			</div><!-- #post-## -->
 
 			<?php endwhile; ?>
 

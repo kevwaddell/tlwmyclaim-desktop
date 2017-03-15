@@ -2,9 +2,6 @@
 global $user_id;
 $current_user = wp_get_current_user();
 $user_data = get_userdata($user_id);
-$account_pg = get_page_by_path( 'account-details' );
-$cases_pg =  get_option('page_for_posts');
-$contact_pg = get_page_by_path( 'contact-us');
 //echo '<pre class="debug">';print_r($user_data);echo '</pre>';	
 
 $claims_args = array(
@@ -51,11 +48,3 @@ $closed = 0;
 		</div>
 	</div>
 </div>
-
-<a href="<?php echo get_permalink( $cases_pg ); ?>" class="red-btn btn btn-block btn-lg"><?php echo get_the_title($cases_pg); ?> archive<i class="fa fa-folder-open fa-lg"></i></a>
-
-<a href="<?php echo get_permalink( $account_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><?php echo get_the_title($account_pg->ID); ?><i class="fa fa-vcard fa-lg"></i></a>
-
-<a href="<?php echo get_permalink( $contact_pg->ID ); ?>" class="red-btn btn btn-block btn-lg"><?php echo get_the_title($contact_pg->ID); ?><i class="fa fa-envelope fa-lg"></i></a>
-
-<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">Log Out<i class="fa fa-power-off fa-lg"></i></a>
