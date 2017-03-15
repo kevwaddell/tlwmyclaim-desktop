@@ -8,11 +8,15 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 	<?php if ( have_posts() ) : ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
-			<?php
-			$dashboard_pg = get_page_by_path( 'dashboard' );
+			<?php 
 			$account_pg = get_page_by_path( 'account-details' );
 			$contact_pg = get_page_by_path( 'contact-us');
-
+			$dashboard_pg = get_page_by_path( 'dashboard' );
+			$cases_pg =  get_option('page_for_posts');
+			$clients_pg = get_page_by_path( 'clients' );
+			$referrers_pg = get_page_by_path( 'referrers' );
+			?>
+			<?php
 			$case_progress_raw = get_post_meta( $post->ID, 'case_progress', true );
 			$case_progress = unserialize($case_progress_raw);
 			$fee_earner_raw = get_post_meta( $post->ID, 'fee_earner', true );
@@ -178,8 +182,16 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 						<?php } ?>
 						<?php if ( current_user_can( 'administrator' ) ) { ?>
 						<a href="<?php echo get_author_posts_url($post->post_author); ?>" class="red-btn btn btn-block btn-lg">
-							Client profile
-							<i class="fa fa-vcard"></i>
+							Client profile<i class="fa fa-vcard"></i>
+						</a>
+						<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
+							<?php echo get_the_title($cases_pg); ?> archive <i class="fa fa-folder-open"></i>
+						</a>
+						<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+							<?php echo get_the_title($clients_pg->ID); ?> archive <i class="fa fa-users"></i>
+						</a>
+						<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+							<?php echo get_the_title($referrers_pg->ID); ?> archive <i class="fa fa-building"></i>
 						</a>
 						<?php } ?>
 						<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg"><i class="fa fa-power-off fa-lg"></i>Log Out</a>

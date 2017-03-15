@@ -118,16 +118,13 @@ $referrers_pg = get_page_by_path( 'referrers' );
 					<div class="rule"></div>
 					<div class="btns-group">
 						<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
-							<i class="fa fa-folder-open"></i>
-							<?php echo get_the_title($cases_pg); ?>
+							<?php echo get_the_title($cases_pg); ?> archive <i class="fa fa-folder-open"></i>
 						</a>
 						<a href="<?php echo get_permalink($referrers_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
-							<i class="fa fa-building"></i>
-							<?php echo get_the_title($referrers_pg->ID); ?>
+							<?php echo get_the_title($referrers_pg->ID); ?> archive <i class="fa fa-building"></i>
 						</a>
 						<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
-						<i class="fa fa-power-off"></i>
-						Log Out
+							Log Out <i class="fa fa-power-off"></i>
 						</a>
 					</div>
 				</div>

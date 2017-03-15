@@ -1,9 +1,9 @@
 <tbody>
 	<tr>
-		<th width="5%" class="text-center"><i class="fa fa-info-circle fa-lg"></i></th>
+		<th width="60" class="text-center"><i class="fa fa-info-circle fa-lg"></i></th>
 		<th width="44%" class="text-center">Case referrence:</th>
-		<th width="44%" class="text-center">Client name:</th>
-		<th width="8%" class="text-center"><i class="fa fa-eye fa-lg"></i></th>
+		<th class="text-center">Client name:</th>
+		<th width="60" class="text-center"><i class="fa fa-eye fa-lg"></i></th>
   	</tr>
   	<?php while ( have_posts() ) : the_post(); ?>
   	<?php
