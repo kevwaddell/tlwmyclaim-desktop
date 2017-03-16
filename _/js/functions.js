@@ -5,12 +5,15 @@
 		
 
 		$('body').on(event_type,'button#nav-btn', function(){	
-			$('body').addClass('nav-open');
-			$('#page').animate( {left: '-300px', opacity: 0.5}, 'fast');
 			
-			$('#main-nav').animate( {right: '0px', opacity: 1}, 'fast', function(){
-				$(this).toggleClass('nav-closed nav-open').removeAttr('style');
-			});
+			if (!$('body').hasClass('nav-open')) {
+				$('body').addClass('nav-open');
+				$('#page').animate( {left: '-300px', opacity: 0.5}, 'fast');
+				
+				$('#main-nav').animate( {right: '0px', opacity: 1}, 'fast', function(){
+					$(this).toggleClass('nav-closed nav-open').removeAttr('style');
+				});
+			}
 			
 			return false;
 		});	
