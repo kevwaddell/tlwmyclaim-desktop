@@ -27,7 +27,7 @@ $claim_pg = get_page_by_path( 'your-claim');
 						//echo '<pre class="debug">';print_r($client_personal);echo '</pre>';
 						?>
 						<h1>Welcome <?php echo $client_personal['forename']; ?></h1>
-						<p><strong>To your the TLW Solicitors account portal.</strong></p>
+						<p><strong>To the TLW Solicitors account portal.</strong></p>
 						<?php } ?>
 						<?php if ($user_type == 'ref') { 
 						$company = get_user_meta( $user_id, 'company_name', true);	
