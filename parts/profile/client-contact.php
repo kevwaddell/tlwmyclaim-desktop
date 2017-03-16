@@ -35,16 +35,15 @@ $client_address = unserialize($client_address_raw);
 	  </tr>
 	  <tr>
 		  <td>
-			<strong><?php echo (!empty($client_contact['tel'])) ? "Tel: ".$client_contact['tel']."<br>" : ""; ?> 
-			<?php echo (!empty($client_contact['mobile'])) ? "Mobile: ".$client_contact['mobile'] : " - "; ?></strong>  
+			<?php echo (!empty($client_contact['tel'])) ? "Tel: ".$client_contact['tel']."<br>" : ""; ?> 
+			<?php echo (!empty($client_contact['mobile'])) ? "Mobile: ".$client_contact['mobile'] : " - "; ?> 
 		  </td>
 		  <td>
-			<strong><?php if (!empty($client_address)) { ?>
+			<?php if (!empty($client_address)) { ?>
 			<?php foreach ($client_address as $k => $part) { ?>
 			<?php echo ( empty($part) || $k == 'postcode') ? $part."" : $part."<br>"; ?>									  
 			<?php } ?>	 
 			<?php } ?>
-			</strong>
 		  </td>
 	  </tr>
   </tbody>

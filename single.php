@@ -66,7 +66,7 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 							 	<div class="icon-label">Progress Report</div>
 						 	</div>
 						 	
-							<div class="status-date"><?php echo $date; ?></div>
+							<div class="status-date"><i class="fa fa-calendar"></i><?php echo $date; ?></div>
 							<div class="case-details"><span>Case type: <?php echo $claim_details['claim-type']; ?></span> | <span>Case Ref: <?php echo $case_ref; ?></span></div>
 							<div class="case-status"><i class="fa fa-check-circle txt-col-orange-dk fa-lg"></i> <?php echo $status; ?></div>
 		
@@ -161,7 +161,7 @@ $user_type = get_user_meta( $user_id, 'user_type', true);
 								  	?>
 								  	<tr class="<?php echo ($k == 0) ? 'warning' : 'success'; ?>">
 									  	<td class="text-center"><i class="fa <?php echo ($k == 0) ? 'fa-hourglass-half text-warning' : 'fa-check-circle text-success'; ?>"></i></td>
-									  	<td class="text-center"><strong><?php echo $date; ?></strong></td>
+									  	<td class="text-center"><?php echo $date; ?></td>
 									  	<td class="text-center"><?php echo $status['status']; ?></td>	
 								  	</tr>	
 								  	<?php } ?>
