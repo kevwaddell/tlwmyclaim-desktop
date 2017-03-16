@@ -1,3 +1,7 @@
+<?php
+$user_id = $current_user->ID;
+$user_type = get_user_meta( $user_id, 'user_type', true); 
+?>
 <div class="tml tml-profile" id="theme-my-login<?php $template->the_instance(); ?>">
 		<?php $template->the_action_template_message( 'profile' ); ?>
 		<?php $template->the_errors(); ?>
