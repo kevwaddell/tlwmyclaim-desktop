@@ -82,9 +82,14 @@ if ( is_user_logged_in() && ($user_type == "ref" || $user_type == "admin") ) { ?
 			<div class="btns-group">
 				<?php if ($user_type == "admin") { 
 				$clients_pg = get_page_by_path( 'clients' );
-				$referrers_pg = get_page_by_path( 'referrers' );	
+				$referrers_pg = get_page_by_path( 'referrers' );
+				$home_pg = get_option('page_on_front');		
 				?>
-				<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
+				<a href="<?php echo get_permalink($home_pg); ?>" class="red-btn btn btn-block btn-lg">
+					<i class="fa fa-home"></i>
+					Home
+				</a>
+				<a href="<?php echo get_permalink($clients_pg->ID); ?>" class="red-btn btn btn-block btn-lg">
 					<i class="fa fa-users"></i>
 					<?php echo get_the_title($clients_pg->ID); ?> archive
 				</a>

@@ -18,6 +18,7 @@ $users = get_users( $users_args );
 
 $cases_pg =  get_option('page_for_posts');
 $clients_pg = get_page_by_path( 'clients' );
+$home_pg = get_option('page_on_front');		
 //$users = false;
 //echo '<pre class="debug">';print_r($users);echo '</pre>';
 ?>
@@ -110,13 +111,17 @@ $clients_pg = get_page_by_path( 'clients' );
 				
 				<div class="rule"></div>
 				<div class="btns-group">
+					<a href="<?php echo get_permalink($home_pg); ?>" class="red-btn btn btn-block btn-lg">
+						<i class="fa fa-home"></i>
+						Home
+					</a>
 					<a href="<?php echo get_permalink($cases_pg); ?>" class="red-btn btn btn-block btn-lg">
-					<i class="fa fa-folder-open"></i>
-					<?php echo get_the_title($cases_pg); ?> archive
+						<i class="fa fa-folder-open"></i>
+						<?php echo get_the_title($cases_pg); ?> archive
 					</a>
 					<a href="<?php echo get_permalink($clients_pg->ID ); ?>" class="red-btn btn btn-block btn-lg">
-					<i class="fa fa-users"></i>
-					<?php echo get_the_title($clients_pg->ID); ?> archive
+						<i class="fa fa-users"></i>
+						<?php echo get_the_title($clients_pg->ID); ?> archive
 					</a>
 					<a href="<?php echo wp_logout_url( $redirect ); ?>" class="red-btn btn btn-block btn-lg">
 						<i class="fa fa-power-off fa-lg"></i>
