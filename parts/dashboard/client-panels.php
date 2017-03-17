@@ -44,7 +44,7 @@ $claim_pg = get_page_by_path( 'your-claim');
 		<div class="case-details"><span>Case type: <?php echo $claim_details['claim-type']; ?></span> | <span>Case Ref: <?php echo $case_ref; ?></span></div>
 		<div class="case-status"><i class="fa fa-check-circle txt-col-orange-dk fa-lg"></i> <?php echo $status; ?></div>
 	</div>
-	<a href="<?php echo get_permalink( $claim_pg->ID ); ?>" class="orange-btn btn btn-block btn-lg"><i class="fa fa-folder-open fa-lg"></i>Case details</a>
+	<a href="<?php echo get_permalink( $current_claims[0]->ID ); ?>" class="orange-btn btn btn-block btn-lg"><i class="fa fa-folder-open fa-lg"></i>Case details</a>
 <?php } ?>
 
 <?php
